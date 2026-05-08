@@ -1,7 +1,6 @@
 import "server-only";
-import { db } from "@/server/db/db";
-import { medication } from "@/server/db/schema";
+import { listMedicationsRepository } from "../repositories/list-medications.repository";
 
 export async function listMedicationsService() {
-  return db.select().from(medication);
+  return listMedicationsRepository();
 }

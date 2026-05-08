@@ -1,40 +1,23 @@
 "use server";
 
-import { headers } from "next/headers";
-import { auth } from "@/lib/auth";
-import type {
-  CreateCaseInput,
-  LinkMedicationInput,
-} from "./schemas/cases.schema";
+import { getCurrentUserId } from "@/server/auth/get-current-user-id";
 import {
   createCaseService,
   linkMedicationService,
   listCasesService,
 } from "./services";
 
-async function getUserId() {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
-
-  if (!session?.user?.id) {
-    throw new Error("Não autorizado");
-  }
-
-  return session.user.id;
-}
-
-export async function createCaseAction(input: CreateCaseInput) {
-  const userId = await getUserId();
+export async function createCaseAction(input: unknown) {
+  const userId = await getCurrentUserId();
   return createCaseService(userId, input);
 }
 
 export async function listCasesAction() {
-  const userId = await getUserId();
+  const userId = await getCurrentUserId();
   return listCasesService(userId);
 }
 
-export async function linkMedicationAction(input: LinkMedicationInput) {
-  const userId = await getUserId();
+export async function linkMedicationAction(input: unknown) {
+  const userId = await getCurrentUserId();
   return linkMedicationService(userId, input);
 }

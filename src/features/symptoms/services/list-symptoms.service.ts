@@ -1,7 +1,6 @@
 import "server-only";
-import { db } from "@/server/db/db";
-import { symptom } from "@/server/db/schema";
+import { listSymptomsRepository } from "../repositories/list-symptoms.repository";
 
 export async function listSymptomsService() {
-  return db.select().from(symptom);
+  return listSymptomsRepository();
 }

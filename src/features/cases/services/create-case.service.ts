@@ -1,13 +1,8 @@
-import { casesRepository } from "../repositories/cases.repository";
-import {
-  type CreateCaseInput,
-  createCaseSchema,
-} from "../schemas/cases.schema";
+import "server-only";
+import { createCaseRepository } from "../repositories/create-case.repository";
+import { createCaseSchema } from "../schemas/cases.schema";
 
-export async function createCaseService(
-  userId: string,
-  input: CreateCaseInput,
-) {
+export async function createCaseService(userId: string, input: unknown) {
   const data = createCaseSchema.parse(input);
-  return casesRepository.create(userId, data);
+  return createCaseRepository(userId, data);
 }

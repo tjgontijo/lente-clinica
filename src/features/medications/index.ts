@@ -1,1 +1,1 @@
-export { listMedicationsService } from "./services/list-medications.service";
+export type * from "./types";

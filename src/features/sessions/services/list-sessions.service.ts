@@ -1,12 +1,16 @@
-import { casesRepository } from "@/features/cases/repositories/cases.repository";
-import { sessionsRepository } from "../repositories/sessions.repository";
+import "server-only";
+import { findCaseByIdRepository } from "@/features/cases/repositories/find-case-by-id.repository";
+import { listSessionsByCaseRepository } from "../repositories/list-sessions-by-case.repository";
+import { caseIdSchema } from "../schemas/sessions.schema";
 
-export async function listSessionsService(userId: string, caseId: string) {
+export async function listSessionsService(userId: string, input: unknown) {
+  const { caseId } = caseIdSchema.parse({ caseId: input });
+
   // Segurança
-  const existingCase = await casesRepository.findById(caseId);
+  const existingCase = await findCaseByIdRepository(caseId);
   if (!existingCase || existingCase.userId !== userId) {
     throw new Error("Caso não encontrado ou acesso negado.");
   }
 
-  return sessionsRepository.listByCase(caseId);
+  return listSessionsByCaseRepository(caseId);
 }

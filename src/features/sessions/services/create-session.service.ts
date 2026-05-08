@@ -1,22 +1,16 @@
-import { casesRepository } from "@/features/cases/repositories/cases.repository";
-import { sessionsRepository } from "../repositories/sessions.repository";
+import "server-only";
+import { findCaseByIdRepository } from "@/features/cases/repositories/find-case-by-id.repository";
+import { createSessionRepository } from "../repositories/create-session.repository";
+import { createSessionSchema } from "../schemas/sessions.schema";
 
-export interface CreateSessionInput {
-  caseId: string;
-  date: Date;
-  notes?: string;
-  symptomIds: string[];
-}
+export async function createSessionService(userId: string, input: unknown) {
+  const data = createSessionSchema.parse(input);
 
-export async function createSessionService(
-  userId: string,
-  input: CreateSessionInput,
-) {
   // Segurança: garantir que o caso pertence ao usuário
-  const existingCase = await casesRepository.findById(input.caseId);
+  const existingCase = await findCaseByIdRepository(data.caseId);
   if (!existingCase || existingCase.userId !== userId) {
     throw new Error("Caso não encontrado ou acesso negado.");
   }
 
-  return sessionsRepository.create(input);
+  return createSessionRepository(data);
 }

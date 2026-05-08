@@ -81,6 +81,20 @@ async function main() {
     }
   }
 
+  // 6. Communication Templates
+  console.log("Inserting Communication Templates...");
+  await db
+    .insert(schema.communicationTemplate)
+    .values({
+      scenarioId: "alerta_urgencia_geral",
+      urgencyLevel: "RED",
+      contentShort:
+        "Olá, Dr(a). Sou a psicóloga do(a) [iniciais]. Notei piora importante em [sintomas] nas últimas 2 semanas. [iniciais] está em uso de [medicação]. Gostaria de alinhar a conduta.",
+      contentMedium:
+        "Prezado(a) Dr(a). Sou a psicóloga clínica do(a) paciente [iniciais], [idade] anos. Durante a última sessão, observei um agravamento significativo em [sintomas]. Como o paciente está em uso de [medicação], achei prudente comunicá-lo(a) para avaliarmos se há necessidade de ajuste ou revisão. Atenciosamente.",
+    })
+    .onConflictDoNothing();
+
   console.log("✅ Seeding completed.");
 }
 

@@ -1,5 +1,6 @@
-import { casesRepository } from "../repositories/cases.repository";
+import "server-only";
+import { listCasesRepository } from "../repositories/list-cases.repository";
 
 export async function listCasesService(userId: string) {
-  return casesRepository.listByUser(userId);
+  return listCasesRepository(userId);
 }

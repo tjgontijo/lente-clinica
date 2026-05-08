@@ -1,4 +1,7 @@
+// biome-ignore lint: all
 // AppComponents.jsx — Shared UI primitives for Lente Clínica
+
+import React from "react";
 
 const LC = {
   teal50: "oklch(97% 0.025 192)",
@@ -184,7 +187,7 @@ const TopHeader = ({ title, onBack, action, tinted }) => (
     }}
   >
     {onBack && (
-      <button
+      <button type="button"
         onClick={onBack}
         style={{
           background: "none",
@@ -238,7 +241,7 @@ const BottomNav = ({ active, onNav }) => {
       {tabs.map((t) => {
         const on = active === t.id;
         return (
-          <button
+          <button type="button"
             key={t.id}
             onClick={() => onNav(t.id)}
             style={{
@@ -460,7 +463,7 @@ const PrimaryBtn = ({
   const s = S[variant] || S.primary;
   const [hov, setHov] = React.useState(false);
   return (
-    <button
+    <button type="button"
       onClick={onClick}
       disabled={disabled}
       onMouseEnter={() => setHov(true)}

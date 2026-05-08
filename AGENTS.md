@@ -9,6 +9,7 @@ Este projeto utiliza Next.js 16 com mudanças profundas em APIs e convenções. 
 Sempre consulte o diretório `.agents/skills/` para diretrizes específicas. As skills principais são:
 
 - **Arquitetura**: `$next-feature-architecture` (localizada em `.agents/skills/next-feature-architecture/`)
+- **Design System**: `$lente-design-system` (localizada em `.agents/skills/lente-design-system/`)
 - **PRDs**: `$prd-pack-generator` (localizada em `.agents/skills/prd-pack-generator-skill/`)
 
 ## Diretrizes Críticas (Next.js 16+)

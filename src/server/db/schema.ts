@@ -90,26 +90,6 @@ export const verification = pgTable(
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
 
-export const userRelations = relations(user, ({ many }) => ({
-  sessions: many(session),
-  accounts: many(account),
-  patientCases: many(patientCase),
-}));
-
-export const sessionRelations = relations(session, ({ one }) => ({
-  user: one(user, {
-    fields: [session.userId],
-    references: [user.id],
-  }),
-}));
-
-export const accountRelations = relations(account, ({ one }) => ({
-  user: one(user, {
-    fields: [account.userId],
-    references: [user.id],
-  }),
-}));
-
 // --- KNOWLEDGE BASE ---
 
 export const medicationClass = pgTable("medication_class", {
@@ -173,7 +153,8 @@ export const patientCase = pgTable("patient_case", {
   userId: text("user_id")
     .notNull()
     .references(() => user.id),
-  initials: text("initials").notNull(),
+  firstName: text("first_name").notNull(),
+  phoneSuffix: text("phone_suffix"),
   birthYear: integer("birth_year"),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
@@ -216,5 +197,132 @@ export const sessionObservation = pgTable(
   },
   (t) => ({
     pk: primaryKey({ columns: [t.sessionId, t.symptomId] }),
+  }),
+);
+
+// --- COMMUNICATION KIT ---
+
+export const communicationTemplate = pgTable("communication_template", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  scenarioId: text("scenario_id").unique().notNull(), // Ex: "inicio_antidepressivo_sem_melhora"
+  urgencyLevel: text("urgency_level").default("YELLOW"), // YELLOW ou RED
+  contentShort: text("content_short").notNull(),
+  contentMedium: text("content_medium"),
+  contentFormal: text("content_formal"),
+});
+
+// --- RELATIONS ---
+
+export const userRelations = relations(user, ({ many }) => ({
+  sessions: many(session),
+  accounts: many(account),
+  patientCases: many(patientCase),
+}));
+
+export const sessionRelations = relations(session, ({ one }) => ({
+  user: one(user, {
+    fields: [session.userId],
+    references: [user.id],
+  }),
+}));
+
+export const accountRelations = relations(account, ({ one }) => ({
+  user: one(user, {
+    fields: [account.userId],
+    references: [user.id],
+  }),
+}));
+
+export const medicationClassRelations = relations(
+  medicationClass,
+  ({ many }) => ({
+    medications: many(medication),
+  }),
+);
+
+export const medicationRelations = relations(medication, ({ one, many }) => ({
+  class: one(medicationClass, {
+    fields: [medication.classId],
+    references: [medicationClass.id],
+  }),
+  symptomAlerts: many(medicationSymptomAlert),
+  patientMedications: many(patientMedication),
+}));
+
+export const symptomCategoryRelations = relations(
+  symptomCategory,
+  ({ many }) => ({
+    symptoms: many(symptom),
+  }),
+);
+
+export const symptomRelations = relations(symptom, ({ one, many }) => ({
+  category: one(symptomCategory, {
+    fields: [symptom.categoryId],
+    references: [symptomCategory.id],
+  }),
+  medicationAlerts: many(medicationSymptomAlert),
+  sessionObservations: many(sessionObservation),
+}));
+
+export const medicationSymptomAlertRelations = relations(
+  medicationSymptomAlert,
+  ({ one }) => ({
+    medication: one(medication, {
+      fields: [medicationSymptomAlert.medicationId],
+      references: [medication.id],
+    }),
+    symptom: one(symptom, {
+      fields: [medicationSymptomAlert.symptomId],
+      references: [symptom.id],
+    }),
+  }),
+);
+
+export const patientCaseRelations = relations(patientCase, ({ one, many }) => ({
+  user: one(user, {
+    fields: [patientCase.userId],
+    references: [user.id],
+  }),
+  medications: many(patientMedication),
+  sessions: many(clinicalSession),
+}));
+
+export const patientMedicationRelations = relations(
+  patientMedication,
+  ({ one }) => ({
+    case: one(patientCase, {
+      fields: [patientMedication.caseId],
+      references: [patientCase.id],
+    }),
+    medication: one(medication, {
+      fields: [patientMedication.medicationId],
+      references: [medication.id],
+    }),
+  }),
+);
+
+export const clinicalSessionRelations = relations(
+  clinicalSession,
+  ({ one, many }) => ({
+    patientCase: one(patientCase, {
+      fields: [clinicalSession.caseId],
+      references: [patientCase.id],
+    }),
+    observations: many(sessionObservation),
+  }),
+);
+
+export const sessionObservationRelations = relations(
+  sessionObservation,
+  ({ one }) => ({
+    session: one(clinicalSession, {
+      fields: [sessionObservation.sessionId],
+      references: [clinicalSession.id],
+    }),
+    symptom: one(symptom, {
+      fields: [sessionObservation.symptomId],
+      references: [symptom.id],
+    }),
   }),
 );

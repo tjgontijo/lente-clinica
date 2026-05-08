@@ -1,11 +1,15 @@
 import { z } from "zod";
 
 export const createCaseSchema = z.object({
-  initials: z
+  firstName: z
     .string()
-    .min(1, "Iniciais são obrigatórias")
-    .max(5, "Máximo de 5 caracteres")
-    .transform((val) => val.toUpperCase()),
+    .min(2, "Primeiro nome é obrigatório")
+    .max(50, "Máximo de 50 caracteres")
+    .transform((val) => val.charAt(0).toUpperCase() + val.slice(1)),
+  phoneSuffix: z
+    .string()
+    .regex(/^\d{4}$/, "Devem ser exatamente os últimos 4 dígitos")
+    .optional(),
   birthYear: z
     .number()
     .int()

@@ -1,1 +1,1 @@
-export { listSymptomsService } from "./services/list-symptoms.service";
+export type * from "./types";
