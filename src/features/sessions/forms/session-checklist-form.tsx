@@ -53,7 +53,7 @@ export function SessionChecklistForm({
   const watchedSymptomIds = form.watch("symptomIds");
 
   useEffect(() => {
-    onSymptomChange(watchedSymptomIds);
+    onSymptomChange(watchedSymptomIds ?? []);
   }, [watchedSymptomIds, onSymptomChange]);
 
   const onSubmit = (data: SessionFormValues) => {
