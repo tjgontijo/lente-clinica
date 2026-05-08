@@ -7,22 +7,25 @@ export async function listMedicationsRepository(search?: string) {
   const searchPattern = `%${search}%`;
 
   return db.query.medication.findMany({
-    where: search
-      ? or(
-          ilike(medication.name, searchPattern),
-          exists(
-            db
-              .select()
-              .from(medicationProduct)
-              .where(
-                and(
-                  eq(medicationProduct.medicationId, medication.id),
-                  ilike(medicationProduct.productName, searchPattern),
+    where: and(
+      eq(medication.isVisible, true),
+      search
+        ? or(
+            ilike(medication.name, searchPattern),
+            exists(
+              db
+                .select()
+                .from(medicationProduct)
+                .where(
+                  and(
+                    eq(medicationProduct.medicationId, medication.id),
+                    ilike(medicationProduct.productName, searchPattern),
+                  ),
                 ),
-              ),
-          ),
-        )
-      : undefined,
+            ),
+          )
+        : undefined,
+    ),
     with: {
       class: true,
       products: true,

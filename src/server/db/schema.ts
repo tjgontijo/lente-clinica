@@ -135,6 +135,7 @@ export const medicationClass = pgTable("medication_class", {
   shouldEnrichWithLlm: boolean("should_enrich_with_llm")
     .default(false)
     .notNull(),
+  mentalHealthRelevance: integer("mental_health_relevance").default(0),
 });
 
 export const medication = pgTable("medication", {
@@ -164,6 +165,10 @@ export const medication = pgTable("medication", {
   enrichmentBatchId: text("enrichment_batch_id"),
   enrichmentError: text("enrichment_error"),
   enrichmentRawResponse: jsonb("enrichment_raw_response"),
+  mentalHealthRelevance: integer("mental_health_relevance").default(0),
+  mentalHealthRelevanceReason: text("mental_health_relevance_reason"),
+  mentalHealthCategory: text("mental_health_category"),
+  isVisible: boolean("is_visible").default(true).notNull(),
 });
 
 export const medicationProduct = pgTable(
