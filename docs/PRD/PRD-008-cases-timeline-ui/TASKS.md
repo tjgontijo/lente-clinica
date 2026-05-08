@@ -10,16 +10,17 @@
 **Localização:** `src/app/(dashboard)/cases/page.tsx`
 **O que fazer:**
 1. Página Server Component que busca os casos (ou usa Client Component com TanStack Query para atualização instantânea).
-2. Tabela simples ou Lista de Cards mostrando Iniciais e Idade calculada.
+2. Tabela simples ou Lista de Cards mostrando Primeiro Nome, Sufixo do Telefone e Idade calculada.
 3. Botão primário no cabeçalho: "Novo Paciente".
 
 ### T2: Form e Modal de Criação
 **Localização:** `src/features/cases/forms/create-case-form.tsx`
 **O que fazer:**
 1. Criar form com `react-hook-form` e `zodResolver`.
-2. Usar Hook de Mutation (`useCreateCaseMutation`).
-3. Embutir o formulário dentro de um `Dialog` do Shadcn.
-4. Lidar com o estado `isPending` (desabilitando botão e mostrando spinner) e sucesso (fechando modal, gerando Toast e invalidando cache).
+2. O formulário deve conter campos para: Primeiro Nome, Sufixo do Telefone (4 dígitos) e Ano de Nascimento.
+3. Usar Hook de Mutation (`useCreateCaseMutation`).
+4. Embutir o formulário dentro de um `Dialog` do Shadcn.
+5. Lidar com o estado `isPending` (desabilitando botão e mostrando spinner) e sucesso (fechando modal, gerando Toast e invalidando cache).
 
 ---
 
@@ -28,7 +29,7 @@
 ### T3: Layout Base da Tela do Paciente
 **Localização:** `src/app/(dashboard)/cases/[id]/page.tsx`
 **O que fazer:**
-1. Cabeçalho hero simples: "Caso M.S." com botão secundário de "Voltar para lista".
+1. Cabeçalho hero simples: "Caso Maria" com botão secundário de "Voltar para lista".
 2. Criar Seção "Medicações em Uso". Listar os `PatientMedications` ativos como tags ou pequenos cards (`Badge` components do design system).
 3. Botão/Combobox de "+ Adicionar Medicação" que faz fetch das medicações existentes e submete a mutation de vinculo.
 

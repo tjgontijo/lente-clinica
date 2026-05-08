@@ -33,7 +33,7 @@ export const patientMedications = pgTable("patient_medications", {
 
 ### T2: Criar Zod Schemas
 **Localização:** `src/features/cases/schemas/cases.schema.ts`
-**O que fazer:** Criar esquemas de validação de criação e vinculação (Iniciais obrigatoriamente uppercase e <= 5 caracteres).
+**O que fazer:** Criar esquemas de validação de criação e vinculação (Primeiro Nome obrigatório e Sufixo de Telefone de 4 dígitos).
 
 ---
 

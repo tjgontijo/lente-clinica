@@ -1,14 +1,14 @@
-# PRD-002: Gestão de Casos (Patient Cases)
+# PRD-002: Casos Clínicos (Data Layer)
 
 **Status:** Planejado
 **Data:** 2026-05-08
-**Versão:** 1.1 (Foco Backend)
+**Versão:** 1.0
 
 ---
 
 ## 📋 O Que é Este PRD?
 
-Este PRD define a implementação do backend do domínio de **Casos Clínicos Anônimos**. É a fundação de dados para criar casos (com iniciais e ano de nascimento) e vincular medicamentos ativos. Nenhuma UI será construída nesta fase.
+Este PRD define a implementação do backend do domínio de **Casos Clínicos Anônimos**. É a fundação de dados para criar casos (com primeiro nome, sufixo de telefone e ano de nascimento) e vincular medicamentos ativos. Nenhuma UI será construída nesta fase.
 
 **Documento:** Implementação *greenfield* do domínio `cases` (Data Layer e Services).
 **Tempo Total Estimado:** 2 horas.
@@ -31,15 +31,16 @@ PRD-002-patient-cases/
 ## 🎯 Resumo Executivo
 
 ### Status Atual
-- PRD-001 implementou o Schema e Seed do Drizzle.
-- Faltam as entidades e os Services para salvar dados gerados pelos usuários (Pacientes e Medicações vinculadas).
+- O sistema possui Auth e Banco de Dados (PRD-001).
+- Precisamos da capacidade de salvar o perfil básico do paciente antes de registrar sessões.
 
-### Ordem de Fixação / Implementação
+### Ordem de Implementação
 
 | Fase | Tasks | Tempo |
 |------|-------|-------|
-| 1: Data Layer | T1-T2 | 1h |
-| 2: Server Actions & Services | T3-T4 | 1h |
+| 1: Data Layer | T1 | 0.5h |
+| 2: Schemas | T2 | 0.5h |
+| 3: Services | T3-T4 | 1h |
 
 **Total Estimado:** 2h
 
@@ -47,6 +48,7 @@ PRD-002-patient-cases/
 
 ## 💾 Arquivos Principais Envolvidos
 
-- `src/server/db/schema.ts` - Atualização do schema Drizzle.
-- `src/features/cases/services/` - Serviços de manipulação de dados.
-- `src/features/cases/actions.ts` - Server Actions.
+- `src/server/db/schema.ts`
+- `src/features/cases/repositories/`
+- `src/features/cases/services/`
+- `src/features/cases/schemas/cases.schema.ts`

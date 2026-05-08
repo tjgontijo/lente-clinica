@@ -1,99 +1,76 @@
-import { Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import type { MedicationWithClass } from "../types";
+import { Pill, Info } from "lucide-react";
 
 interface MedicationCardProps {
-  name: string;
-  genericName: string;
-  brandNames: string;
-  className?: string;
-  whatItDoes: string[];
-  attentionSignals: string[];
-  dosage?: string;
-  onAdd?: () => void;
+	medication: MedicationWithClass;
+	className?: string;
 }
 
-export function MedicationCard({
-  name,
-  genericName,
-  brandNames,
-  className,
-  whatItDoes,
-  attentionSignals,
-  dosage,
-  onAdd,
-}: MedicationCardProps) {
-  return (
-    <Card className={`lc-card max-w-[420px] p-6 ${className}`}>
-      <div className="flex items-start justify-between gap-3 mb-3">
-        <div className="flex flex-col gap-0.5">
-          <h3 className="text-[var(--lc-text-lg)] font-[var(--lc-weight-bold)] text-[var(--lc-neutral-950)] tracking-tight">
-            {name}
-          </h3>
-          <span className="text-[var(--lc-text-xs)] text-[var(--lc-neutral-500)] font-mono">
-            {genericName} · {brandNames}
-          </span>
-        </div>
-        <Badge
-          variant="secondary"
-          className="bg-[var(--lc-teal-100)] text-[var(--lc-teal-800)] border-[var(--lc-teal-200)] text-[10px] font-bold"
-        >
-          ISRS
-        </Badge>
-      </div>
+export function MedicationCard({ medication, className }: MedicationCardProps) {
+	return (
+		<Card
+			className={`flex flex-col h-full bg-white border-[var(--lc-neutral-150)] shadow-sm hover:shadow-md transition-shadow duration-300 p-6 rounded-[16px] ${className}`}
+		>
+			<div className="flex items-start justify-between gap-4 mb-4">
+				<div className="flex flex-col gap-1">
+					<div className="flex items-center gap-2">
+						<div className="w-8 h-8 rounded-lg bg-[var(--lc-teal-50)] flex items-center justify-center text-[var(--lc-teal-600)]">
+							<Pill size={18} />
+						</div>
+						<h3 className="text-[18px] font-bold text-[var(--lc-neutral-900)] tracking-tight">
+							{medication.name}
+						</h3>
+					</div>
+					<div className="flex flex-wrap gap-1.5 mt-1">
+						{medication.genericName && (
+							<span className="text-[12px] text-[var(--lc-neutral-500)] font-medium">
+								{medication.genericName}
+							</span>
+						)}
+						{medication.commercialNames &&
+							medication.commercialNames.length > 0 && (
+								<>
+									<span className="text-[12px] text-[var(--lc-neutral-300)]">
+										•
+									</span>
+									<span className="text-[12px] text-[var(--lc-neutral-400)] italic">
+										{medication.commercialNames.join(", ")}
+									</span>
+								</>
+							)}
+					</div>
+				</div>
+				<Badge className="bg-[var(--lc-teal-100)] text-[var(--lc-teal-700)] border-[var(--lc-teal-200)] hover:bg-[var(--lc-teal-100)] text-[11px] font-bold py-0.5 rounded-full">
+					{medication.class.name}
+				</Badge>
+			</div>
 
-      <div className="mt-4">
-        <div className="text-[10px] font-bold tracking-widest uppercase text-[var(--lc-neutral-400)] mb-2">
-          O que faz
-        </div>
-        <ul className="flex flex-col gap-1.5">
-          {whatItDoes.map((item) => (
-            <li
-              key={item}
-              className="flex items-start gap-2 text-[var(--lc-text-sm)] text-[var(--lc-neutral-700)] leading-snug"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)] mt-1.5 shrink-0" />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
+			<div className="flex-1 flex flex-col gap-4">
+				{medication.description && (
+					<div className="bg-[var(--lc-neutral-50)] p-3.5 rounded-[12px] border border-[var(--lc-neutral-100)]">
+						<div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)] mb-1.5">
+							<Info size={12} />
+							Mecanismo e Uso
+						</div>
+						<p className="text-[14px] text-[var(--lc-neutral-700)] leading-relaxed">
+							{medication.description}
+						</p>
+					</div>
+				)}
 
-      <div className="h-px bg-[var(--lc-neutral-100)] my-4" />
-
-      <div>
-        <div className="text-[10px] font-bold tracking-widest uppercase text-[var(--lc-neutral-400)] mb-2">
-          Sinais de atenção na sessão
-        </div>
-        <ul className="flex flex-col gap-1.5">
-          {attentionSignals.map((item) => (
-            <li
-              key={item}
-              className="flex items-start gap-2 text-[var(--lc-text-sm)] text-[var(--lc-neutral-700)] leading-snug"
-            >
-              <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-amber-400)] mt-1.5 shrink-0" />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="flex items-center justify-between mt-5 pt-1">
-        {dosage && (
-          <div className="text-[12px] text-[var(--lc-neutral-600)] font-mono bg-[var(--lc-neutral-100)] px-2 py-1 rounded-md">
-            {dosage}
-          </div>
-        )}
-        <Button
-          size="sm"
-          onClick={onAdd}
-          className="h-8.5 rounded-full bg-[var(--lc-teal-600)] hover:bg-[var(--lc-teal-700)] text-white text-xs font-semibold px-4 flex items-center gap-1.5 border-none"
-        >
-          <Plus size={14} strokeWidth={2.5} />
-          Adicionar
-        </Button>
-      </div>
-    </Card>
-  );
+				{medication.ethicalCare && (
+					<div className="bg-[var(--lc-amber-50)] p-3.5 rounded-[12px] border border-[var(--lc-amber-100)]">
+						<div className="text-[10px] font-bold uppercase tracking-widest text-[var(--lc-amber-700)] mb-1.5">
+							Cuidado Ético e Manejo
+						</div>
+						<p className="text-[13px] text-[var(--lc-amber-900)] leading-relaxed font-medium">
+							{medication.ethicalCare}
+						</p>
+					</div>
+				)}
+			</div>
+		</Card>
+	);
 }

@@ -1,64 +1,37 @@
-# Context: Motor de Geração de Comunicação Clínica
+# Context: Geração de Texto Clínico
 
 **Última atualização:** 2026-05-08
-**Foco:** Backend / Services
 
 ---
 
 ## 📌 Definição
 
-O domínio `communication` encapsula a lógica de formatação de texto. Ele pega dados brutos relacionais (Paciente, Sessão, Sintomas, Medicamentos) e converte em templates de comunicação (baseados no PDF da Dra. Tatiana).
+O motor de comunicação é o que transforma dados frios (JSON) em uma mensagem profissional. Ele age como um tradutor ético entre a observação da psicóloga e a linguagem do médico assistente.
 
 **O que é:**
-- Um parser (substituidor de variáveis) inteligente.
-- Um seletor de templates baseado em severidade ou cenário específico.
-
-**O que NÃO é:**
-- Não usa IA generativa (LLM). O texto é fixo (determinístico), garantindo precisão médica e segurança jurídica.
+- Um parser de strings que substitui placeholders por dados dinâmicos.
+- Um repositório de templates pré-aprovados para diferentes cenários clínicos.
 
 ---
 
-## 🔄 Fluxo Lógico (Backend)
+## 🔄 Fluxo de Processamento (Backend)
 
 ```txt
-[Service recebe requisição com sessionId]
+[Request: generateMessage(sessionId, scenarioId)]
   ↓
-[Busca a Sessão, o Caso (iniciais, idade) e as Medicações Ativas]
+[Busca a Sessão, o Caso (Primeiro Nome, idade) e as Medicações Ativas]
   ↓
-[Identifica qual o alerta mais grave gerado nessa sessão (ex: Acatisia severa)]
+[Busca o Template correspondente ao ScenarioId no Banco]
   ↓
-[Busca o template associado a esse cenário no banco de dados]
+[Faz parse das strings: troca "[nome]" por "Maria", "[medicação]" por "Aripiprazol"]
   ↓
-[Faz parse das strings: troca "[iniciais]" por "M.S.", "[medicação]" por "Aripiprazol"]
-  ↓
-[Retorna a string completa para o frontend]
+[Retorna o objeto { message: string, urgencyLevel: string }]
 ```
 
 ---
 
-## 💾 Dados Armazenados (Visão Drizzle)
-
-### CommunicationTemplate Model
-```typescript
-{
-  id: uuid,
-  scenario: string, // Ex: "Início de antidepressivo sem melhora"
-  urgencyLevel: string, // 'YELLOW' | 'RED'
-  contentShort: string, // Template curto (WhatsApp)
-  contentMedium: string, // Template médio
-  contentFormal: string | null // Template para E-mail (quando existir)
-}
-```
-
----
-
-## 🔗 Integração com Outros Domínios
-
-O serviço deste domínio terá que importar repositórios/serviços de:
-- `sessions` (para ler o que foi observado).
-- `cases` (para pegar os dados do paciente).
-
----
-
-## 🎯 Por Que Isso é Crítico?
-A comunicação precisa ser impecável. Se o parser falhar ou pegar a medicação errada, a terapeuta enviará uma informação clínica equivocada ao psiquiatra. O backend aqui atua como garantidor de integridade.
+## 🎯 Placeholders Suportados
+- `[nome]`: Primeiro nome do paciente (ex: Maria).
+- `[idade]`: Idade calculada (ex: 34 anos).
+- `[medicação]`: Lista de medicamentos atuais (ex: Venlafaxina).
+- `[sintomas]`: Sintomas observados na sessão.

@@ -12,7 +12,7 @@ Este PRD define a fundação técnica do MVP da Plataforma **Lente Clínica**, e
 
 ## 3. Matriz de Risco Resumida
 - **Colisão de Nomes**: Risco de conflito entre `Session` (Auth) e `ClinicalSession` (Domínio).
-- **Dados Sensíveis**: Risco de vazamento de dados de pacientes (Mitigado por uso de iniciais e isolamento por usuário).
+- **Dados Sensíveis**: Risco de vazamento de dados de- **PatientCase**: Vinculado ao Terapeuta, armazena apenas primeiro nome, sufixo de telefone e ano de nascimento.ro nome, sufixo de telefone e isolamento por usuário).
 - **Integridade do Seed**: Risco de erros na carga inicial dos PDFs.
 
 ## 4. Arquivos do Pacote

@@ -27,7 +27,7 @@ Este domínio representa o núcleo técnico da plataforma Lente Clínica. Ele en
 - **MedicationSymptomAlert**: Relacionamento N:N definindo alertas de severidade Amarelo/Vermelho.
 
 ### 4.3. Dados do Paciente (Dinâmicos)
-- **PatientCase**: Vinculado ao Terapeuta, armazena apenas iniciais.
+- **PatientCase**: Vinculado ao Terapeuta, armazena apenas primeiro nome e sufixo de telefone.
 - **ClinicalSession**: Registro de cada atendimento individual.
 
 ## 5. Fluxo de Implementação
@@ -37,6 +37,6 @@ Este domínio representa o núcleo técnico da plataforma Lente Clínica. Ele en
 4. Carga inicial via Seed (conhecimento médico).
 
 ## 6. Validações Esperadas
-- Iniciais do paciente devem ter no máximo 4 caracteres.
+- O sistema não deve permitir o armazenamento do nome completo ou sobrenome.
 - Medicamentos devem ter nomes únicos.
 - Sessões clínicas devem sempre pertencer a um caso de paciente válido.

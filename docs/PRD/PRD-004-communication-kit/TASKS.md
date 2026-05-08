@@ -26,7 +26,7 @@ Executar o `drizzle-kit push`.
 
 ### T2: Atualizar Script de Seed
 **Localização:** `src/server/db/seed.ts`
-**O que fazer:** Inserir os templates padrão extraídos do PDF, mantendo os placeholders exatos, ex: `Paciente [iniciais], em uso de [medicação]...`
+**O que fazer:** Inserir os templates padrão extraídos do PDF, mantendo os placeholders exatos, ex: `Paciente [nome], em uso de [medicação]...`
 
 ---
 
@@ -47,7 +47,7 @@ Executar o `drizzle-kit push`.
 *Exemplo de snippet conceitual:*
 ```typescript
 let text = template.contentShort;
-text = text.replace("[iniciais]", patientCase.initials);
+text = text.replace("[nome]", patientCase.firstName);
 text = text.replace("[idade]", patientAge.toString());
 text = text.replace("[medicação]", medicationsNames.join(", "));
 // Retornar a string processada

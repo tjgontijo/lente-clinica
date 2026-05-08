@@ -1,4 +1,4 @@
-# Context: Gestão de Casos Anônimos
+# Context: Gestão de Casos
 
 **Última atualização:** 2026-05-08
 
@@ -6,78 +6,30 @@
 
 ## 📌 Definição
 
-O domínio `cases` é a área privada do terapeuta para organizar os pacientes que ele atende na clínica e controlar suas evoluções psicofarmacológicas.
+O domínio de `cases` é onde os pacientes "nascem" no sistema. Como o foco da Lente Clínica é a segurança jurídica, não salvamos o nome completo do paciente.
 
 **O que é:**
-- Um registro pseudonimizado (apenas Iniciais e Ano de Nascimento).
-- Uma ponte (tabela pivô) para conectar um paciente à nossa Base de Conhecimento (`Medications`).
+- Um registro pseudonimizado (apenas Primeiro Nome, 4 dígitos do telefone e Ano de Nascimento).
+- Uma âncora para todas as sessões clínicas e medicamentos.
 
 **O que NÃO é:**
-- Um prontuário eletrônico completo.
-- Um repositório de dados sensíveis (Nome, CPF, Telefone).
+- Um prontuário completo com CPF, Endereço ou Histórico de Doenças Crônicas (nesta fase).
 
 ---
 
-## 🔄 Fluxo Completo
+## 🔄 Fluxo de Implementação (Backend)
 
 ```txt
-[Dashboard do Terapeuta]
+[Request de Criação de Caso]
   ↓
-[Clica em "Novo Caso"]
+[Valida via Zod (firstName, phoneSuffix, birthYear)]
   ↓
-[Preenche Iniciais (ex: M.S.) e Ano de Nasc (ex: 1990)]
+[Insere no Postgres via Drizzle]
   ↓
-[Sistema cria o caso e abre a tela do Paciente]
-  ↓
-[Terapeuta busca medicação (ex: Escitalopram) e vincula ao Paciente]
+[Retorna o Objeto Criado para a UI]
 ```
-
----
-
-## 💾 Dados Armazenados (Visão Drizzle)
-
-### PatientCase Model
-```typescript
-{
-  id: uuid,
-  userId: string, // FK para o User logado (Better Auth)
-  initials: string,
-  birthYear: number | null,
-  status: string, // 'active' | 'archived'
-  createdAt: Date
-}
-```
-
-### PatientMedication Model
-```typescript
-{
-  caseId: string, // FK para PatientCase
-  medicationId: string, // FK para Medication (Domínio knowledge)
-  isCurrent: boolean,
-  createdAt: Date
-}
-```
-
----
-
-## 🔗 Integração com Outros Domínios
-
-### `cases` ← `auth`
-Os casos são estritamente isolados por usuário. O serviço de listagem (`listCasesService`) DEVE sempre filtrar por `userId` recebido do token da sessão.
-
-### `cases` → `medications` (Knowledge Base)
-A tela de adicionar medicamento ao paciente precisa consumir o serviço/lista do domínio `medications` para alimentar o combobox/select.
-
----
-
-## 📋 Validações (Zod)
-
-### Input Validation
-- `initials`: Máximo de 5 caracteres. Letras maiúsculas. (ex: "J.S.").
-- `birthYear`: Ano válido (1900 até ano atual).
-- `medicationId`: UUID válido.
 
 ---
 
 ## 🎯 Por Que Isso é Crítico?
-Garante o pilar da ferramenta sem infringir a LGPD. Sem vincular um caso às drogas que ele toma, a plataforma não tem como executar sua principal proposta de valor: os alertas inteligentes de sintomas na sessão.
+Sem o `patientCase`, não há onde "pendurar" a evolução clínica. Ele é a entidade central que permite que a terapeuta acompanhe se o paciente melhorou ou piorou ao longo do tempo.

@@ -18,7 +18,7 @@ As validações via Zod e Services de Casos já funcionam no server, mas não te
 ## 🔴 Problemas Críticos (Forms e Mutations)
 
 ### 1. Inexistência do CreateCaseForm
-**Problema:** A UI não tem como receber input das "Iniciais" e enviar para a Server Action de salvar.
+**Problema:** A UI não tem como receber input do "Primeiro Nome" e enviar para a Server Action de salvar.
 **Solução:** Criar `features/cases/forms/create-case-form.tsx` usando `react-hook-form`, `zodResolver` (reaproveitando o Zod schema do Backend), e amarrar isso em um `<Dialog>` do Shadcn. A submissão com sucesso deve fechar o modal, invalidar a Query de lista de casos, e disparar um Toast verde.
 
 ---

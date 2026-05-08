@@ -7,7 +7,7 @@ A fundação técnica depende da sincronia perfeita entre o Better Auth (identid
 - **Colisão de Nomenclatura**: O Better Auth reserva `Session`. Se usarmos `Session` para o atendimento clínico, haverá conflito de tabelas.
   - **Mitigação**: Usar `ClinicalSession`.
 - **Vazamento de PII (LGPD)**: Armazenar nomes de pacientes.
-  - **Mitigação**: Campo `initials` estritamente limitado a iniciais.
+  - **Mitigação**: Campos `firstName` e `phoneSuffix` estritamente limitados.
 
 ## 3. Riscos Moderados
 - **Escalabilidade do Seed**: A carga de 24 medicamentos e dezenas de sintomas deve ser rápida e idêntica em todos os ambientes.

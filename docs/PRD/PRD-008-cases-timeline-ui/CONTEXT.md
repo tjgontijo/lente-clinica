@@ -9,7 +9,7 @@
 Esta é a área core de CRM (Customer Relationship Management) da terapeuta, mas convertida para um contexto clínico LGPD-friendly. 
 
 **O que é:**
-- A Home do sistema. Mostra uma lista limpa (tabela ou lista de cards) com as iniciais dos pacientes e os últimos atendimentos.
+- A Home do sistema. Mostra uma lista limpa (tabela ou lista de cards) com o primeiro nome dos pacientes, sufixo do telefone e os últimos atendimentos.
 - O Perfil do Paciente: uma view focada onde é possível associar uma medicação (puxando da base do PRD-007) e visualizar a Timeline cronológica das Sessões.
 
 **O que NÃO é:**
@@ -24,9 +24,9 @@ Esta é a área core de CRM (Customer Relationship Management) da terapeuta, mas
   ↓
 [Visualiza lista. Clica em "Novo Paciente"]
   ↓
-[Modal pede Iniciais e Ano de Nascimento. Botão Salvar.]
+[Modal pede Primeiro Nome, Sufixo do Telefone e Ano de Nascimento. Botão Salvar.]
   ↓
-[Toast de Sucesso e a tela atualiza. Clica no Caso "M.S."]
+[Toast de Sucesso e a tela atualiza. Clica no Caso "Maria"]
   ↓
 [Abre a página do Perfil do Paciente. Fica visível o Cabeçalho com a idade calculada]
   ↓

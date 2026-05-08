@@ -19,11 +19,11 @@ Este PRD define a implementação do motor backend do **Kit de Comunicação**. 
 
 ```txt
 PRD-004-communication-kit/
-├── README.md (este arquivo)
-├── CONTEXT.md (fluxo de geração de texto)
-├── DIAGNOSTIC.md (gaps na base de conhecimento)
-├── TASKS.md (plano de implementação passo a passo - apenas backend)
-└── QUICK_START.md (guia rápido de execução)
+├── README.md
+├── CONTEXT.md
+├── DIAGNOSTIC.md
+├── TASKS.md
+└── QUICK_START.md
 ```
 
 ---
@@ -55,6 +55,6 @@ PRD-004-communication-kit/
 
 ## ✅ Como Começar
 
-1. Ler o **CONTEXT.md** para entender como as variáveis (ex: `[iniciais]`) funcionam.
+1. Ler o **CONTEXT.md** para entender como as variáveis (ex: `[nome]`) funcionam.
 2. Criar a branch: `git checkout -b feature/communication-backend`
 3. Executar as tasks no backend, garantindo cobertura de testes caso necessário.
