@@ -13,6 +13,7 @@ type TsvRow = {
   TARJA: string;
 };
 
+const CLINICAL_RELEVANCE_WHITELIST = new Set(["N", "C", "A", "H", "G", "M", "R"]);
 const LLM_ENRICHMENT_CLASS_CODES = new Set([
   "N3A",
   "N5A1",
@@ -210,8 +211,20 @@ async function main() {
 
   for (const row of rows) {
     if (!row.SUBSTANCIA || !row.CLASSE_TERAPEUTICA) continue;
+
+    // 1. Filtro de Relevância Clínica (Classes Principais)
     const classInfo = splitClass(row.CLASSE_TERAPEUTICA);
-    if (!classInfo.name) continue;
+    if (!classInfo.name || !CLINICAL_RELEVANCE_WHITELIST.has(classInfo.name[0]!)) {
+      continue;
+    }
+
+    // 2. Filtro de Complexidade (Evitar fórmulas gigantescas/vacinas)
+    const substanceCount = row.SUBSTANCIA.split(";").length;
+    if (substanceCount > 3) continue;
+
+    // 3. Filtro de Produtos Biológicos (Geralmente hospitalares/complexos)
+    if (row.TIPO_PRODUTO.toLowerCase().includes("biológico")) continue;
+
     if (!classCatalog.has(classInfo.name)) {
       classCatalog.set(classInfo.name, { description: classInfo.description });
     }

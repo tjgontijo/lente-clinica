@@ -9,7 +9,7 @@ export function MainShell({ children, className }: MainShellProps) {
   return (
     <main
       className={cn(
-        "flex-1 w-full max-w-5xl mx-auto px-4 py-8 md:py-12",
+        "flex-1 w-full max-w-7xl mx-auto px-4 py-8 md:py-12",
         className,
       )}
     >

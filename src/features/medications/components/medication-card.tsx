@@ -2,6 +2,7 @@ import { Info, Pill } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import type { MedicationWithClass } from "../types";
+import { getHumanClass } from "../utils/atc-mapping";
 
 interface MedicationCardProps {
   medication: MedicationWithClass;
@@ -14,24 +15,26 @@ export function MedicationCard({
   className,
   onClick,
 }: MedicationCardProps) {
+  const humanClass = getHumanClass(medication.class.name, medication.class.description);
+
   return (
     <Card
       onClick={() => onClick?.(medication)}
       className={`flex flex-col h-full bg-white border-[var(--lc-neutral-150)] shadow-sm hover:shadow-md transition-all duration-300 p-6 rounded-[16px] cursor-pointer active:scale-[0.98] ${className}`}
     >
       <div className="flex items-start justify-between gap-4 mb-4">
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-1 flex-1">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-[var(--lc-teal-50)] flex items-center justify-center text-[var(--lc-teal-600)]">
+            <div className="w-8 h-8 rounded-lg bg-[var(--lc-teal-50)] flex items-center justify-center text-[var(--lc-teal-600)] shrink-0">
               <Pill size={18} />
             </div>
-            <h3 className="text-[18px] font-bold text-[var(--lc-neutral-900)] tracking-tight">
+            <h3 className="text-[18px] font-bold text-[var(--lc-neutral-900)] tracking-tight line-clamp-2">
               {medication.name}
             </h3>
           </div>
           <div className="flex flex-wrap gap-1.5 mt-1">
             {medication.products && medication.products.length > 0 && (
-              <span className="text-[12px] text-[var(--lc-neutral-400)] italic">
+              <span className="text-[12px] text-[var(--lc-neutral-400)] italic line-clamp-1">
                 {medication.products
                   .map((product) => product.productName)
                   .join(", ")}
@@ -39,8 +42,8 @@ export function MedicationCard({
             )}
           </div>
         </div>
-        <Badge className="bg-[var(--lc-teal-100)] text-[var(--lc-teal-700)] border-[var(--lc-teal-200)] hover:bg-[var(--lc-teal-100)] text-[11px] font-bold py-0.5 rounded-full">
-          {medication.class.name}
+        <Badge className="bg-[var(--lc-teal-100)] text-[var(--lc-teal-700)] border-[var(--lc-teal-200)] hover:bg-[var(--lc-teal-100)] text-[10px] font-bold py-0.5 rounded-full shrink-0">
+          {humanClass}
         </Badge>
       </div>
 
