@@ -69,7 +69,8 @@ export function MedicationCard({
         </div>
         <Badge
           variant="outline"
-          className={`${colorClass} hover:${colorClass} text-[10px] font-bold py-0.5 px-2.5 rounded-full shrink-0 transition-none`}
+          title={label}
+          className={`${colorClass} hover:${colorClass} text-[10px] font-bold py-0.5 px-2.5 rounded-full shrink-0 transition-none max-w-[150px] truncate`}
         >
           {label}
         </Badge>
