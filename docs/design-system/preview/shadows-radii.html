@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--lc-neutral-100); font-family: var(--lc-font-sans); }
+  .row { display: flex; gap: 16px; margin-bottom: 20px; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-500); margin-bottom: 10px; }
+
+  /* Shadows */
+  .shadow-grid { display: flex; gap: 12px; }
+  .shadow-card { background: white; width: 100px; height: 72px; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; }
+  .shadow-name { font-size: 9px; font-weight: 600; font-family: var(--lc-font-mono); color: var(--lc-teal-600); }
+  .shadow-level { font-size: 9px; color: var(--lc-neutral-400); }
+
+  /* Radii */
+  .radii-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .radius-demo { width: 44px; height: 44px; background: var(--lc-teal-200); display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 700; font-family: var(--lc-font-mono); color: var(--lc-teal-800); }
+</style>
+</head>
+<body>
+<div class="label">Shadow — 3-level elevation</div>
+<div class="shadow-grid" style="margin-bottom:20px">
+  <div class="shadow-card" style="box-shadow:var(--lc-shadow-xs)"><div class="shadow-name">shadow-xs</div><div class="shadow-level">Flat / inline</div></div>
+  <div class="shadow-card" style="box-shadow:var(--lc-shadow-sm)"><div class="shadow-name">shadow-sm</div><div class="shadow-level">Cards · Level 1</div></div>
+  <div class="shadow-card" style="box-shadow:var(--lc-shadow-md)"><div class="shadow-name">shadow-md</div><div class="shadow-level">Popover · Level 2</div></div>
+  <div class="shadow-card" style="box-shadow:var(--lc-shadow-lg)"><div class="shadow-name">shadow-lg</div><div class="shadow-level">Sheet · Level 3</div></div>
+  <div class="shadow-card" style="box-shadow:var(--lc-shadow-xl)"><div class="shadow-name">shadow-xl</div><div class="shadow-level">Modal · Level 4</div></div>
+</div>
+
+<div class="label">Border radius — Corner system</div>
+<div class="radii-row">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="radius-demo" style="border-radius:var(--lc-radius-xs)">xs</div>
+    <div style="font-size:9px;color:var(--lc-neutral-400);text-align:center">4px<br>Tags</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="radius-demo" style="border-radius:var(--lc-radius-sm)">sm</div>
+    <div style="font-size:9px;color:var(--lc-neutral-400);text-align:center">6px<br>Inputs</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="radius-demo" style="border-radius:var(--lc-radius-md)">md</div>
+    <div style="font-size:9px;color:var(--lc-neutral-400);text-align:center">10px<br>Cards</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="radius-demo" style="border-radius:var(--lc-radius-lg)">lg</div>
+    <div style="font-size:9px;color:var(--lc-neutral-400);text-align:center">14px<br>Modals</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="radius-demo" style="border-radius:var(--lc-radius-xl)">xl</div>
+    <div style="font-size:9px;color:var(--lc-neutral-400);text-align:center">20px<br>Sheets</div>
+  </div>
+  <div style="display:flex;flex-direction:column;align-items:center;gap:4px">
+    <div class="radius-demo" style="border-radius:var(--lc-radius-full);width:56px">full</div>
+    <div style="font-size:9px;color:var(--lc-neutral-400);text-align:center">9999px<br>Pills &amp; btns</div>
+  </div>
+</div>
+</body>
+</html>

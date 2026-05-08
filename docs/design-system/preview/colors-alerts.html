@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: var(--lc-font-sans); }
+  .row { display: flex; gap: 16px; }
+  .group { flex: 1; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-500); margin-bottom: 8px; }
+  .swatches { display: flex; border-radius: 8px; overflow: hidden; box-shadow: var(--lc-shadow-sm); }
+  .swatch { flex: 1; height: 52px; display: flex; align-items: flex-end; padding: 5px 6px; }
+  .swatch-name { font-size: 9px; font-weight: 600; }
+  .white .swatch-name { color: rgba(0,0,0,0.55); }
+  .dark  .swatch-name { color: rgba(255,255,255,0.7); }
+  .demo { margin-top: 10px; border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 8px; }
+  .demo svg { flex-shrink: 0; }
+  .demo-text { font-size: 12px; font-weight: 500; }
+  .badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; margin-left: auto; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="row">
+  <!-- AMBER -->
+  <div class="group">
+    <div class="label">Atenção — Amber Scale</div>
+    <div class="swatches">
+      <div class="swatch white" style="background:var(--lc-amber-50)"><span class="swatch-name">50</span></div>
+      <div class="swatch white" style="background:var(--lc-amber-100)"><span class="swatch-name">100</span></div>
+      <div class="swatch white" style="background:var(--lc-amber-200)"><span class="swatch-name">200</span></div>
+      <div class="swatch white" style="background:var(--lc-amber-300)"><span class="swatch-name">300</span></div>
+      <div class="swatch white" style="background:var(--lc-amber-400)"><span class="swatch-name">400</span></div>
+      <div class="swatch dark" style="background:var(--lc-amber-600)"><span class="swatch-name">600</span></div>
+      <div class="swatch dark" style="background:var(--lc-amber-800)"><span class="swatch-name">800</span></div>
+    </div>
+    <div class="demo" style="background:var(--lc-amber-50);border:1px solid var(--lc-amber-300)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--lc-amber-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+      <span class="demo-text" style="color:var(--lc-amber-800)">Alinhar em breve com o psiquiatra</span>
+      <span class="badge" style="background:var(--lc-amber-100);color:var(--lc-amber-800);border:1px solid var(--lc-amber-300)">Atenção</span>
+    </div>
+  </div>
+  <!-- RED -->
+  <div class="group">
+    <div class="label">Urgência — Red Scale</div>
+    <div class="swatches">
+      <div class="swatch white" style="background:var(--lc-red-50)"><span class="swatch-name">50</span></div>
+      <div class="swatch white" style="background:var(--lc-red-100)"><span class="swatch-name">100</span></div>
+      <div class="swatch white" style="background:var(--lc-red-200)"><span class="swatch-name">200</span></div>
+      <div class="swatch white" style="background:var(--lc-red-300)"><span class="swatch-name">300</span></div>
+      <div class="swatch white" style="background:var(--lc-red-400)"><span class="swatch-name">400</span></div>
+      <div class="swatch dark" style="background:var(--lc-red-600)"><span class="swatch-name">600</span></div>
+      <div class="swatch dark" style="background:var(--lc-red-800)"><span class="swatch-name">800</span></div>
+    </div>
+    <div class="demo" style="background:var(--lc-red-50);border:1px solid var(--lc-red-300)">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--lc-red-700)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span class="demo-text" style="color:var(--lc-red-800)">Agir hoje — contato imediato</span>
+      <span class="badge" style="background:var(--lc-red-100);color:var(--lc-red-800);border:1px solid var(--lc-red-300)">Urgência</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--lc-neutral-50); font-family: var(--lc-font-sans); }
+  .card { background: white; border: 1px solid var(--lc-neutral-150); border-radius: var(--lc-radius-md); box-shadow: var(--lc-shadow-sm); padding: 16px 18px; max-width: 420px; }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .card-title-group { display: flex; flex-direction: column; gap: 3px; }
+  .card-title { font-size: 16px; font-weight: 700; color: var(--lc-neutral-950); letter-spacing: -0.01em; }
+  .card-subtitle { font-size: 12px; color: var(--lc-neutral-500); font-family: var(--lc-font-mono); }
+  .badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
+  .badge-class { background: var(--lc-teal-100); color: var(--lc-teal-800); border: 1px solid var(--lc-teal-200); }
+  .divider { height: 1px; background: var(--lc-neutral-100); margin: 12px 0; }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-400); margin-bottom: 6px; }
+  .bullet-list { display: flex; flex-direction: column; gap: 5px; }
+  .bullet { display: flex; align-items: flex-start; gap: 7px; font-size: 13px; color: var(--lc-neutral-700); line-height: 1.45; }
+  .bullet-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lc-teal-400); margin-top: 5px; flex-shrink: 0; }
+  .alert-dot { background: var(--lc-amber-400); }
+  .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 14px; }
+  .dosage { font-size: 12px; color: var(--lc-neutral-600); font-family: var(--lc-font-mono); background: var(--lc-neutral-100); padding: 4px 8px; border-radius: 5px; }
+  .add-btn { display: inline-flex; align-items: center; gap: 5px; height: 34px; padding: 0 14px; background: var(--lc-teal-600); color: white; border: none; border-radius: 9999px; font-size: 12px; font-weight: 600; cursor: pointer; font-family: var(--lc-font-sans); }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="card-header">
+    <div class="card-title-group">
+      <div class="card-title">Sertralina</div>
+      <div class="card-subtitle">Nome genérico · Zoloft®, Tolrest®</div>
+    </div>
+    <span class="badge badge-class">ISRS</span>
+  </div>
+
+  <div class="section-label">O que faz</div>
+  <div class="bullet-list">
+    <div class="bullet"><div class="bullet-dot"></div>Inibidor seletivo da recaptação de serotonina</div>
+    <div class="bullet"><div class="bullet-dot"></div>Usado para depressão, ansiedade, TOC e TEPT</div>
+    <div class="bullet"><div class="bullet-dot"></div>Efeito completo em 4 a 6 semanas de uso contínuo</div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">Sinais de atenção na sessão</div>
+  <div class="bullet-list">
+    <div class="bullet"><div class="bullet-dot alert-dot"></div>Insônia ou sono fragmentado nas primeiras semanas</div>
+    <div class="bullet"><div class="bullet-dot alert-dot"></div>Agitação, inquietação ou sintomas de ativação</div>
+    <div class="bullet"><div class="bullet-dot alert-dot"></div>Redução do apetite ou perda de peso</div>
+    <div class="bullet"><div class="bullet-dot alert-dot"></div>Disfunção sexual (anorgasmia, redução de libido)</div>
+  </div>
+
+  <div class="card-footer">
+    <div class="dosage">Dose típica: 25–200 mg/dia · 1× ao dia</div>
+    <button class="add-btn">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      Adicionar
+    </button>
+  </div>
+</div>
+</body>
+</html>

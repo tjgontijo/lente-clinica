@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--lc-neutral-50); font-family: var(--lc-font-sans); }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-400); margin-bottom: 8px; }
+  .list { display: flex; flex-direction: column; gap: 2px; max-width: 460px; }
+  .item { display: flex; align-items: center; gap: 12px; padding: 11px 14px; background: white; border: 1px solid var(--lc-neutral-150); border-radius: var(--lc-radius-md); transition: background 0.15s; cursor: pointer; }
+  .item:hover { background: var(--lc-neutral-50); }
+  .item.checked { background: var(--lc-teal-50); border-color: var(--lc-teal-200); }
+  .item.alert { background: var(--lc-amber-50); border-color: var(--lc-amber-300); }
+  .item.urgent { background: var(--lc-red-50); border-color: var(--lc-red-300); }
+
+  .checkbox { width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid var(--lc-neutral-300); background: white; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+  .checkbox.checked { background: var(--lc-teal-600); border-color: var(--lc-teal-600); }
+  .checkbox.alert-cb { border-color: var(--lc-amber-400); }
+  .checkbox.urgent-cb { border-color: var(--lc-red-400); }
+
+  .item-text { flex: 1; font-size: 14px; color: var(--lc-neutral-800); line-height: 1.4; }
+  .item-text.checked { color: var(--lc-teal-800); }
+  .item-text.alert { color: var(--lc-amber-900); font-weight: 500; }
+  .item-text.urgent { color: var(--lc-red-900); font-weight: 500; }
+
+  .item-badge { font-size: 10px; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 7px; border-radius: 4px; flex-shrink: 0; }
+  .b-amber { background: var(--lc-amber-100); color: var(--lc-amber-800); border: 1px solid var(--lc-amber-200); }
+  .b-red   { background: var(--lc-red-100);   color: var(--lc-red-800);   border: 1px solid var(--lc-red-200); }
+  .b-ok    { background: var(--lc-teal-100);   color: var(--lc-teal-800);  border: 1px solid var(--lc-teal-200); }
+</style>
+</head>
+<body>
+<div class="label">Checklist — item states</div>
+<div class="list">
+  <!-- Unchecked -->
+  <div class="item">
+    <div class="checkbox"></div>
+    <div class="item-text">Alteração no padrão de sono relatada pelo paciente</div>
+  </div>
+  <!-- Unchecked -->
+  <div class="item">
+    <div class="checkbox"></div>
+    <div class="item-text">Queixas gastrointestinais (náusea, diarreia, enjoo)</div>
+  </div>
+  <!-- Checked / OK -->
+  <div class="item checked">
+    <div class="checkbox checked">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="item-text checked">Humor estável ao longo da sessão</div>
+    <span class="item-badge b-ok">OK</span>
+  </div>
+  <!-- Alert (Atenção) -->
+  <div class="item alert">
+    <div class="checkbox alert-cb">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--lc-amber-500)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="item-text alert">Insônia persistente há mais de 2 semanas</div>
+    <span class="item-badge b-amber">Atenção</span>
+  </div>
+  <!-- Urgent -->
+  <div class="item urgent">
+    <div class="checkbox urgent-cb">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--lc-red-500)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="item-text urgent">Pensamentos de automutilação mencionados</div>
+    <span class="item-badge b-red">Urgência</span>
+  </div>
+</div>
+</body>
+</html>

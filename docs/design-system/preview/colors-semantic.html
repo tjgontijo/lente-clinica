@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: var(--lc-font-sans); }
+  .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-400); margin: 0 0 8px; }
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px; }
+  .token { border-radius: 6px; overflow: hidden; border: 1px solid var(--lc-neutral-150); }
+  .swatch-block { height: 36px; }
+  .token-info { padding: 6px 8px; background: white; }
+  .token-name { font-size: 10px; font-family: var(--lc-font-mono); color: var(--lc-neutral-700); font-weight: 500; }
+  .token-desc { font-size: 9px; color: var(--lc-neutral-400); margin-top: 1px; }
+</style>
+</head>
+<body>
+<div class="section-label">Semantic — Surface tokens</div>
+<div class="grid">
+  <div class="token"><div class="swatch-block" style="background:var(--lc-bg-app)"></div><div class="token-info"><div class="token-name">--lc-bg-app</div><div class="token-desc">Page background</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-bg-surface);border-bottom:1px solid var(--lc-neutral-150)"></div><div class="token-info"><div class="token-name">--lc-bg-surface</div><div class="token-desc">Cards &amp; panels</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-bg-subtle)"></div><div class="token-info"><div class="token-name">--lc-bg-subtle</div><div class="token-desc">Muted zones</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-bg-primary)"></div><div class="token-info"><div class="token-name">--lc-bg-primary</div><div class="token-desc">Primary button</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-bg-amber)"></div><div class="token-info"><div class="token-name">--lc-bg-amber</div><div class="token-desc">Atenção surface</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-bg-red)"></div><div class="token-info"><div class="token-name">--lc-bg-red</div><div class="token-desc">Urgência surface</div></div></div>
+</div>
+<div class="section-label">Semantic — Text &amp; border tokens</div>
+<div class="grid">
+  <div class="token"><div class="swatch-block" style="background:var(--lc-fg-base)"></div><div class="token-info"><div class="token-name">--lc-fg-base</div><div class="token-desc">Primary text</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-fg-muted)"></div><div class="token-info"><div class="token-name">--lc-fg-muted</div><div class="token-desc">Secondary text</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-fg-subtle)"></div><div class="token-info"><div class="token-name">--lc-fg-subtle</div><div class="token-desc">Placeholder</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-border-default)"></div><div class="token-info"><div class="token-name">--lc-border-default</div><div class="token-desc">Default border</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-border-amber)"></div><div class="token-info"><div class="token-name">--lc-border-amber</div><div class="token-desc">Atenção border</div></div></div>
+  <div class="token"><div class="swatch-block" style="background:var(--lc-border-red)"></div><div class="token-info"><div class="token-name">--lc-border-red</div><div class="token-desc">Urgência border</div></div></div>
+</div>
+</body>
+</html>

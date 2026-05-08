@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--lc-neutral-50); font-family: var(--lc-font-sans); }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-400); margin: 0 0 8px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 16px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field-label { font-size: 12px; font-weight: 600; color: var(--lc-neutral-700); }
+  .field-hint  { font-size: 11px; color: var(--lc-neutral-400); }
+  .field-error { font-size: 11px; color: var(--lc-red-600); }
+
+  .input { width: 100%; height: 44px; padding: 0 12px; border: 1.5px solid var(--lc-neutral-200); border-radius: var(--lc-radius-sm); font-size: 14px; font-family: var(--lc-font-sans); color: var(--lc-neutral-900); background: white; box-sizing: border-box; outline: none; transition: border-color 150ms; }
+  .input::placeholder { color: var(--lc-neutral-400); }
+  .input:focus { border-color: var(--lc-teal-600); box-shadow: 0 0 0 3px oklch(50% 0.120 192 / 0.12); }
+  .input.error { border-color: var(--lc-red-500); }
+  .input.disabled { background: var(--lc-neutral-50); color: var(--lc-neutral-400); cursor: not-allowed; }
+
+  .search-wrap { position: relative; }
+  .search-wrap .icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--lc-neutral-400); pointer-events: none; }
+  .search-wrap .input { padding-left: 38px; border-radius: 9999px; }
+
+  .select { width: 100%; height: 44px; padding: 0 36px 0 12px; border: 1.5px solid var(--lc-neutral-200); border-radius: var(--lc-radius-sm); font-size: 14px; font-family: var(--lc-font-sans); color: var(--lc-neutral-900); background: white; box-sizing: border-box; outline: none; appearance: none; -webkit-appearance: none; cursor: pointer; }
+  .select-wrap { position: relative; }
+  .select-wrap::after { content: ''; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); border: 5px solid transparent; border-top-color: var(--lc-neutral-400); margin-top: 2px; pointer-events: none; }
+
+  .textarea { width: 100%; padding: 10px 12px; border: 1.5px solid var(--lc-neutral-200); border-radius: var(--lc-radius-sm); font-size: 14px; font-family: var(--lc-font-sans); color: var(--lc-neutral-900); background: white; box-sizing: border-box; outline: none; resize: vertical; min-height: 80px; transition: border-color 150ms; }
+  .textarea:focus { border-color: var(--lc-teal-600); box-shadow: 0 0 0 3px oklch(50% 0.120 192 / 0.12); }
+</style>
+</head>
+<body>
+<div class="label">Search — primary interaction</div>
+<div class="search-wrap" style="max-width:320px;margin-bottom:16px">
+  <svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <input class="input" type="text" placeholder="Buscar medicação ou classe..." />
+</div>
+
+<div class="label">Text fields</div>
+<div class="grid">
+  <div class="field">
+    <div class="field-label">Iniciais do paciente</div>
+    <input class="input" type="text" value="M.A.S." />
+    <div class="field-hint">Máx. 4 caracteres</div>
+  </div>
+  <div class="field">
+    <div class="field-label">Medicação</div>
+    <input class="input" type="text" placeholder="Ex: Sertralina 50mg" />
+  </div>
+  <div class="field">
+    <div class="field-label">Classe terapêutica</div>
+    <div class="select-wrap">
+      <select class="select">
+        <option>ISRS — Antidepressivo</option>
+        <option>IRSN</option>
+        <option>Antipsicótico</option>
+      </select>
+    </div>
+  </div>
+  <div class="field">
+    <div class="field-label">Dose (com erro)</div>
+    <input class="input error" type="text" value="abc" />
+    <div class="field-error">Formato inválido. Ex: 50mg</div>
+  </div>
+</div>
+
+<div class="label">Observações clínicas</div>
+<div class="field" style="max-width:460px">
+  <div class="field-label">Notas da sessão</div>
+  <textarea class="textarea" placeholder="Registre observações relevantes sobre o paciente nesta sessão..."></textarea>
+  <div class="field-hint">Visível apenas para você. Não é compartilhado com o psiquiatra.</div>
+</div>
+</body>
+</html>

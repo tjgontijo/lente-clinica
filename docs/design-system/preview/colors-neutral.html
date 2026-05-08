@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: var(--lc-font-sans); }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-500); margin-bottom: 8px; }
+  .swatches { display: flex; border-radius: 10px; overflow: hidden; box-shadow: var(--lc-shadow-sm); border: 1px solid var(--lc-neutral-150); }
+  .swatch { flex: 1; height: 60px; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px 8px; gap: 2px; }
+  .swatch-step { font-size: 10px; font-weight: 700; }
+  .white .swatch-step { color: rgba(0,0,0,0.5); }
+  .dark  .swatch-step { color: rgba(255,255,255,0.65); }
+  .usage-row { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+  .chip { padding: 5px 10px; border-radius: 6px; font-size: 11px; font-weight: 500; border: 1px solid transparent; }
+</style>
+</head>
+<body>
+<div class="label">Neutral — Zinc-Cool Scale</div>
+<div class="swatches">
+  <div class="swatch white" style="background:var(--lc-neutral-0);border-right:1px solid var(--lc-neutral-150)"><span class="swatch-step">0</span></div>
+  <div class="swatch white" style="background:var(--lc-neutral-50)"><span class="swatch-step">50</span></div>
+  <div class="swatch white" style="background:var(--lc-neutral-100)"><span class="swatch-step">100</span></div>
+  <div class="swatch white" style="background:var(--lc-neutral-150)"><span class="swatch-step">150</span></div>
+  <div class="swatch white" style="background:var(--lc-neutral-200)"><span class="swatch-step">200</span></div>
+  <div class="swatch white" style="background:var(--lc-neutral-300)"><span class="swatch-step">300</span></div>
+  <div class="swatch white" style="background:var(--lc-neutral-400)"><span class="swatch-step">400</span></div>
+  <div class="swatch dark" style="background:var(--lc-neutral-500)"><span class="swatch-step">500</span></div>
+  <div class="swatch dark" style="background:var(--lc-neutral-600)"><span class="swatch-step">600</span></div>
+  <div class="swatch dark" style="background:var(--lc-neutral-700)"><span class="swatch-step">700</span></div>
+  <div class="swatch dark" style="background:var(--lc-neutral-800)"><span class="swatch-step">800</span></div>
+  <div class="swatch dark" style="background:var(--lc-neutral-900)"><span class="swatch-step">900</span></div>
+  <div class="swatch dark" style="background:var(--lc-neutral-950)"><span class="swatch-step">950</span></div>
+</div>
+<div class="usage-row">
+  <div class="chip" style="background:var(--lc-neutral-50);border-color:var(--lc-neutral-150);color:var(--lc-neutral-600)">50 — App bg</div>
+  <div class="chip" style="background:var(--lc-neutral-100);border-color:var(--lc-neutral-200);color:var(--lc-neutral-700)">100 — Subtle bg</div>
+  <div class="chip" style="background:var(--lc-neutral-150);border-color:var(--lc-neutral-200);color:var(--lc-neutral-700)">150 — Border</div>
+  <div class="chip" style="background:var(--lc-neutral-400);color:white">400 — Placeholder</div>
+  <div class="chip" style="background:var(--lc-neutral-600);color:white">600 — Muted text</div>
+  <div class="chip" style="background:var(--lc-neutral-950);color:white">950 — Body text</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: var(--lc-font-sans); }
+  .label { font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--lc-neutral-600); margin-bottom: 8px; }
+  .swatches { display: flex; gap: 0; border-radius: 10px; overflow: hidden; box-shadow: var(--lc-shadow-sm); }
+  .swatch { flex: 1; height: 64px; display: flex; flex-direction: column; justify-content: flex-end; padding: 6px 8px; position: relative; }
+  .swatch-name { font-size: 10px; font-weight: 600; letter-spacing: 0.03em; opacity: 0.75; }
+  .swatch-val  { font-size: 9px; opacity: 0.55; font-family: var(--lc-font-mono); margin-top: 1px; }
+  .white .swatch-name, .white .swatch-val { color: var(--lc-neutral-700); }
+  .dark  .swatch-name, .dark  .swatch-val  { color: white; }
+  .callout { display: flex; align-items: center; gap: 10px; margin-top: 16px; background: var(--lc-teal-50); border: 1px solid var(--lc-teal-200); border-radius: 8px; padding: 10px 14px; }
+  .callout-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--lc-teal-600); flex-shrink: 0; }
+  .callout-text { font-size: 12px; color: var(--lc-teal-900); }
+  .callout-text strong { font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="label">Primary — Teal Scale</div>
+<div class="swatches">
+  <div class="swatch white" style="background:var(--lc-teal-50)"><span class="swatch-name">50</span></div>
+  <div class="swatch white" style="background:var(--lc-teal-100)"><span class="swatch-name">100</span></div>
+  <div class="swatch white" style="background:var(--lc-teal-200)"><span class="swatch-name">200</span></div>
+  <div class="swatch white" style="background:var(--lc-teal-300)"><span class="swatch-name">300</span></div>
+  <div class="swatch white" style="background:var(--lc-teal-400)"><span class="swatch-name">400</span></div>
+  <div class="swatch dark" style="background:var(--lc-teal-500)"><span class="swatch-name">500</span></div>
+  <div class="swatch dark" style="background:var(--lc-teal-600); outline: 3px solid var(--lc-teal-400); outline-offset: -3px;"><span class="swatch-name">600 ★</span></div>
+  <div class="swatch dark" style="background:var(--lc-teal-700)"><span class="swatch-name">700</span></div>
+  <div class="swatch dark" style="background:var(--lc-teal-800)"><span class="swatch-name">800</span></div>
+  <div class="swatch dark" style="background:var(--lc-teal-900)"><span class="swatch-name">900</span></div>
+  <div class="swatch dark" style="background:var(--lc-teal-950)"><span class="swatch-name">950</span></div>
+</div>
+<div class="callout">
+  <div class="callout-dot"></div>
+  <div class="callout-text"><strong>--lc-teal-600</strong> · Brand primary · Buttons, links, active states, focus rings · oklch(50% 0.120 192)</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; font-family: var(--lc-font-sans); }
+  .section { margin-bottom: 20px; }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-400); margin-bottom: 10px; }
+  .font-demo { padding: 14px 16px; border-radius: 8px; border: 1px solid var(--lc-neutral-150); background: var(--lc-neutral-50); }
+  .font-name { font-size: 11px; font-weight: 600; font-family: var(--lc-font-mono); color: var(--lc-teal-600); margin-bottom: 6px; }
+  .weight-row { display: flex; gap: 20px; align-items: baseline; flex-wrap: wrap; }
+  .w-item { display: flex; flex-direction: column; gap: 2px; }
+  .w-label { font-size: 9px; color: var(--lc-neutral-400); text-transform: uppercase; letter-spacing: 0.06em; }
+  .mono-demo { font-family: var(--lc-font-mono); padding: 10px 14px; background: var(--lc-neutral-950); border-radius: 8px; color: var(--lc-teal-200); font-size: 13px; line-height: 1.6; }
+  .mono-comment { color: var(--lc-neutral-500); }
+  .mono-key { color: var(--lc-amber-300); }
+  .mono-val { color: var(--lc-teal-300); }
+</style>
+</head>
+<body>
+<div class="section">
+  <div class="label">Geist Sans — Primary typeface</div>
+  <div class="font-demo">
+    <div class="font-name">family: 'Geist', var(--lc-font-sans)</div>
+    <div class="weight-row">
+      <div class="w-item"><div class="w-label">300 Light</div><div style="font-size:18px;font-weight:300">Observação clínica</div></div>
+      <div class="w-item"><div class="w-label">400 Regular</div><div style="font-size:18px;font-weight:400">Observação clínica</div></div>
+      <div class="w-item"><div class="w-label">500 Medium</div><div style="font-size:18px;font-weight:500">Observação clínica</div></div>
+      <div class="w-item"><div class="w-label">600 Semibold</div><div style="font-size:18px;font-weight:600">Observação clínica</div></div>
+      <div class="w-item"><div class="w-label">700 Bold</div><div style="font-size:18px;font-weight:700">Observação clínica</div></div>
+    </div>
+  </div>
+</div>
+<div class="section">
+  <div class="label">Geist Mono — Data &amp; identifiers</div>
+  <div class="mono-demo"><span class="mono-comment">// Medication identifier</span><br><span class="mono-key">MED-0042</span> · <span class="mono-val">Sertralina 50mg</span> · ISRS<br><span class="mono-comment">// Dosage schedule</span><br><span class="mono-val">1×</span> dia · <span class="mono-val">manhã</span> · há <span class="mono-val">6 meses</span></div>
+</div>
+</body>
+</html>

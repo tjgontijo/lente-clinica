@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 20px; background: var(--lc-neutral-50); font-family: var(--lc-font-sans); }
+  .label { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lc-neutral-400); margin: 0 0 10px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 16px; }
+
+  .badge { display: inline-flex; align-items: center; gap: 4px; border-radius: 4px; font-family: var(--lc-font-sans); }
+  .badge-lg { font-size: 11px; font-weight: 700; letter-spacing: 0.10em; text-transform: uppercase; padding: 4px 10px; }
+  .badge-md { font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 3px 8px; }
+  .badge-sm { font-size: 9px;  font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 2px 6px; }
+  .badge-pill { border-radius: 9999px; }
+
+  .b-amber  { background: var(--lc-amber-100); color: var(--lc-amber-800); border: 1px solid var(--lc-amber-300); }
+  .b-red    { background: var(--lc-red-100);   color: var(--lc-red-800);   border: 1px solid var(--lc-red-300); }
+  .b-teal   { background: var(--lc-teal-100);  color: var(--lc-teal-800);  border: 1px solid var(--lc-teal-200); }
+  .b-neutral{ background: var(--lc-neutral-100); color: var(--lc-neutral-700); border: 1px solid var(--lc-neutral-200); }
+  .b-green  { background: var(--lc-green-100); color: var(--lc-green-800); border: 1px solid var(--lc-green-100); }
+
+  .b-solid-amber { background: var(--lc-amber-500); color: white; }
+  .b-solid-red   { background: var(--lc-red-600); color: white; }
+  .b-solid-teal  { background: var(--lc-teal-600); color: white; }
+</style>
+</head>
+<body>
+<div class="label">Severity badges — large</div>
+<div class="row">
+  <span class="badge badge-lg b-amber">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+    Atenção
+  </span>
+  <span class="badge badge-lg b-red">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    Urgência
+  </span>
+  <span class="badge badge-lg b-teal">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Observação
+  </span>
+  <span class="badge badge-lg b-green">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+    Sem alerta
+  </span>
+</div>
+
+<div class="label">Medication class badges</div>
+<div class="row">
+  <span class="badge badge-md b-teal">ISRS</span>
+  <span class="badge badge-md b-teal">IRSN</span>
+  <span class="badge badge-md b-neutral">Tricíclico</span>
+  <span class="badge badge-md b-neutral">Antipsicótico</span>
+  <span class="badge badge-md b-neutral">Estabilizador</span>
+  <span class="badge badge-md b-neutral">Benzodiazepínico</span>
+  <span class="badge badge-md b-neutral">IMAO</span>
+</div>
+
+<div class="label">Solid severity · Pill shape</div>
+<div class="row">
+  <span class="badge badge-md b-solid-amber badge-pill">Atenção</span>
+  <span class="badge badge-md b-solid-red badge-pill">Urgência</span>
+  <span class="badge badge-md b-solid-teal badge-pill">Ativo</span>
+  <span class="badge badge-sm b-neutral badge-pill">Inativo</span>
+  <span class="badge badge-sm b-neutral badge-pill">Rascunho</span>
+</div>
+</body>
+</html>
