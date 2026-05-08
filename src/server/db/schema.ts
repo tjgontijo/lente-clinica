@@ -3,6 +3,7 @@ import {
   boolean,
   index,
   integer,
+  jsonb,
   pgEnum,
   pgTable,
   primaryKey,
@@ -91,6 +92,40 @@ export const verification = pgTable(
   (table) => [index("verification_identifier_idx").on(table.identifier)],
 );
 
+// --- ENUMS ---
+
+export const severityEnum = pgEnum("severity", ["YELLOW", "RED"]);
+export const dosageUnitEnum = pgEnum("dosage_unit", [
+  "MG",
+  "MCG",
+  "G",
+  "ML",
+  "DROP",
+  "TABLET",
+  "CAPSULE",
+]);
+export const frequencyUnitEnum = pgEnum("frequency_unit", [
+  "PER_DAY",
+  "PER_WEEK",
+  "EVERY_X_HOURS",
+  "AS_NEEDED",
+]);
+export const intakePeriodEnum = pgEnum("intake_period", [
+  "MORNING",
+  "AFTERNOON",
+  "EVENING",
+  "BEDTIME",
+  "CUSTOM",
+]);
+
+export const enrichmentStatusEnum = pgEnum("enrichment_status", [
+  "PENDING",
+  "PENDING_BATCH",
+  "DONE",
+  "NEEDS_REVIEW",
+  "FAILED",
+]);
+
 // --- KNOWLEDGE BASE ---
 
 export const medicationClass = pgTable("medication_class", {
@@ -112,12 +147,23 @@ export const medication = pgTable("medication", {
     .default(false)
     .notNull(),
   description: text("description"),
-  commonUses: text("common_uses").array(),
+  clinicalContexts: text("clinical_contexts").array(),
   patientReports: text("patient_reports").array(),
   sessionObservations: text("session_observations").array(),
   confoundingEffects: text("confounding_effects").array(),
   usefulQuestions: text("useful_questions").array(),
+  coordinationNotes: text("coordination_notes").array(),
+  attentionSignals: text("attention_signals").array(),
   clinicalPhrase: text("clinical_phrase"),
+  enrichmentStatus: enrichmentStatusEnum("enrichment_status")
+    .default("PENDING")
+    .notNull(),
+  enrichedAt: timestamp("enriched_at"),
+  enrichmentModel: text("enrichment_model"),
+  enrichmentPromptVersion: text("enrichment_prompt_version"),
+  enrichmentBatchId: text("enrichment_batch_id"),
+  enrichmentError: text("enrichment_error"),
+  enrichmentRawResponse: jsonb("enrichment_raw_response"),
 });
 
 export const medicationProduct = pgTable(
@@ -157,30 +203,6 @@ export const symptom = pgTable("symptom", {
   whatItLooksLike: text("what_it_looks_like"),
   keyQuestion: text("key_question"),
 });
-
-export const severityEnum = pgEnum("severity", ["YELLOW", "RED"]);
-export const dosageUnitEnum = pgEnum("dosage_unit", [
-  "MG",
-  "MCG",
-  "G",
-  "ML",
-  "DROP",
-  "TABLET",
-  "CAPSULE",
-]);
-export const frequencyUnitEnum = pgEnum("frequency_unit", [
-  "PER_DAY",
-  "PER_WEEK",
-  "EVERY_X_HOURS",
-  "AS_NEEDED",
-]);
-export const intakePeriodEnum = pgEnum("intake_period", [
-  "MORNING",
-  "AFTERNOON",
-  "EVENING",
-  "BEDTIME",
-  "CUSTOM",
-]);
 
 export const medicationSymptomAlert = pgTable(
   "medication_symptom_alert",

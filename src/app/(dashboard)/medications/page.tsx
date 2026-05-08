@@ -4,17 +4,29 @@ import { Database, SearchX } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 
+import { useState } from "react";
 import { PageHeader } from "@/components/layout/page-header";
 import { SearchInput } from "@/components/ui/search-input";
 import { MedicationCard } from "@/features/medications/components/medication-card";
+import { MedicationDetailsDrawerDialog } from "@/features/medications/components/medication-details-drawer-dialog";
 import { MedicationsGridSkeleton } from "@/features/medications/components/medications-skeleton";
 import { useMedicationsQuery } from "@/features/medications/queries/use-medications-query";
+import type { MedicationWithClass } from "@/features/medications/types";
 
 function MedicationsContent() {
   const searchParams = useSearchParams();
   const search = searchParams.get("search") ?? undefined;
 
   const { data: medications, isPending } = useMedicationsQuery(search);
+
+  const [selectedMedication, setSelectedMedication] =
+    useState<MedicationWithClass | null>(null);
+  const [isDetailsOpen, setIsDetailsOpen] = useState(false);
+
+  const handleCardClick = (medication: MedicationWithClass) => {
+    setSelectedMedication(medication);
+    setIsDetailsOpen(true);
+  };
 
   return (
     <div className="flex flex-col gap-8 pb-12">
@@ -31,7 +43,11 @@ function MedicationsContent() {
       ) : medications && medications.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 animate-in fade-in duration-500 md:grid-cols-2 lg:grid-cols-3">
           {medications.map((medication) => (
-            <MedicationCard key={medication.id} medication={medication} />
+            <MedicationCard
+              key={medication.id}
+              medication={medication}
+              onClick={handleCardClick}
+            />
           ))}
         </div>
       ) : (
@@ -48,6 +64,12 @@ function MedicationsContent() {
           </p>
         </div>
       )}
+
+      <MedicationDetailsDrawerDialog
+        medication={selectedMedication}
+        open={isDetailsOpen}
+        onOpenChange={setIsDetailsOpen}
+      />
     </div>
   );
 }

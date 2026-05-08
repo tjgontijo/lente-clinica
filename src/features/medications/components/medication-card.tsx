@@ -6,12 +6,18 @@ import type { MedicationWithClass } from "../types";
 interface MedicationCardProps {
   medication: MedicationWithClass;
   className?: string;
+  onClick?: (medication: MedicationWithClass) => void;
 }
 
-export function MedicationCard({ medication, className }: MedicationCardProps) {
+export function MedicationCard({
+  medication,
+  className,
+  onClick,
+}: MedicationCardProps) {
   return (
     <Card
-      className={`flex flex-col h-full bg-white border-[var(--lc-neutral-150)] shadow-sm hover:shadow-md transition-shadow duration-300 p-6 rounded-[16px] ${className}`}
+      onClick={() => onClick?.(medication)}
+      className={`flex flex-col h-full bg-white border-[var(--lc-neutral-150)] shadow-sm hover:shadow-md transition-all duration-300 p-6 rounded-[16px] cursor-pointer active:scale-[0.98] ${className}`}
     >
       <div className="flex items-start justify-between gap-4 mb-4">
         <div className="flex flex-col gap-1">

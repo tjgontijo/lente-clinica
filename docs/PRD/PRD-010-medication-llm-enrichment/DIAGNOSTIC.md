@@ -4,6 +4,13 @@
 
 O banco ja tem a base estrutural para enriquecimento, mas ainda nao existe pipeline operacional. O maior risco nao e custo de API, e sim gravar conteudo clinico inseguro ou inconsistente. A implementacao precisa priorizar saida estruturada, validacao, idempotencia e metadados de execucao.
 
+Veredito de uso:
+
+```txt
+Aprovado para implementacao do pipeline batch interno.
+Nao aprovado para publicacao automatica de conteudo clinico gerado por LLM sem revisao.
+```
+
 ## Problemas Criticos
 
 ### C1: Falta controle de status por medicamento
@@ -26,6 +33,16 @@ Impacto:
 - risco de conteudo fora do papel da terapeuta
 - risco de orientar conduta medica
 - risco reputacional e clinico
+
+### C3: Falta regra explicita de revisao humana antes de `DONE`
+
+Mesmo quando a resposta passa em Zod e nas validacoes locais, ela ainda pode conter imprecisao clinica, ambiguidade ou omissao relevante.
+
+Impacto:
+
+- risco de tratar rascunho LLM como conteudo final
+- risco de publicar conteudo sem curadoria
+- confusao entre sucesso tecnico e aprovacao clinica
 
 ## Problemas Moderados
 
@@ -67,6 +84,10 @@ Impacto:
 - terapeuta pode buscar por marca e nao encontrar
 - UX abaixo do esperado
 
+Observacao:
+
+- este ponto e pos-pipeline e pode ser movido para PRD separado de busca/autocomplete
+
 ## Problemas Menores
 
 ### m1: Falta relatorio final do batch
@@ -86,6 +107,22 @@ Impacto:
 - testes mais lentos
 - maior risco de execucao ampla sem querer
 
+## Decisoes Arquiteturais
+
+### Schema do banco
+
+O projeto usa schema centralizado em `src/server/db/schema.ts`.
+
+Para este PRD, a decisao e manter esse padrao. A modularizacao do schema nao deve entrar no escopo do enriquecimento LLM.
+
+Motivo:
+
+- evita misturar entrega funcional com refactor estrutural
+- reduz risco sobre imports, relations, seed e Drizzle config
+- mantem a implementacao incremental e mais facil de revisar
+
+Se necessario, modularizar schema depois em PRD/refactor separado.
+
 ## O Que Esta Bem
 
 - `medication.shouldEnrichWithLlm` ja separa candidatos de LLM.
@@ -101,6 +138,7 @@ Impacto:
 |----------|------------|---------------|-------|---------|
 | Falta controle de status | Alto | Alta | CRITICO | Baixo |
 | Conteudo prescritivo | Alto | Media | CRITICO | Medio |
+| Conteudo LLM virar `DONE` sem revisao | Alto | Media | CRITICO | Baixo |
 | Saida fora do schema | Medio | Media | MEDIO | Baixo |
 | Prompt sem versionamento | Medio | Media | MEDIO | Baixo |
 | Sem dry-run | Medio | Media | MEDIO | Baixo |
@@ -112,11 +150,18 @@ Impacto:
 1. Adicionar metadados de enriquecimento no schema.
 2. Criar schema Zod de saida.
 3. Criar prompt e service OpenAI.
-4. Criar repositories de listagem e update.
-5. Criar script batch com dry-run e limit.
-6. Rodar amostra manual e revisar.
-7. Rodar lote completo.
-8. Ajustar busca por produto comercial, se entrar no escopo da implementacao.
+4. Definir fluxo de revisao e estados finais.
+5. Criar repositories de listagem e update.
+6. Criar script batch com dry-run e limit.
+7. Rodar amostra manual e revisar.
+8. Rodar lote completo em ambiente controlado.
+9. Ajustar busca por produto comercial, se entrar no escopo da implementacao.
+
+## Bloqueio de Producao
+
+Este PRD permite gerar conteudo interno, mas nao autoriza publicacao direta ao usuario final sem revisao.
+
+Conteudo gerado por LLM deve ser tratado como rascunho clinico ate passar por revisao humana, curadoria tecnica ou processo equivalente.
 
 ## Proximos Passos
 

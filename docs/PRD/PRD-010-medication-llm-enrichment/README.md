@@ -10,6 +10,8 @@ Este PRD define a implementacao de um pipeline backend para enriquecer medicamen
 
 O pipeline nao roda no frontend. Ele deve ser executado como script batch, controlado por flag no banco e preparado para reprocessamento seguro.
 
+Esta base nao orienta conduta medicamentosa. Ela ajuda a terapeuta a reconhecer como o paciente medicado pode aparecer na sessao, quais perguntas clinicas fazer e quando comunicar observacoes relevantes ao psiquiatra.
+
 ## Escopo
 
 Inclui:
@@ -17,9 +19,12 @@ Inclui:
 - selecao de medicamentos com `medication.shouldEnrichWithLlm = true`
 - chamada de LLM via OpenAI SDK oficial
 - schema Zod para validar a resposta
-- persistencia de `description`, `commonUses`, `patientReports`, `sessionObservations`, `confoundingEffects`, `usefulQuestions` e `clinicalPhrase`
+- contrato JSON explicito para a resposta
+- prompt base versionado
+- persistencia de `description`, `clinicalContexts`, `patientReports`, `sessionObservations`, `confoundingEffects`, `usefulQuestions` e `clinicalPhrase`
 - metadados de enriquecimento para auditoria simples
 - criterios de seguranca para evitar linguagem prescritiva
+- fluxo seguro em que conteudo gerado por LLM vira rascunho `NEEDS_REVIEW`, nao `DONE`
 
 Nao inclui:
 
@@ -27,6 +32,7 @@ Nao inclui:
 - streaming ou chamada pelo navegador
 - enriquecimento por produto comercial
 - decisao clinica, dose, prescricao, troca ou suspensao de medicamento
+- publicacao automatica de conteudo clinico gerado por LLM
 
 ## Status Atual
 
@@ -47,11 +53,12 @@ Falta implementar o pipeline de enriquecimento.
 | 1 | Schema de metadados e status | 0.75h |
 | 2 | Schema Zod de saida LLM | 0.75h |
 | 3 | Service OpenAI e prompt | 1.5h |
-| 4 | Repository de update | 0.75h |
-| 5 | Script batch | 1.5h |
-| 6 | Validacoes e dry-run | 1h |
+| 4 | Fluxo de revisao e estados finais | 0.75h |
+| 5 | Repository de update | 0.75h |
+| 6 | Script batch | 1.5h |
+| 7 | Validacoes e dry-run | 1h |
 
-**Total estimado:** 6.25h
+**Total estimado:** 7h
 
 ## Arquivos Principais
 
@@ -59,9 +66,17 @@ Falta implementar o pipeline de enriquecimento.
 - `src/features/medications/schemas/medication-enrichment.schema.ts`
 - `src/features/medications/services/enrich-medication-with-llm.service.ts`
 - `src/features/medications/repositories/list-medications-for-enrichment.repository.ts`
-- `src/features/medications/repositories/update-medication-enrichment.repository.ts`
+- `src/features/medications/repositories/update-medication-enrichment-draft.repository.ts`
 - `src/server/db/scripts/enrich-medications.ts`
 - `package.json`
+
+## Decisao de Schema
+
+O projeto atualmente usa schema centralizado em `src/server/db/schema.ts`.
+
+Para este PRD, manter esse padrao. Nao modularizar o schema como parte da implementacao do enriquecimento LLM.
+
+A modularizacao do schema deve ser tratada em PRD/refactor separado se o arquivo continuar crescendo.
 
 ## Risco Resumido
 
@@ -72,6 +87,7 @@ Falta implementar o pipeline de enriquecimento.
 | Saida LLM fora do formato | Medio | Media | MEDIO | Baixo |
 | Falta de observabilidade do batch | Medio | Media | MEDIO | Baixo |
 | Prompt sem padrao editorial | Medio | Media | MEDIO | Medio |
+| Publicacao automatica sem revisao | Alto | Media | CRITICO | Baixo |
 
 ## Como Comecar
 
