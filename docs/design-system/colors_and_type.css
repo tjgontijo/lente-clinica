@@ -12,200 +12,205 @@
 /* ─────────────────────────────────────────────────────────────
    FONT IMPORT (include in HTML <head> or @import in global CSS)
    ───────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap");
 
 :root {
-
   /* ──────────────────────────────────────────────────────────
      PRIMARY — TEAL
      A muted clinical teal. Calm, trustworthy, "clear thinking."
      ────────────────────────────────────────────────────────── */
-  --lc-teal-50:  oklch(97%  0.025 192);
-  --lc-teal-100: oklch(93%  0.050 192);
-  --lc-teal-200: oklch(86%  0.080 192);
-  --lc-teal-300: oklch(76%  0.105 192);
-  --lc-teal-400: oklch(66%  0.118 192);
-  --lc-teal-500: oklch(58%  0.125 192);
-  --lc-teal-600: oklch(50%  0.120 192); /* ← Brand primary */
-  --lc-teal-700: oklch(42%  0.110 192); /* ← Hover state   */
-  --lc-teal-800: oklch(34%  0.095 192); /* ← Pressed state */
-  --lc-teal-900: oklch(26%  0.080 192); /* ← Text on light */
-  --lc-teal-950: oklch(18%  0.060 192);
+  --lc-teal-50: oklch(97% 0.025 192);
+  --lc-teal-100: oklch(93% 0.05 192);
+  --lc-teal-200: oklch(86% 0.08 192);
+  --lc-teal-300: oklch(76% 0.105 192);
+  --lc-teal-400: oklch(66% 0.118 192);
+  --lc-teal-500: oklch(58% 0.125 192);
+  --lc-teal-600: oklch(50% 0.12 192); /* ← Brand primary */
+  --lc-teal-700: oklch(42% 0.11 192); /* ← Hover state   */
+  --lc-teal-800: oklch(34% 0.095 192); /* ← Pressed state */
+  --lc-teal-900: oklch(26% 0.08 192); /* ← Text on light */
+  --lc-teal-950: oklch(18% 0.06 192);
 
   /* ──────────────────────────────────────────────────────────
      ALERT — AMBER/YELLOW  (Atenção — "Alinhar em breve")
      Warm amber, never neon yellow. Signals moderate attention.
      ────────────────────────────────────────────────────────── */
-  --lc-amber-50:  oklch(97.5% 0.030  70);
-  --lc-amber-100: oklch(94%   0.060  70);
-  --lc-amber-200: oklch(88%   0.100  70);
-  --lc-amber-300: oklch(80%   0.140  70);
-  --lc-amber-400: oklch(72%   0.168  68);
-  --lc-amber-500: oklch(65%   0.168  66);
-  --lc-amber-600: oklch(57%   0.158  64);
-  --lc-amber-700: oklch(49%   0.145  62);
-  --lc-amber-800: oklch(40%   0.125  60); /* ← Text on amber bg */
-  --lc-amber-900: oklch(30%   0.100  58);
+  --lc-amber-50: oklch(97.5% 0.03 70);
+  --lc-amber-100: oklch(94% 0.06 70);
+  --lc-amber-200: oklch(88% 0.1 70);
+  --lc-amber-300: oklch(80% 0.14 70);
+  --lc-amber-400: oklch(72% 0.168 68);
+  --lc-amber-500: oklch(65% 0.168 66);
+  --lc-amber-600: oklch(57% 0.158 64);
+  --lc-amber-700: oklch(49% 0.145 62);
+  --lc-amber-800: oklch(40% 0.125 60); /* ← Text on amber bg */
+  --lc-amber-900: oklch(30% 0.1 58);
 
   /* ──────────────────────────────────────────────────────────
      ALERT — RED  (Urgência — "Agir hoje")
      Decisive, clinical red. Not orange, not pink.
      ────────────────────────────────────────────────────────── */
-  --lc-red-50:  oklch(97.5% 0.018  22);
-  --lc-red-100: oklch(94%   0.040  22);
-  --lc-red-200: oklch(88%   0.080  22);
-  --lc-red-300: oklch(79%   0.130  22);
-  --lc-red-400: oklch(68%   0.185  24);
-  --lc-red-500: oklch(58%   0.215  24);
-  --lc-red-600: oklch(50%   0.220  24);
-  --lc-red-700: oklch(42%   0.200  23);
-  --lc-red-800: oklch(34%   0.175  22); /* ← Text on red bg */
-  --lc-red-900: oklch(26%   0.140  21);
+  --lc-red-50: oklch(97.5% 0.018 22);
+  --lc-red-100: oklch(94% 0.04 22);
+  --lc-red-200: oklch(88% 0.08 22);
+  --lc-red-300: oklch(79% 0.13 22);
+  --lc-red-400: oklch(68% 0.185 24);
+  --lc-red-500: oklch(58% 0.215 24);
+  --lc-red-600: oklch(50% 0.22 24);
+  --lc-red-700: oklch(42% 0.2 23);
+  --lc-red-800: oklch(34% 0.175 22); /* ← Text on red bg */
+  --lc-red-900: oklch(26% 0.14 21);
 
   /* ──────────────────────────────────────────────────────────
      SUCCESS — GREEN  (Confirmed, completed, safe)
      ────────────────────────────────────────────────────────── */
-  --lc-green-50:  oklch(97%  0.025 155);
-  --lc-green-100: oklch(92%  0.055 155);
-  --lc-green-500: oklch(58%  0.150 155);
-  --lc-green-600: oklch(50%  0.140 155);
-  --lc-green-700: oklch(42%  0.125 155);
-  --lc-green-800: oklch(34%  0.110 155);
+  --lc-green-50: oklch(97% 0.025 155);
+  --lc-green-100: oklch(92% 0.055 155);
+  --lc-green-500: oklch(58% 0.15 155);
+  --lc-green-600: oklch(50% 0.14 155);
+  --lc-green-700: oklch(42% 0.125 155);
+  --lc-green-800: oklch(34% 0.11 155);
 
   /* ──────────────────────────────────────────────────────────
      NEUTRAL — ZINC-COOL
      Slightly cool gray scale. All text, surfaces, borders.
      ────────────────────────────────────────────────────────── */
-  --lc-neutral-0:   #ffffff;
-  --lc-neutral-50:  oklch(98.5% 0.003 200);
+  --lc-neutral-0: #ffffff;
+  --lc-neutral-50: oklch(98.5% 0.003 200);
   --lc-neutral-100: oklch(96.5% 0.005 200);
   --lc-neutral-150: oklch(93.5% 0.005 200);
-  --lc-neutral-200: oklch(91%   0.004 200);
-  --lc-neutral-300: oklch(84%   0.003 200);
-  --lc-neutral-400: oklch(74%   0.002 200);
-  --lc-neutral-500: oklch(62%   0.002 200);
-  --lc-neutral-600: oklch(50%   0.002 200);
-  --lc-neutral-700: oklch(40%   0.002 200);
-  --lc-neutral-800: oklch(28%   0.002 200);
-  --lc-neutral-900: oklch(20%   0.002 200);
-  --lc-neutral-950: oklch(13%   0.002 200);
+  --lc-neutral-200: oklch(91% 0.004 200);
+  --lc-neutral-300: oklch(84% 0.003 200);
+  --lc-neutral-400: oklch(74% 0.002 200);
+  --lc-neutral-500: oklch(62% 0.002 200);
+  --lc-neutral-600: oklch(50% 0.002 200);
+  --lc-neutral-700: oklch(40% 0.002 200);
+  --lc-neutral-800: oklch(28% 0.002 200);
+  --lc-neutral-900: oklch(20% 0.002 200);
+  --lc-neutral-950: oklch(13% 0.002 200);
 
   /* ──────────────────────────────────────────────────────────
      SEMANTIC — SURFACE / TEXT / BORDER
      ────────────────────────────────────────────────────────── */
 
   /* Backgrounds */
-  --lc-bg-app:        var(--lc-neutral-50);    /* Page/app background      */
-  --lc-bg-surface:    var(--lc-neutral-0);     /* Cards, panels, sheets    */
-  --lc-bg-subtle:     var(--lc-neutral-100);   /* Muted zone, sidebars     */
-  --lc-bg-muted:      var(--lc-neutral-150);   /* Dividers, code blocks    */
-  --lc-bg-primary:    var(--lc-teal-600);      /* Primary filled bg        */
+  --lc-bg-app: var(--lc-neutral-50); /* Page/app background      */
+  --lc-bg-surface: var(--lc-neutral-0); /* Cards, panels, sheets    */
+  --lc-bg-subtle: var(--lc-neutral-100); /* Muted zone, sidebars     */
+  --lc-bg-muted: var(--lc-neutral-150); /* Dividers, code blocks    */
+  --lc-bg-primary: var(--lc-teal-600); /* Primary filled bg        */
   --lc-bg-primary-hover: var(--lc-teal-700);
-  --lc-bg-amber:      var(--lc-amber-50);      /* Amber alert surface      */
-  --lc-bg-red:        var(--lc-red-50);        /* Red alert surface        */
-  --lc-bg-green:      var(--lc-green-50);      /* Success surface          */
+  --lc-bg-amber: var(--lc-amber-50); /* Amber alert surface      */
+  --lc-bg-red: var(--lc-red-50); /* Red alert surface        */
+  --lc-bg-green: var(--lc-green-50); /* Success surface          */
 
   /* Text */
-  --lc-fg-base:       var(--lc-neutral-950);   /* Primary body text        */
-  --lc-fg-muted:      var(--lc-neutral-600);   /* Secondary, captions      */
-  --lc-fg-subtle:     var(--lc-neutral-400);   /* Placeholder, disabled    */
-  --lc-fg-inverse:    var(--lc-neutral-0);     /* Text on dark bg          */
-  --lc-fg-primary:    var(--lc-teal-600);      /* Brand-colored text/links */
-  --lc-fg-amber:      var(--lc-amber-800);     /* Text inside amber alerts */
-  --lc-fg-red:        var(--lc-red-800);       /* Text inside red alerts   */
-  --lc-fg-green:      var(--lc-green-800);
+  --lc-fg-base: var(--lc-neutral-950); /* Primary body text        */
+  --lc-fg-muted: var(--lc-neutral-600); /* Secondary, captions      */
+  --lc-fg-subtle: var(--lc-neutral-400); /* Placeholder, disabled    */
+  --lc-fg-inverse: var(--lc-neutral-0); /* Text on dark bg          */
+  --lc-fg-primary: var(--lc-teal-600); /* Brand-colored text/links */
+  --lc-fg-amber: var(--lc-amber-800); /* Text inside amber alerts */
+  --lc-fg-red: var(--lc-red-800); /* Text inside red alerts   */
+  --lc-fg-green: var(--lc-green-800);
 
   /* Borders */
-  --lc-border-default:  var(--lc-neutral-150); /* Default card/input border */
-  --lc-border-strong:   var(--lc-neutral-300); /* Emphasized borders        */
-  --lc-border-primary:  var(--lc-teal-600);    /* Focus / active            */
-  --lc-border-amber:    var(--lc-amber-300);   /* Amber alert border        */
-  --lc-border-red:      var(--lc-red-300);     /* Red alert border          */
-  --lc-border-green:    var(--lc-green-100);
+  --lc-border-default: var(--lc-neutral-150); /* Default card/input border */
+  --lc-border-strong: var(--lc-neutral-300); /* Emphasized borders        */
+  --lc-border-primary: var(--lc-teal-600); /* Focus / active            */
+  --lc-border-amber: var(--lc-amber-300); /* Amber alert border        */
+  --lc-border-red: var(--lc-red-300); /* Red alert border          */
+  --lc-border-green: var(--lc-green-100);
 
   /* ──────────────────────────────────────────────────────────
      TYPOGRAPHY
      ────────────────────────────────────────────────────────── */
 
   /* Font families */
-  --lc-font-sans:  'Geist', 'Geist Sans', ui-sans-serif, system-ui, -apple-system, sans-serif;
-  --lc-font-mono:  'Geist Mono', ui-monospace, 'Cascadia Code', 'Fira Code', monospace;
+  --lc-font-sans:
+    "Geist", "Geist Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --lc-font-mono:
+    "Geist Mono", ui-monospace, "Cascadia Code", "Fira Code", monospace;
 
   /* Font sizes */
-  --lc-text-xs:   0.75rem;    /* 12px — Labels, tags        */
-  --lc-text-sm:   0.8125rem;  /* 13px — Captions            */
-  --lc-text-base: 0.9375rem;  /* 15px — Body text (default) */
-  --lc-text-md:   1rem;       /* 16px — Body large          */
-  --lc-text-lg:   1.125rem;   /* 18px — Card titles         */
-  --lc-text-xl:   1.25rem;    /* 20px — Section headings    */
-  --lc-text-2xl:  1.5rem;     /* 24px — h2                  */
-  --lc-text-3xl:  1.875rem;   /* 30px — h1                  */
-  --lc-text-4xl:  2.25rem;    /* 36px — Display             */
-  --lc-text-5xl:  3rem;       /* 48px — Hero display        */
+  --lc-text-xs: 0.75rem; /* 12px — Labels, tags        */
+  --lc-text-sm: 0.8125rem; /* 13px — Captions            */
+  --lc-text-base: 0.9375rem; /* 15px — Body text (default) */
+  --lc-text-md: 1rem; /* 16px — Body large          */
+  --lc-text-lg: 1.125rem; /* 18px — Card titles         */
+  --lc-text-xl: 1.25rem; /* 20px — Section headings    */
+  --lc-text-2xl: 1.5rem; /* 24px — h2                  */
+  --lc-text-3xl: 1.875rem; /* 30px — h1                  */
+  --lc-text-4xl: 2.25rem; /* 36px — Display             */
+  --lc-text-5xl: 3rem; /* 48px — Hero display        */
 
   /* Font weights */
-  --lc-weight-normal:    400;
-  --lc-weight-medium:    500;
-  --lc-weight-semibold:  600;
-  --lc-weight-bold:      700;
+  --lc-weight-normal: 400;
+  --lc-weight-medium: 500;
+  --lc-weight-semibold: 600;
+  --lc-weight-bold: 700;
 
   /* Line heights */
-  --lc-leading-tight:   1.2;
-  --lc-leading-snug:    1.35;
-  --lc-leading-normal:  1.5;
+  --lc-leading-tight: 1.2;
+  --lc-leading-snug: 1.35;
+  --lc-leading-normal: 1.5;
   --lc-leading-relaxed: 1.625;
-  --lc-leading-loose:   1.75;
+  --lc-leading-loose: 1.75;
 
   /* Letter spacing */
-  --lc-tracking-tight:  -0.02em;
-  --lc-tracking-snug:   -0.015em;
-  --lc-tracking-normal:  0em;
-  --lc-tracking-wide:    0.03em;
-  --lc-tracking-wider:   0.06em;
-  --lc-tracking-widest:  0.10em;
+  --lc-tracking-tight: -0.02em;
+  --lc-tracking-snug: -0.015em;
+  --lc-tracking-normal: 0em;
+  --lc-tracking-wide: 0.03em;
+  --lc-tracking-wider: 0.06em;
+  --lc-tracking-widest: 0.1em;
 
   /* ──────────────────────────────────────────────────────────
      SPACING (8px base grid)
      ────────────────────────────────────────────────────────── */
-  --lc-space-1:   4px;
-  --lc-space-2:   8px;
-  --lc-space-3:   12px;
-  --lc-space-4:   16px;
-  --lc-space-5:   20px;
-  --lc-space-6:   24px;
-  --lc-space-8:   32px;
-  --lc-space-10:  40px;
-  --lc-space-12:  48px;
-  --lc-space-16:  64px;
-  --lc-space-20:  80px;
-  --lc-space-24:  96px;
+  --lc-space-1: 4px;
+  --lc-space-2: 8px;
+  --lc-space-3: 12px;
+  --lc-space-4: 16px;
+  --lc-space-5: 20px;
+  --lc-space-6: 24px;
+  --lc-space-8: 32px;
+  --lc-space-10: 40px;
+  --lc-space-12: 48px;
+  --lc-space-16: 64px;
+  --lc-space-20: 80px;
+  --lc-space-24: 96px;
 
   /* ──────────────────────────────────────────────────────────
      BORDER RADIUS
      ────────────────────────────────────────────────────────── */
-  --lc-radius-xs:   4px;
-  --lc-radius-sm:   6px;
-  --lc-radius-md:   10px;
-  --lc-radius-lg:   14px;
-  --lc-radius-xl:   20px;
-  --lc-radius-2xl:  28px;
+  --lc-radius-xs: 4px;
+  --lc-radius-sm: 6px;
+  --lc-radius-md: 10px;
+  --lc-radius-lg: 14px;
+  --lc-radius-xl: 20px;
+  --lc-radius-2xl: 28px;
   --lc-radius-full: 9999px;
 
   /* ──────────────────────────────────────────────────────────
      SHADOWS / ELEVATION
      ────────────────────────────────────────────────────────── */
   --lc-shadow-xs: 0 1px 2px oklch(0% 0 0 / 0.05);
-  --lc-shadow-sm: 0 1px 3px oklch(0% 0 0 / 0.07), 0 1px 2px oklch(0% 0 0 / 0.05);
-  --lc-shadow-md: 0 4px 12px oklch(0% 0 0 / 0.08), 0 2px 4px oklch(0% 0 0 / 0.05);
-  --lc-shadow-lg: 0 10px 24px oklch(0% 0 0 / 0.09), 0 4px 8px oklch(0% 0 0 / 0.04);
-  --lc-shadow-xl: 0 20px 40px oklch(0% 0 0 / 0.10), 0 8px 16px oklch(0% 0 0 / 0.04);
+  --lc-shadow-sm:
+    0 1px 3px oklch(0% 0 0 / 0.07), 0 1px 2px oklch(0% 0 0 / 0.05);
+  --lc-shadow-md:
+    0 4px 12px oklch(0% 0 0 / 0.08), 0 2px 4px oklch(0% 0 0 / 0.05);
+  --lc-shadow-lg:
+    0 10px 24px oklch(0% 0 0 / 0.09), 0 4px 8px oklch(0% 0 0 / 0.04);
+  --lc-shadow-xl:
+    0 20px 40px oklch(0% 0 0 / 0.1), 0 8px 16px oklch(0% 0 0 / 0.04);
 
   /* ──────────────────────────────────────────────────────────
      TRANSITIONS
      ────────────────────────────────────────────────────────── */
-  --lc-transition-fast:   150ms ease-out;
-  --lc-transition-base:   200ms ease-in-out;
-  --lc-transition-slow:   300ms ease-in-out;
+  --lc-transition-fast: 150ms ease-out;
+  --lc-transition-base: 200ms ease-in-out;
+  --lc-transition-slow: 300ms ease-in-out;
 
   /* ──────────────────────────────────────────────────────────
      FOCUS RING
@@ -215,18 +220,22 @@
   /* ──────────────────────────────────────────────────────────
      Z-INDEX SCALE
      ────────────────────────────────────────────────────────── */
-  --lc-z-base:    1;
-  --lc-z-raised:  10;
+  --lc-z-base: 1;
+  --lc-z-raised: 10;
   --lc-z-overlay: 100;
-  --lc-z-modal:   200;
-  --lc-z-toast:   300;
+  --lc-z-modal: 200;
+  --lc-z-toast: 300;
 }
 
 /* ─────────────────────────────────────────────────────────────
    SEMANTIC ELEMENT DEFAULTS
    Apply these to your root stylesheet / tailwind base layer.
    ───────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 body {
   font-family: var(--lc-font-sans);
@@ -271,13 +280,16 @@ p {
   text-wrap: pretty;
 }
 
-small, .caption {
+small,
+.caption {
   font-size: var(--lc-text-sm);
   line-height: var(--lc-leading-normal);
   color: var(--lc-fg-muted);
 }
 
-code, pre, .mono {
+code,
+pre,
+.mono {
   font-family: var(--lc-font-mono);
   font-size: 0.9em;
 }
@@ -289,7 +301,9 @@ a {
   transition: color var(--lc-transition-fast);
 }
 
-a:hover { color: var(--lc-teal-700); }
+a:hover {
+  color: var(--lc-teal-700);
+}
 
 /* Focus ring utility */
 :focus-visible {
@@ -338,7 +352,10 @@ a:hover { color: var(--lc-teal-700); }
   line-height: 1;
   border: none;
   cursor: pointer;
-  transition: background var(--lc-transition-fast), color var(--lc-transition-fast), box-shadow var(--lc-transition-fast);
+  transition:
+    background var(--lc-transition-fast),
+    color var(--lc-transition-fast),
+    box-shadow var(--lc-transition-fast);
   min-height: 44px;
   padding: 0 var(--lc-space-6);
   border-radius: var(--lc-radius-full);
@@ -349,26 +366,35 @@ a:hover { color: var(--lc-teal-700); }
   background: var(--lc-bg-primary);
   color: var(--lc-fg-inverse);
 }
-.lc-btn-primary:hover { background: var(--lc-bg-primary-hover); }
+.lc-btn-primary:hover {
+  background: var(--lc-bg-primary-hover);
+}
 
 .lc-btn-outline {
   background: transparent;
   border: 1.5px solid var(--lc-border-primary);
   color: var(--lc-fg-primary);
 }
-.lc-btn-outline:hover { background: var(--lc-teal-50); }
+.lc-btn-outline:hover {
+  background: var(--lc-teal-50);
+}
 
 .lc-btn-ghost {
   background: transparent;
   color: var(--lc-fg-muted);
 }
-.lc-btn-ghost:hover { background: var(--lc-neutral-100); color: var(--lc-fg-base); }
+.lc-btn-ghost:hover {
+  background: var(--lc-neutral-100);
+  color: var(--lc-fg-base);
+}
 
 .lc-btn-danger {
   background: var(--lc-red-600);
   color: white;
 }
-.lc-btn-danger:hover { background: var(--lc-red-700); }
+.lc-btn-danger:hover {
+  background: var(--lc-red-700);
+}
 
 /* Severity badges */
 .lc-badge {
