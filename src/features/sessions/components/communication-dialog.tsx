@@ -47,8 +47,8 @@ export function CommunicationDialog({
   });
 
   const handleCopy = () => {
-    if (message) {
-      navigator.clipboard.writeText(message);
+    if (message?.message) {
+      navigator.clipboard.writeText(message.message);
       setCopied(true);
       toast.success("Mensagem copiada para a área de transferência!");
       setTimeout(() => setCopied(false), 2000);
@@ -95,7 +95,7 @@ export function CommunicationDialog({
                 </Badge>
               </div>
               <div className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-100)] text-[15px] text-[var(--lc-neutral-700)] leading-relaxed font-medium whitespace-pre-wrap max-h-[300px] overflow-y-auto custom-scrollbar">
-                {message}
+                {message.message}
               </div>
             </div>
 
