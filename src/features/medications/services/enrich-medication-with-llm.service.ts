@@ -5,13 +5,13 @@ import {
   MEDICATION_ENRICHMENT_PROMPT_VERSION,
   MEDICATION_ENRICHMENT_STATIC_PROMPT,
 } from "@/features/medications/prompts/medication-enrichment.prompt";
-import type { MedicationEnrichmentOutput } from "@/features/medications/schemas/medication-enrichment.schema";
+import type { MedicationEnrichment } from "@/features/medications/schemas/medication-enrichment.schema";
 import { medicationEnrichmentSchema } from "@/features/medications/schemas/medication-enrichment.schema";
 
 const MODEL = "gpt-5.4";
 
 export interface EnrichMedicationResult {
-  data?: MedicationEnrichmentOutput;
+  data?: MedicationEnrichment;
   model: string;
   promptVersion: string;
   usage?: {

@@ -14,13 +14,15 @@
 
 **O que fazer:**
 
-1. Em `schema.ts`, alterar a coluna:
+1. Em `schema.ts`, alterar as colunas:
    ```typescript
    careObservations: text("care_observations").array(),
+   clinicalConfounders: text("clinical_confounders").array(),
    ```
-2. Em `medication-enrichment.schema.ts`, remover `sessionObservations` e adicionar:
+2. Em `medication-enrichment.schema.ts`, criar os helpers `boundedString` e atualizar as propriedades:
    ```typescript
-   careObservations: z.array(z.string().max(240)).min(4).max(7),
+   careObservations: z.array(boundedString(1, 240)).min(4).max(7),
+   clinicalConfounders: z.array(boundedString(1, 280)).min(4).max(7),
    ```
 3. Rodar a migração/push do banco se necessário (drizzle-kit push).
 
@@ -62,9 +64,9 @@
 
 **O que fazer:**
 
-1. Localizar o objeto `jsonSchema` na linha 50+.
-2. Substituir a declaração de propriedades de `sessionObservations` para `careObservations`.
-3. Ajustar `required` array.
+1. Criar a função helper `stringArray(minItems, maxItems, maxLength)`.
+2. Substituir as declarações do `jsonSchema` usando a nova função e atualizar as chaves para `careObservations` e `clinicalConfounders`.
+3. Ajustar o `required` array para incluir `clinicalConfounders`.
 
 **Aceitacao:**
 - [ ] Script de geração executa sem erros do Typescript.

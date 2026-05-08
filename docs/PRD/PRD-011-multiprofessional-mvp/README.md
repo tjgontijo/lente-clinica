@@ -57,10 +57,10 @@ PRD-011-multiprofessional-mvp/
 
 ## 🟡 Problemas Moderados
 
-### T1: Renomear sessionObservations para careObservations no Banco e Zod
+### T1: Renomear sessionObservations para careObservations e confoundingEffects para clinicalConfounders
 
-**Impacto:** O termo atual restringe a visão da plataforma a sessões de terapia.
-**Solucao:** Atualizar o schema do Drizzle e os schemas do Zod para usar `careObservations`.
+**Impacto:** Os termos atuais restringem a visão da plataforma a sessões de terapia ou soam como bula.
+**Solucao:** Atualizar o schema do Drizzle e os schemas do Zod para usar `careObservations` e `clinicalConfounders`.
 
 ### T2: Atualizar o Prompt Estático (v4.0)
 

@@ -1,4 +1,4 @@
-import type { MedicationEnrichmentOutput } from "@/features/medications/schemas/medication-enrichment.schema";
+import type { MedicationEnrichment } from "@/features/medications/schemas/medication-enrichment.schema";
 
 const FORBIDDEN_PATTERNS = [
   /aumentar dose/i,
@@ -18,7 +18,7 @@ export interface ValidationResult {
 }
 
 export function validateMedicationEnrichmentSafety(
-  content: MedicationEnrichmentOutput,
+  content: MedicationEnrichment,
 ): ValidationResult {
   const issues: string[] = [];
 
@@ -26,8 +26,8 @@ export function validateMedicationEnrichmentSafety(
     content.description,
     ...content.clinicalContexts,
     ...content.patientReports,
-    ...content.sessionObservations,
-    ...content.confoundingEffects,
+    ...content.careObservations,
+    ...content.clinicalConfounders,
     ...content.usefulQuestions,
     content.clinicalPhrase,
   ].join(" ");

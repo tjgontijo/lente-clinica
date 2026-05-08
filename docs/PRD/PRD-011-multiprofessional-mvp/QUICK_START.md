@@ -1,6 +1,6 @@
 # Quick Start: PRD-011 Multiprofessional MVP
 
-**TL;DR:** Transformação da base e interface de dados para abraçar profissionais além dos terapeutas. Trocando `sessionObservations` por `careObservations` e ampliando as instruções do prompt da LLM (v4.0). 5 problemas: 0 criticos, 2 moderados, 3 menores. Total: 2h.
+**TL;DR:** Transformação da base e interface de dados para abraçar profissionais além dos terapeutas. Trocando `sessionObservations` por `careObservations`, `confoundingEffects` por `clinicalConfounders`, e ampliando as instruções do prompt da LLM (v4.0). 5 problemas: 0 criticos, 2 moderados, 3 menores. Total: 2h.
 
 ---
 

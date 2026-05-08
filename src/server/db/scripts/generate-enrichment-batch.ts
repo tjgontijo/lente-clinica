@@ -26,7 +26,7 @@ async function main() {
       class: true,
       products: true,
     },
-    // limit: 2,
+    limit: 2,
   });
 
   if (medicationsToEnrich.length === 0) {
@@ -39,11 +39,14 @@ async function main() {
   const batchLines: string[] = [];
 
   // Helper para gerar schema de array de strings com limites
-  const stringArray = (minItems: number, maxItems: number) => ({
+  const stringArray = (minItems: number, maxItems: number, maxLength: number) => ({
     type: "array",
     minItems,
     maxItems,
-    items: { type: "string" },
+    items: {
+      type: "string",
+      maxLength,
+    },
   });
 
   // 2. Definir o JSON Schema (Structured Outputs - Strict)
@@ -57,23 +60,31 @@ async function main() {
         "description",
         "clinicalContexts",
         "patientReports",
-        "sessionObservations",
-        "confoundingEffects",
+        "careObservations",
+        "clinicalConfounders",
         "usefulQuestions",
         "coordinationNotes",
         "attentionSignals",
         "clinicalPhrase",
       ],
       properties: {
-        description: { type: "string" },
-        clinicalContexts: stringArray(3, 6),
-        patientReports: stringArray(4, 7),
-        sessionObservations: stringArray(4, 7),
-        confoundingEffects: stringArray(4, 7),
-        usefulQuestions: stringArray(5, 8),
-        coordinationNotes: stringArray(3, 6),
-        attentionSignals: stringArray(3, 6),
-        clinicalPhrase: { type: "string" },
+        description: {
+          type: "string",
+          minLength: 80,
+          maxLength: 700,
+        },
+        clinicalContexts: stringArray(3, 6, 180),
+        patientReports: stringArray(4, 7, 180),
+        careObservations: stringArray(4, 7, 240),
+        clinicalConfounders: stringArray(4, 7, 280),
+        usefulQuestions: stringArray(5, 8, 220),
+        coordinationNotes: stringArray(3, 6, 260),
+        attentionSignals: stringArray(3, 6, 260),
+        clinicalPhrase: {
+          type: "string",
+          minLength: 1,
+          maxLength: 180,
+        },
       },
     },
   };

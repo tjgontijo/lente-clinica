@@ -1,11 +1,11 @@
 import { eq } from "drizzle-orm";
-import type { MedicationEnrichmentOutput } from "@/features/medications/schemas/medication-enrichment.schema";
+import type { MedicationEnrichment } from "@/features/medications/schemas/medication-enrichment.schema";
 import { db } from "@/server/db/db";
 import { medication } from "@/server/db/schema";
 
 export async function updateMedicationEnrichmentDraftRepository(
   id: string,
-  data: MedicationEnrichmentOutput,
+  data: MedicationEnrichment,
   metadata: {
     model: string;
     promptVersion: string;

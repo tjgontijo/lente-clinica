@@ -24,7 +24,7 @@ Identificamos a necessidade de refatorar as nomenclaturas e a engenharia de prom
 
 ### 1. Nomenclatura Restritiva no Banco de Dados
 
-**Problema:** O schema do banco e o Zod usam `sessionObservations`. Se povoarmos a base de dados com 152 medicamentos agora, teremos débito técnico difícil de migrar depois quando o termo "sessão" se provar limitante para médicos e enfermeiros.
+**Problema:** O schema do banco e o Zod usam termos muito específicos ou vagos, como `sessionObservations` (restringindo a sessões terapêuticas) e `confoundingEffects` (que soa como bula ou efeito colateral em vez de fatores de confusão na rotina de cuidado).
 
 **Localizacao:** `src/server/db/schema.ts`, `src/features/medications/schemas/medication-enrichment.schema.ts`
 
@@ -33,9 +33,9 @@ Identificamos a necessidade de refatorar as nomenclaturas e a engenharia de prom
 - ⚠️ Exige conversão manual no front-end para perfis não terapeutas.
 
 **Solucao Necessaria:**
-1. Renomear o campo para `careObservations` no Zod.
-2. Renomear a coluna e o atributo no Drizzle Schema.
-3. Atualizar o tipo `MedicationEnrichmentData`.
+1. Renomear para `careObservations` e `clinicalConfounders` no Zod e banco.
+2. Criar helpers no Zod (`boundedString`) para simplificar o schema.
+3. Atualizar o tipo de retorno.
 
 ### 2. Viés Psicoterapêutico no Prompt da OpenAI
 

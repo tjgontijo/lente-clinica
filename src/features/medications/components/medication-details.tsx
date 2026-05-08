@@ -36,8 +36,8 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
       medication.clinicalContexts?.map((ctx) => `- ${ctx}`).join("\n") || "N/A",
       "\n## Relatos Comuns",
       medication.patientReports?.map((r) => `- ${r}`).join("\n") || "N/A",
-      "\n## O que observar na sessão",
-      medication.sessionObservations?.map((o) => `- ${o}`).join("\n") || "N/A",
+      "\n## O que observar no atendimento",
+      medication.careObservations?.map((o) => `- ${o}`).join("\n") || "N/A",
       "\n## Perguntas úteis",
       medication.usefulQuestions?.map((q) => `- ${q}`).join("\n") || "N/A",
       "\n## Notas de Coordenação",
@@ -45,7 +45,7 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
       "\n## Sinais de Atenção",
       medication.attentionSignals?.map((s) => `- ${s}`).join("\n") || "N/A",
       "\n## Possíveis confundidores clínicos",
-      medication.confoundingEffects?.map((e) => `- ${e}`).join("\n") || "N/A",
+      medication.clinicalConfounders?.map((e) => `- ${e}`).join("\n") || "N/A",
     ].join("\n");
 
     navigator.clipboard.writeText(md).then(() => {
@@ -206,10 +206,10 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
             <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
               <Eye size={14} className="text-[var(--lc-teal-500)]" />
             </div>
-            O que observar na sessão
+            O que observar no atendimento
           </div>
           <ul className="space-y-3">
-            {medication.sessionObservations?.map((obs, i) => (
+            {medication.careObservations?.map((obs, i) => (
               <li
                 key={i}
                 className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
@@ -309,7 +309,7 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
             Possíveis confundidores clínicos
           </div>
           <ul className="space-y-3">
-            {medication.confoundingEffects?.map((effect, i) => (
+            {medication.clinicalConfounders?.map((effect, i) => (
               <li
                 key={i}
                 className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
