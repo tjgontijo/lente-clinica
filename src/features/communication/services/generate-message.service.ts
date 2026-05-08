@@ -48,8 +48,8 @@ export async function generateMessageService(userId: string, input: unknown) {
     .join(", ");
   const meds = activeMedications.map((pm) => pm.medication.name).join(", ");
 
-	const finalMessage = content
-		.replace(/\[nome\]/g, pCase.firstName)
+  const finalMessage = content
+    .replace(/\[nome\]/g, pCase.firstName)
     .replace(/\[idade\]/g, age.toString())
     .replace(/\[sintomas\]/g, symptoms || "[sintomas não informados]")
     .replace(/\[medicação\]/g, meds || "[sem medicação informada]");

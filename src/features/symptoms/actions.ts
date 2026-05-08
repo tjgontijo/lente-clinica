@@ -1,7 +1,7 @@
 "use server";
 
-import { listSymptomsService } from "./services/list-symptoms.service";
+import { listCategoriesWithSymptomsService } from "./services/list-categories-with-symptoms.service";
 
-export async function listSymptomsAction() {
-  return listSymptomsService();
+export async function listCategoriesWithSymptomsAction() {
+  return listCategoriesWithSymptomsService();
 }

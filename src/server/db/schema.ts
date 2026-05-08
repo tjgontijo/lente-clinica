@@ -8,6 +8,7 @@ import {
   primaryKey,
   text,
   timestamp,
+  uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
 
@@ -96,6 +97,9 @@ export const medicationClass = pgTable("medication_class", {
   id: uuid("id").primaryKey().defaultRandom(),
   name: text("name").notNull().unique(),
   description: text("description"),
+  shouldEnrichWithLlm: boolean("should_enrich_with_llm")
+    .default(false)
+    .notNull(),
 });
 
 export const medication = pgTable("medication", {
@@ -104,13 +108,40 @@ export const medication = pgTable("medication", {
     .notNull()
     .references(() => medicationClass.id),
   name: text("name").notNull().unique(),
-  genericName: text("generic_name"),
-  commercialNames: text("commercial_names").array(),
+  shouldEnrichWithLlm: boolean("should_enrich_with_llm")
+    .default(false)
+    .notNull(),
   description: text("description"),
   commonUses: text("common_uses").array(),
+  patientReports: text("patient_reports").array(),
+  sessionObservations: text("session_observations").array(),
+  confoundingEffects: text("confounding_effects").array(),
+  usefulQuestions: text("useful_questions").array(),
   clinicalPhrase: text("clinical_phrase"),
-  ethicalCare: text("ethical_care"),
 });
+
+export const medicationProduct = pgTable(
+  "medication_product",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    medicationId: uuid("medication_id")
+      .notNull()
+      .references(() => medication.id),
+    productName: text("product_name").notNull(),
+    productType: text("product_type"),
+    regulatoryLabel: text("regulatory_label"),
+  },
+  (table) => [
+    index("medication_product_medication_id_idx").on(table.medicationId),
+    index("medication_product_name_idx").on(table.productName),
+    uniqueIndex("medication_product_unique_entry").on(
+      table.medicationId,
+      table.productName,
+      table.productType,
+      table.regulatoryLabel,
+    ),
+  ],
+);
 
 export const symptomCategory = pgTable("symptom_category", {
   id: uuid("id").primaryKey().defaultRandom(),
@@ -128,6 +159,28 @@ export const symptom = pgTable("symptom", {
 });
 
 export const severityEnum = pgEnum("severity", ["YELLOW", "RED"]);
+export const dosageUnitEnum = pgEnum("dosage_unit", [
+  "MG",
+  "MCG",
+  "G",
+  "ML",
+  "DROP",
+  "TABLET",
+  "CAPSULE",
+]);
+export const frequencyUnitEnum = pgEnum("frequency_unit", [
+  "PER_DAY",
+  "PER_WEEK",
+  "EVERY_X_HOURS",
+  "AS_NEEDED",
+]);
+export const intakePeriodEnum = pgEnum("intake_period", [
+  "MORNING",
+  "AFTERNOON",
+  "EVENING",
+  "BEDTIME",
+  "CUSTOM",
+]);
 
 export const medicationSymptomAlert = pgTable(
   "medication_symptom_alert",
@@ -170,6 +223,12 @@ export const patientMedication = pgTable(
       .notNull()
       .references(() => medication.id),
     isCurrent: boolean("is_current").default(true).notNull(),
+    dosageAmount: text("dosage_amount"),
+    dosageUnit: dosageUnitEnum("dosage_unit"),
+    frequencyValue: integer("frequency_value"),
+    frequencyUnit: frequencyUnitEnum("frequency_unit"),
+    intakePeriod: intakePeriodEnum("intake_period"),
+    intakePeriodCustom: text("intake_period_custom"),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.caseId, t.medicationId] }),
@@ -245,9 +304,20 @@ export const medicationRelations = relations(medication, ({ one, many }) => ({
     fields: [medication.classId],
     references: [medicationClass.id],
   }),
+  products: many(medicationProduct),
   symptomAlerts: many(medicationSymptomAlert),
   patientMedications: many(patientMedication),
 }));
+
+export const medicationProductRelations = relations(
+  medicationProduct,
+  ({ one }) => ({
+    medication: one(medication, {
+      fields: [medicationProduct.medicationId],
+      references: [medication.id],
+    }),
+  }),
+);
 
 export const symptomCategoryRelations = relations(
   symptomCategory,

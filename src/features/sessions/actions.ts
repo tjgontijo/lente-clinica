@@ -2,6 +2,7 @@
 
 import { getCurrentUserId } from "@/server/auth/get-current-user-id";
 import {
+  calculateRealTimeAlertsService,
   createSessionService,
   getActiveAlertsService,
   listSessionsService,
@@ -20,4 +21,12 @@ export async function listSessionsAction(caseId: string) {
 export async function getActiveAlertsAction(caseId: string) {
   const userId = await getCurrentUserId();
   return getActiveAlertsService(userId, caseId);
+}
+
+export async function calculateRealTimeAlertsAction(
+  caseId: string,
+  symptomIds: string[],
+) {
+  const userId = await getCurrentUserId();
+  return calculateRealTimeAlertsService(userId, caseId, symptomIds);
 }

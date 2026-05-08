@@ -1,19 +1,19 @@
 # Tasks: PRD-007 Medications UI
 
-**Data:** 2026-05-08 | **Status:** Planejado | **Total Tasks:** 4 | **Estimado:** 2.5h
+**Data:** 2026-05-08 | **Status:** Concluido | **Total Tasks:** 4 | **Estimado:** 2.5h
 
 ---
 
 ## 🔴 Fase 1: Componentes Visuais (1h)
 
-### T1: Criar MedicationCard
+### ✅ T1: Criar MedicationCard
 **Localização:** `src/features/medications/components/medication-card.tsx`
 **O que fazer:**
 1. Usar o componente `Card` do Shadcn como base.
 2. Renderizar: `name`, `commercialNames` (como Badge de tom neutro), `class.name` (como Badge Teal), `description` e `ethicalCare`.
 3. Garantir espaçamentos coerentes (Tailwind `gap-4`, `p-6`) conforme o design system.
 
-### T2: Componentes de Skeleton / Empty State
+### ✅ T2: Componentes de Skeleton / Empty State
 **Localização:** `src/features/medications/components/medications-skeleton.tsx`
 **O que fazer:**
 Criar um grid com 6 cards em formato Skeleton (Shadcn `Skeleton`) para ser usado durante o loading do TanStack Query.
@@ -22,7 +22,7 @@ Criar um grid com 6 cards em formato Skeleton (Shadcn `Skeleton`) para ser usado
 
 ## 🟡 Fase 2: Integração de Dados (0.5h)
 
-### T3: Query Hook de Medicações
+### ✅ T3: Query Hook de Medicações
 **Localização:** `src/features/medications/queries/use-medications-query.ts`
 **O que fazer:**
 1. Escrever o hook `useMedicationsQuery(search?: string)`.
@@ -32,7 +32,7 @@ Criar um grid com 6 cards em formato Skeleton (Shadcn `Skeleton`) para ser usado
 
 ## 🟢 Fase 3: Rotas e Estado (1h)
 
-### T4: Rota de Busca (Page)
+### ✅ T4: Rota de Busca (Page)
 **Localização:** `src/app/(dashboard)/medications/page.tsx`
 **O que fazer:**
 1. Esta será a página acessível via menu.

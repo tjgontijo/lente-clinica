@@ -1,6 +1,6 @@
 # PRD-006: Frontend Shell e Layout Global
 
-**Status:** Planejado
+**Status:** Implementado
 **Data:** 2026-05-08
 **Versão:** 1.0
 
@@ -31,9 +31,9 @@ PRD-006-frontend-shell/
 ## 🎯 Resumo Executivo
 
 ### Status Atual
-- O Backend está planejado e parcialmente executado.
-- O Design System (PRD-005) definiu a identidade visual.
-- Falta a "tela em branco" estruturada onde as funcionalidades vão morar.
+- Backend segue em evolução por PRDs próprios.
+- Design System (PRD-005) aplicado no shell.
+- Frontend shell global implementado (provedores, top nav, largura e loading base).
 
 ### Ordem de Implementação
 

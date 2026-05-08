@@ -1,0 +1,68 @@
+# Quick Start: PRD-010 Enriquecimento LLM
+
+## TL;DR
+
+Implementar um script backend para enriquecer medicamentos marcados com `shouldEnrichWithLlm = true`, usando OpenAI SDK, validacao Zod e persistencia segura no banco.
+
+Comece por metadados e schema de validacao. Depois implemente service, repositories e script batch.
+
+## Tasks Resumidas
+
+| Task | Prioridade | Local |
+|------|------------|-------|
+| T1 | Critica | `src/server/db/schema.ts` |
+| T2 | Critica | `features/medications/schemas` |
+| T3 | Critica | `features/medications/services` |
+| T4 | Critica | `features/medications/services` |
+| T5 | Moderada | `features/medications/repositories` |
+| T6 | Critica | `src/server/db/scripts` |
+| T7 | Menor | `package.json` |
+| T8 | Moderada | `list-medications.repository.ts` |
+
+## Comandos de Inicio
+
+```bash
+git checkout -b feature/prd-010-medication-llm-enrichment
+npm install openai
+npm run lint
+```
+
+Depois de alterar schema:
+
+```bash
+npm run db:push
+```
+
+Para testar o batch:
+
+```bash
+npm run enrich:medications -- --limit 1 --dry-run
+npm run enrich:medications -- --only "Escitalopram"
+```
+
+## Arquivos Principais
+
+- `src/server/db/schema.ts`
+- `src/features/medications/schemas/medication-enrichment.schema.ts`
+- `src/features/medications/services/enrich-medication-with-llm.service.ts`
+- `src/features/medications/services/validate-medication-enrichment.service.ts`
+- `src/features/medications/repositories/list-medications-for-enrichment.repository.ts`
+- `src/features/medications/repositories/update-medication-enrichment.repository.ts`
+- `src/server/db/scripts/enrich-medications.ts`
+
+## Checklist de Validacao
+
+- `OPENAI_API_KEY` ausente falha antes de chamar banco/LLM.
+- `--dry-run` nao grava dados.
+- resposta invalida da LLM vira `FAILED` ou `NEEDS_REVIEW`.
+- conteudo com prescricao ou dose nao e salvo como `DONE`.
+- medicamento enriquecido nao e reprocessado sem `--force`.
+- `description` e arrays clinicos aparecem preenchidos no banco.
+
+## Sugestao de Commits
+
+1. `feat(db): add medication enrichment metadata`
+2. `feat(medications): add enrichment validation schemas`
+3. `feat(medications): add llm enrichment service`
+4. `feat(db): add medication enrichment batch script`
+5. `feat(medications): search by commercial product name`

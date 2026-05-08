@@ -5,23 +5,23 @@ import { useState } from "react";
 import { Toaster } from "sonner";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-	const [queryClient] = useState(
-		() =>
-			new QueryClient({
-				defaultOptions: {
-					queries: {
-						// Regra da skill: evitar refetch desnecessário
-						refetchOnWindowFocus: false,
-						retry: 1,
-					},
-				},
-			}),
-	);
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            // Regra da skill: evitar refetch desnecessário
+            refetchOnWindowFocus: false,
+            retry: 1,
+          },
+        },
+      }),
+  );
 
-	return (
-		<QueryClientProvider client={queryClient}>
-			{children}
-			<Toaster position="top-right" richColors />
-		</QueryClientProvider>
-	);
+  return (
+    <QueryClientProvider client={queryClient}>
+      {children}
+      <Toaster position="top-right" richColors />
+    </QueryClientProvider>
+  );
 }
