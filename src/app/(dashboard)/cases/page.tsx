@@ -107,7 +107,7 @@ export default function CasesPage() {
 								</div>
 
 								{/* Decorative gradient */}
-								<div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-[var(--lc-teal-50)]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+								<div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-(--lc-teal-50)/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 							</Card>
 						</Link>
 					))

@@ -64,7 +64,7 @@ export function CreateCaseForm({ onSuccess }: CreateCaseFormProps) {
 					<Input
 						id="firstName"
 						placeholder="Ex: Maria"
-						className="h-11 rounded-[12px] border-[var(--lc-neutral-200)] focus:border-[var(--lc-teal-500)] focus:ring-[var(--lc-teal-500)]/10"
+						className="h-11 rounded-[12px] border-[var(--lc-neutral-200)] focus:border-[var(--lc-teal-500)] focus:ring-(--lc-teal-500)/10"
 						{...form.register("firstName")}
 					/>
 					{form.formState.errors.firstName && (
@@ -87,7 +87,7 @@ export function CreateCaseForm({ onSuccess }: CreateCaseFormProps) {
 							id="phoneSuffix"
 							placeholder="Ex: 1234"
 							maxLength={4}
-							className="h-11 rounded-[12px] border-[var(--lc-neutral-200)] focus:border-[var(--lc-teal-500)] focus:ring-[var(--lc-teal-500)]/10 font-mono"
+							className="h-11 rounded-[12px] border-[var(--lc-neutral-200)] focus:border-[var(--lc-teal-500)] focus:ring-(--lc-teal-500)/10 font-mono"
 							{...form.register("phoneSuffix")}
 						/>
 						{form.formState.errors.phoneSuffix && (
@@ -109,7 +109,7 @@ export function CreateCaseForm({ onSuccess }: CreateCaseFormProps) {
 							id="birthYear"
 							type="number"
 							placeholder="Ex: 1990"
-							className="h-11 rounded-[12px] border-[var(--lc-neutral-200)] focus:border-[var(--lc-teal-500)] focus:ring-[var(--lc-teal-500)]/10"
+							className="h-11 rounded-[12px] border-[var(--lc-neutral-200)] focus:border-[var(--lc-teal-500)] focus:ring-(--lc-teal-500)/10"
 							{...form.register("birthYear", { valueAsNumber: true })}
 						/>
 						{form.formState.errors.birthYear && (
