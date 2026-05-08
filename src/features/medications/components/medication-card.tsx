@@ -4,6 +4,12 @@ import { Card } from "@/components/ui/card";
 import type { MedicationWithClass } from "../types";
 import { getHumanClassInfo } from "../utils/atc-mapping";
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
 interface MedicationCardProps {
   medication: MedicationWithClass;
   className?: string;
@@ -67,13 +73,19 @@ export function MedicationCard({
             )}
           </div>
         </div>
-        <Badge
-          variant="outline"
-          title={label}
-          className={`${colorClass} hover:${colorClass} text-[10px] font-bold py-0.5 px-2.5 rounded-full shrink-0 transition-none max-w-[150px] truncate`}
-        >
-          {label}
-        </Badge>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Badge
+              variant="outline"
+              className={`${colorClass} hover:${colorClass} text-[10px] font-bold py-0.5 px-2.5 rounded-full shrink-0 transition-none max-w-[150px] truncate cursor-help`}
+            >
+              {label}
+            </Badge>
+          </TooltipTrigger>
+          <TooltipContent className="max-w-[300px] text-center">
+            <p>{medication.class.description || label}</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
 
       <div className="flex-1 flex flex-col gap-4">

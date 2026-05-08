@@ -255,18 +255,3 @@ export const ATC_HUMAN_MAPPING: Record<string, { label: string; color: string }>
   "R7C": { label: "Surfactantes pulmonares", color: "cyan" },
   "R7D": { label: "Produtos de fibrose pu...", color: "cyan" },
 };
-
-export function getHumanClassInfo(code: string, description?: string | null) {
-  const code5 = code.substring(0, 5);
-  const code4 = code.substring(0, 4);
-  const code3 = code.substring(0, 3);
-
-  const match = ATC_HUMAN_MAPPING[code5] || ATC_HUMAN_MAPPING[code4] || ATC_HUMAN_MAPPING[code3];
-
-  if (match) return match;
-
-  return {
-    label: description || code,
-    color: "slate",
-  };
-}
