@@ -50,10 +50,10 @@ export function SessionChecklistForm({
     },
   });
 
-  const watchedSymptomIds = form.watch("symptomIds");
+  const watchedSymptomIds = form.watch("symptomIds") ?? [];
 
   useEffect(() => {
-    onSymptomChange(watchedSymptomIds ?? []);
+    onSymptomChange(watchedSymptomIds);
   }, [watchedSymptomIds, onSymptomChange]);
 
   const onSubmit = (data: SessionFormValues) => {
@@ -128,7 +128,7 @@ export function SessionChecklistForm({
                         id={symptom.id}
                         checked={watchedSymptomIds.includes(symptom.id)}
                         onCheckedChange={(checked) => {
-                          const current = form.getValues("symptomIds");
+                          const current = form.getValues("symptomIds") ?? [];
                           const next = checked
                             ? [...new Set([...current, symptom.id])]
                             : current.filter((id) => id !== symptom.id);

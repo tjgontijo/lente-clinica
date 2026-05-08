@@ -90,8 +90,8 @@ async function main() {
   };
 
   for (const med of medicationsToEnrich) {
-    const productNames = Array.from(new Set(med.products.map(p => p.name))).join(", ");
-    const productTypes = Array.from(new Set(med.products.map(p => p.type).filter(Boolean))).join(", ");
+    const productNames = Array.from(new Set(med.products.map(p => p.productName))).join(", ");
+    const productTypes = Array.from(new Set(med.products.map(p => p.productType).filter(Boolean))).join(", ");
     const regulatoryLabels = Array.from(new Set(med.products.map(p => p.regulatoryLabel).filter(Boolean))).join(", ");
 
     // Extrair código da classe de forma robusta
