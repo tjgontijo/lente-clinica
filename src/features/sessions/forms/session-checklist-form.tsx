@@ -40,7 +40,7 @@ export function SessionChecklistForm({
   const [showSuccessDialog, setShowSuccessDialog] = useState(false);
   const { mutate: createSession, isPending } = useCreateSessionMutation();
 
-  const form = useForm<SessionFormValues>({
+  const form = useForm({
     resolver: zodResolver(createSessionSchema),
     defaultValues: {
       caseId,
