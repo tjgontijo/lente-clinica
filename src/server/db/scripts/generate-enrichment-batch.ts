@@ -10,7 +10,7 @@ import {
   MEDICATION_ENRICHMENT_PROMPT_VERSION,
 } from "@/features/medications/prompts/medication-enrichment.prompt";
 
-const MODEL = "gpt-5.4";
+const MODEL = "gpt-4o-mini";
 const MAX_COMPLETION_TOKENS = 2200;
 
 async function main() {
@@ -26,7 +26,6 @@ async function main() {
       class: true,
       products: true,
     },
-    limit: 2,
   });
 
   if (medicationsToEnrich.length === 0) {

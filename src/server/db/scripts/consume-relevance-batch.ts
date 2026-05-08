@@ -40,7 +40,9 @@ async function main() {
     
     try {
       const result = JSON.parse(line);
-      const medicationId = result.custom_id.replace("medication-relevance:", "");
+      const medicationId = result.custom_id.split(":").pop();
+      if (!medicationId) continue;
+
       const response = result.response.body.choices[0].message.content;
       const { score, reason, category } = JSON.parse(response);
 
@@ -52,6 +54,7 @@ async function main() {
           mentalHealthCategory: category,
           // Se o score for alto o suficiente, já marcamos para o próximo passo de enriquecimento
           shouldEnrichWithLlm: score >= 6,
+          isVisible: score >= 6, // Também atualiza a visibilidade
         })
         .where(eq(medication.id, medicationId));
 
