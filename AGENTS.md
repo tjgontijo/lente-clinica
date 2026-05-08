@@ -19,6 +19,7 @@ Sempre consulte o diretório `.agents/skills/` para diretrizes específicas. As 
 4. **Data Fetching**: Prioridade total para **TanStack Query**.
 5. **Performance**: Focar em renderização eficiente e virtualização (`react-virtuoso`).
 6. **Banco de Dados**: Acesso isolado em `repositories` e regras em `services`. Nunca acesse o DB em components ou hooks.
+7. **IDs e UUIDs**: Proibido gerar IDs no código (ex: `cuid`). Use sempre `uuid` gerado pelo PostgreSQL (`.defaultRandom()`).
 
 ## Estrutura de Pastas
 

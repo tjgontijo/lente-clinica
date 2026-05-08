@@ -28,6 +28,7 @@ A prioridade é manter o código previsível, fácil de navegar, fácil de testa
 13. Em Next.js 16+, usar `src/proxy.ts` em vez de `src/middleware.ts`.
 14. Usar Cache Components com a diretiva `'use cache'` e a função `cacheLife()` para controle de cache granulado.
 15. Focar em performance de consultas e renderização (ex: react-virtuoso para listas longas).
+16. **IDs e UUIDs**: Proibido gerar IDs no código (ex: `cuid`, `nanoid`). Sempre use `uuid` com a responsabilidade de geração delegada ao PostgreSQL (`.defaultRandom()`).
 
 ## Estrutura padrão do projeto
 
@@ -783,8 +784,8 @@ Considere a tarefa concluída apenas quando:
 
 1. A responsabilidade de cada arquivo estiver clara.
 2. A feature estiver organizada por domínio.
-3. O acesso ao banco estiver isolado em repositories.
-4. A regra de negócio estiver em services.
+3. Acesso ao banco de dados isolado em `repositories` e regras em `services`.
+4. **IDs e UUIDs**: Proibido gerar IDs no código (ex: `cuid`, `nanoid`). Sempre use `uuid` com a responsabilidade de geração delegada ao PostgreSQL (`.defaultRandom()`).
 5. A API route estiver fina.
 6. Queries e mutations estiverem no lado client.
 7. Schemas validarem entrada relevante.
