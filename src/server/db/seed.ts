@@ -4,6 +4,8 @@ import path from "node:path";
 import { inArray } from "drizzle-orm";
 import { db } from "./db";
 import * as schema from "./schema";
+import { auth } from "../../lib/auth";
+import { eq } from "drizzle-orm";
 
 type TsvRow = {
   SUBSTANCIA: string;
@@ -364,6 +366,34 @@ async function main() {
         "Prezado(a) Dr(a). Sou a psicóloga clínica do(a) paciente [iniciais], [idade] anos. Durante a última sessão, observei um agravamento significativo em [sintomas]. Como o paciente está em uso de [medicação], achei prudente comunicá-lo(a) para avaliarmos se há necessidade de ajuste ou revisão. Atenciosamente.",
     })
     .onConflictDoNothing();
+  
+  console.log("🌱 Seeding admin user...");
+  try {
+    const adminEmail = "tjgontijo@gmail.com";
+    const existingAdmin = await db.query.user.findFirst({
+      where: eq(schema.user.email, adminEmail),
+    });
+
+    if (!existingAdmin) {
+      await auth.api.signUpEmail({
+        body: {
+          email: adminEmail,
+          password: "senha##123",
+          name: "Thiago Gontijo",
+        },
+      });
+      console.log("✅ Admin user created.");
+      
+      await db.update(schema.user)
+        .set({ role: "admin" })
+        .where(eq(schema.user.email, adminEmail));
+      console.log("✅ Admin role assigned.");
+    } else {
+      console.log("Admin user already exists.");
+    }
+  } catch (error) {
+    console.error("⚠️ Failed to seed admin user (it might already exist):", error);
+  }
 
   console.log("✅ Seeding completed.");
 }

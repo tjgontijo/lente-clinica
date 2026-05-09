@@ -9,64 +9,64 @@
    ────────────────────────────────────────────────────────── */
 :root {
   /* PRIMARY — TEAL */
-  --lc-teal-50: oklch(97% 0.025 192);
-  --lc-teal-100: oklch(93% 0.05 192);
-  --lc-teal-200: oklch(86% 0.08 192);
-  --lc-teal-300: oklch(76% 0.105 192);
-  --lc-teal-400: oklch(66% 0.118 192);
-  --lc-teal-500: oklch(58% 0.125 192);
-  --lc-teal-600: oklch(50% 0.12 192);
-  --lc-teal-700: oklch(42% 0.11 192);
-  --lc-teal-800: oklch(34% 0.095 192);
-  --lc-teal-900: oklch(26% 0.08 192);
-  --lc-teal-950: oklch(18% 0.06 192);
+  --lc-teal-50: oklch(97% 0.01 165);
+  --lc-teal-100: oklch(93% 0.02 165);
+  --lc-teal-200: oklch(88% 0.03 165);
+  --lc-teal-300: oklch(80% 0.04 165);
+  --lc-teal-400: oklch(70% 0.05 165);
+  --lc-teal-500: oklch(60% 0.05 165);
+  --lc-teal-600: oklch(48% 0.05 165);
+  --lc-teal-700: oklch(40% 0.04 165);
+  --lc-teal-800: oklch(32% 0.03 165);
+  --lc-teal-900: oklch(25% 0.03 165);
+  --lc-teal-950: oklch(18% 0.02 165);
 
   /* ALERT — AMBER */
-  --lc-amber-50: oklch(97.5% 0.03 70);
-  --lc-amber-100: oklch(94% 0.06 70);
-  --lc-amber-200: oklch(88% 0.1 70);
-  --lc-amber-300: oklch(80% 0.14 70);
-  --lc-amber-400: oklch(72% 0.168 68);
-  --lc-amber-500: oklch(65% 0.168 66);
-  --lc-amber-600: oklch(57% 0.158 64);
-  --lc-amber-700: oklch(49% 0.145 62);
-  --lc-amber-800: oklch(40% 0.125 60);
-  --lc-amber-900: oklch(30% 0.1 58);
+  --lc-amber-50: oklch(98% 0.01 35);
+  --lc-amber-100: oklch(94% 0.02 35);
+  --lc-amber-200: oklch(88% 0.05 35);
+  --lc-amber-300: oklch(80% 0.08 35);
+  --lc-amber-400: oklch(70% 0.12 35);
+  --lc-amber-500: oklch(62% 0.14 35);
+  --lc-amber-600: oklch(55% 0.15 35);
+  --lc-amber-700: oklch(48% 0.14 35);
+  --lc-amber-800: oklch(40% 0.12 35);
+  --lc-amber-900: oklch(30% 0.1 35);
 
   /* ALERT — RED */
-  --lc-red-50: oklch(97.5% 0.018 22);
-  --lc-red-100: oklch(94% 0.04 22);
-  --lc-red-200: oklch(88% 0.08 22);
-  --lc-red-300: oklch(79% 0.13 22);
-  --lc-red-400: oklch(68% 0.185 24);
-  --lc-red-500: oklch(58% 0.215 24);
-  --lc-red-600: oklch(50% 0.22 24);
-  --lc-red-700: oklch(42% 0.2 23);
-  --lc-red-800: oklch(34% 0.175 22);
-  --lc-red-900: oklch(26% 0.14 21);
+  --lc-red-50: oklch(94% 0.06 26);
+  --lc-red-100: oklch(90% 0.08 26);
+  --lc-red-200: oklch(82% 0.12 26);
+  --lc-red-300: oklch(74% 0.15 26);
+  --lc-red-400: oklch(65% 0.18 26);
+  --lc-red-500: oklch(58% 0.2 26);
+  --lc-red-600: oklch(42% 0.16 26);
+  --lc-red-700: oklch(35% 0.14 26);
+  --lc-red-800: oklch(28% 0.12 26);
+  --lc-red-900: oklch(22% 0.1 26);
 
   /* SUCCESS — GREEN */
-  --lc-green-50: oklch(97% 0.025 155);
-  --lc-green-100: oklch(92% 0.055 155);
-  --lc-green-500: oklch(58% 0.15 155);
-  --lc-green-600: oklch(50% 0.14 155);
-  --lc-green-700: oklch(42% 0.125 155);
-  --lc-green-800: oklch(34% 0.11 155);
+  --lc-green-50: oklch(92% 0.04 155);
+  --lc-green-100: oklch(88% 0.06 155);
+  --lc-green-500: oklch(58% 0.12 155);
+  --lc-green-600: oklch(32% 0.07 155);
+  --lc-green-700: oklch(25% 0.06 155);
+  --lc-green-800: oklch(18% 0.05 155);
 
   /* NEUTRAL — ZINC-COOL */
   --lc-neutral-0: #ffffff;
-  --lc-neutral-50: oklch(98.5% 0.003 200);
-  --lc-neutral-100: oklch(96.5% 0.005 200);
-  --lc-neutral-150: oklch(93.5% 0.005 200);
-  --lc-neutral-200: oklch(91% 0.004 200);
-  --lc-neutral-300: oklch(84% 0.003 200);
-  --lc-neutral-400: oklch(74% 0.002 200);
-  --lc-neutral-500: oklch(62% 0.002 200);
-  --lc-neutral-600: oklch(50% 0.002 200);
-  --lc-neutral-700: oklch(40% 0.002 200);
-  --lc-neutral-800: oklch(28% 0.002 200);
-  --lc-neutral-900: oklch(20% 0.002 200);
-  --lc-neutral-950: oklch(13% 0.002 200);
+  --lc-neutral-50: oklch(98.5% 0.001 165);
+  --lc-neutral-100: oklch(97.8% 0.003 103.5);
+  --lc-neutral-150: oklch(94% 0.005 165);
+  --lc-neutral-200: oklch(91% 0.005 165);
+  --lc-neutral-300: oklch(84% 0.005 165);
+  --lc-neutral-400: oklch(74% 0.005 165);
+  --lc-neutral-500: oklch(62% 0.005 165);
+  --lc-neutral-600: oklch(50% 0.005 165);
+  --lc-neutral-700: oklch(40% 0.005 165);
+  --lc-neutral-800: oklch(28% 0.005 165);
+  --lc-neutral-900: oklch(20% 0.005 165);
+  --lc-neutral-950: oklch(15.5% 0.015 165);
 
   /* SEMANTIC */
   --lc-bg-app: var(--lc-neutral-50);
@@ -101,6 +101,8 @@
   --lc-font-mono:
     var(--font-geist-mono), ui-monospace, "Cascadia Code", "Fira Code",
     monospace;
+  --lc-font-serif:
+    "Lora", "Georgia", "Cambria", "Times New Roman", "Times", serif;
 
   --lc-text-xs: 0.75rem;
   --lc-text-sm: 0.8125rem;
@@ -208,7 +210,7 @@
   --color-destructive-foreground: var(--destructive-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--lc-font-serif);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -307,35 +309,64 @@
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --background: oklch(0.13 0.005 165);
+  --foreground: oklch(0.92 0.005 165);
+  --card: oklch(0.17 0.005 165);
+  --card-foreground: oklch(0.95 0.005 165);
+  --popover: oklch(0.17 0.005 165);
+  --popover-foreground: oklch(0.95 0.005 165);
+  --primary: oklch(0.65 0.06 165);
+  --primary-foreground: oklch(0.10 0.01 165);
+  --secondary: oklch(0.20 0.005 165);
+  --secondary-foreground: oklch(0.95 0.005 165);
+  --muted: oklch(0.18 0.005 165);
+  --muted-foreground: oklch(0.80 0.005 165);
+  --accent: oklch(0.22 0.01 165);
+  --accent-foreground: oklch(0.95 0.005 165);
+  --destructive: oklch(0.55 0.15 25);
+  --border: oklch(0.24 0.005 165);
+  --input: oklch(0.24 0.005 165);
+  --ring: oklch(0.65 0.06 165);
+  --chart-1: oklch(0.70 0.08 165);
+  --chart-2: oklch(0.70 0.08 35);
+  --chart-3: oklch(0.70 0.08 80);
+  --chart-4: oklch(0.70 0.08 240);
+  --chart-5: oklch(0.70 0.08 300);
+  --sidebar: oklch(0.11 0.005 165);
+  --sidebar-foreground: oklch(0.90 0.005 165);
+  --sidebar-primary: oklch(0.65 0.06 165);
+  --sidebar-primary-foreground: oklch(0.10 0.01 165);
+  --sidebar-accent: oklch(0.18 0.005 165);
+  --sidebar-accent-foreground: oklch(0.95 0.005 165);
+  --sidebar-border: oklch(0.18 0.005 165);
+  --sidebar-ring: oklch(0.65 0.06 165);
+}
+
+/* ──────────────────────────────────────────────────────────
+   ANIMATIONS & PATTERNS
+   ────────────────────────────────────────────────────────── */
+@keyframes lc-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+}
+
+.lc-animate-float {
+  animation: lc-float 20s ease-in-out infinite;
+}
+
+.lc-grid-pattern {
+  background-image: 
+    linear-gradient(var(--lc-teal-900) 1px, transparent 1px),
+    linear-gradient(90deg, var(--lc-teal-900) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.lc-dot-pattern {
+  background-image: radial-gradient(circle, var(--lc-teal-400) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.lc-vignette {
+  background: radial-gradient(circle at center, transparent 0%, var(--lc-neutral-0) 100%);
 }

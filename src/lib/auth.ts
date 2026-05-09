@@ -1,6 +1,7 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { admin } from "better-auth/plugins";
+import { admin, magicLink } from "better-auth/plugins";
+import { sendMagicLinkEmail } from "@/lib/mail/resend";
 import { db } from "@/server/db/db";
 import * as schema from "@/server/db/schema";
 
@@ -17,5 +18,14 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  plugins: [admin()],
+  plugins: [
+    admin(),
+    magicLink({
+      sendMagicLink: async ({ email, url }) => {
+        await sendMagicLinkEmail(email, url);
+      },
+      disableSignUp: false,
+      expiresIn: 900, // 15 minutes
+    }),
+  ],
 });
