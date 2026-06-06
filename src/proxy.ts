@@ -9,13 +9,16 @@ export default async function proxy(request: NextRequest) {
 
   const isAuthPage = request.nextUrl.pathname.startsWith("/sign-in");
   const isApiAuth = request.nextUrl.pathname.startsWith("/api/auth");
-  const isPublicPage = request.nextUrl.pathname === "/";
+  const isPublicPage =
+    request.nextUrl.pathname === "/" ||
+    request.nextUrl.pathname.startsWith("/checkout") ||
+    request.nextUrl.pathname.startsWith("/billing/success");
 
   if (!session && !isAuthPage && !isApiAuth && !isPublicPage) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  if (session && (isAuthPage || isPublicPage)) {
+  if (session && isAuthPage) {
     return NextResponse.redirect(new URL("/medications", request.url));
   }
 
@@ -25,7 +28,9 @@ export default async function proxy(request: NextRequest) {
 export const config = {
   matcher: [
     "/",
-
+    "/checkout",
+    "/checkout/:path*",
+    "/billing/success",
     "/medications",
     "/medications/:path*",
     "/sign-in",
