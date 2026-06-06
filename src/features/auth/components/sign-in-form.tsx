@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { KeyRound, Loader2, Mail } from "lucide-react";
+import Link from "next/link";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -231,6 +232,13 @@ export function SignInForm() {
         >
           Usar outro email
         </Button>
+
+        <p className="text-center text-xs text-muted-foreground">
+          Não tem conta?{" "}
+          <Link href="/checkout" className="font-medium text-[var(--lc-teal-600)] hover:underline">
+            Assine agora
+          </Link>
+        </p>
       </div>
     );
   }
@@ -315,6 +323,13 @@ export function SignInForm() {
         >
           Acessar com link mágico
         </Button>
+
+        <p className="text-center text-xs text-muted-foreground">
+          Não tem conta?{" "}
+          <Link href="/checkout" className="font-medium text-[var(--lc-teal-600)] hover:underline">
+            Assine agora
+          </Link>
+        </p>
       </div>
     );
   }
@@ -373,7 +388,10 @@ export function SignInForm() {
       </Button>
 
       <p className="text-center text-xs text-muted-foreground">
-        Acesso exclusivo para profissionais de saúde mental.
+        Não tem conta?{" "}
+        <Link href="/checkout" className="font-medium text-[var(--lc-teal-600)] hover:underline">
+          Assine agora
+        </Link>
       </p>
     </div>
   );

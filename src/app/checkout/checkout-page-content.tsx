@@ -13,6 +13,7 @@ interface CheckoutPageContentProps {
   cpfCnpj: string;
   phone: string;
   userEmail: string;
+  initialPlan?: string;
 }
 
 function formatCardNumber(value: string) {
@@ -57,9 +58,12 @@ export function CheckoutPageContent({
   cpfCnpj: initialCpfCnpj,
   phone: initialPhone,
   userEmail,
+  initialPlan,
 }: CheckoutPageContentProps) {
   const router = useRouter();
-  const [selectedPlanCode, setSelectedPlanCode] = React.useState<PlanCode>("professional_monthly");
+  const [selectedPlanCode, setSelectedPlanCode] = React.useState<PlanCode>(
+    (initialPlan as PlanCode) ?? "professional_monthly",
+  );
   const [paymentMethod, setPaymentMethod] = React.useState<"CREDIT_CARD" | "PIX">("CREDIT_CARD");
 
   // Form Fields
@@ -176,7 +180,7 @@ export function CheckoutPageContent({
       {/* Header */}
       <header className="border-b border-slate-200 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="container mx-auto flex h-16 items-center justify-between px-6">
-          <Link href="/medications" className="flex items-center">
+          <Link href="/" className="flex items-center">
             <img
               src="/images/system/logo_horizontal.png"
               alt="Lente Clínica"

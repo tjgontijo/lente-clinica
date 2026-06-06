@@ -16,7 +16,7 @@ export const PLANS = [
   {
     code: "professional_yearly",
     name: "Plano Profissional Anual",
-    price: 299.00,
+    price: 247.00,
     cycle: "YEARLY" as const,
     description: "Acesso completo cobrado anualmente (2 meses grátis)",
     features: [

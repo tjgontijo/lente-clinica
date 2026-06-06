@@ -14,11 +14,17 @@ export function Navbar() {
         </Link>
 
         <div className="flex items-center gap-4">
+          <Link
+            href="#pricing"
+            className="text-sm font-medium text-[var(--lc-neutral-600)] hover:text-[var(--lc-teal-600)] transition-colors"
+          >
+            Planos
+          </Link>
           <Button
             asChild
             className="rounded-full bg-[var(--lc-teal-600)] hover:bg-[var(--lc-teal-700)] text-white px-6"
           >
-            <Link href="/sign-in">Acessar plataforma</Link>
+            <Link href="/sign-in">Entrar</Link>
           </Button>
         </div>
       </div>

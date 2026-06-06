@@ -90,7 +90,7 @@ export function Pricing() {
             <div className="rounded-[40px] bg-gradient-to-br from-[var(--lc-teal-800)] to-[var(--lc-neutral-950)] p-8 md:p-10">
               <div className="mb-2 flex items-baseline gap-1">
                 <span className="text-6xl font-extrabold text-white">
-                  R$ {isAnnual ? "299" : "29"}
+                  R$ {isAnnual ? "247" : "29"}
                 </span>
                 <span className="text-xl font-medium text-[var(--lc-neutral-400)]">
                   /{isAnnual ? "ano" : "mês"}
@@ -98,7 +98,7 @@ export function Pricing() {
               </div>
               {isAnnual ? (
                 <p className="text-sm text-[var(--lc-teal-400)] mb-8">
-                  equivale a R$ 24,91/mês, 2 meses grátis
+                  equivale a R$ 20,58/mês, 2 meses grátis
                 </p>
               ) : (
                 <div className="mb-8" />
@@ -126,10 +126,10 @@ export function Pricing() {
               </ul>
 
               <Link
-                href="/sign-in"
+                href={`/checkout?plan=${isAnnual ? "professional_yearly" : "professional_monthly"}`}
                 className="group flex w-full items-center justify-center gap-3 rounded-full bg-white py-4 text-[var(--lc-neutral-950)] text-base font-bold transition-all hover:bg-[var(--lc-teal-50)] hover:scale-[1.02] active:scale-[0.98] mb-4"
               >
-                Criar minha conta
+                Assinar agora
                 <ArrowRight
                   size={18}
                   className="transition-transform group-hover:translate-x-1"
