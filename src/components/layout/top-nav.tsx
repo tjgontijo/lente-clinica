@@ -1,6 +1,6 @@
 "use client";
 
-import { Layers, LogOut, Settings, User as UserIcon } from "lucide-react";
+import { Layers, LogOut, Settings, User as UserIcon, CreditCard } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -87,6 +87,12 @@ function UserMenu() {
         <DropdownMenuItem className="cursor-pointer gap-2 py-2.5">
           <Settings size={16} />
           Configurações
+        </DropdownMenuItem>
+        <DropdownMenuItem className="cursor-pointer gap-2 py-2.5" asChild>
+          <Link href="/checkout" className="flex items-center w-full">
+            <CreditCard size={16} />
+            Assinatura
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator className="bg-[var(--lc-neutral-150)]" />
         <DropdownMenuItem

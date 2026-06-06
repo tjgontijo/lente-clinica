@@ -30,6 +30,8 @@ export const user = pgTable("user", {
   banned: boolean("banned").default(false),
   banReason: text("ban_reason"),
   banExpires: timestamp("ban_expires"),
+  cpfCnpj: text("cpf_cnpj"),
+  phone: text("phone"),
 });
 
 export const session = pgTable(
@@ -206,9 +208,11 @@ export const medicationProduct = pgTable(
 
 // --- RELATIONS ---
 
-export const userRelations = relations(user, ({ many }) => ({
+export const userRelations = relations(user, ({ one, many }) => ({
   sessions: many(session),
   accounts: many(account),
+  subscription: one(billingSubscription),
+  invoices: many(billingInvoice),
 }));
 
 export const sessionRelations = relations(session, ({ one }) => ({
@@ -249,5 +253,77 @@ export const medicationProductRelations = relations(
     }),
   }),
 );
+
+// --- BILLING ---
+
+export const billingSubscription = pgTable("billing_subscription", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  userId: uuid("user_id")
+    .notNull()
+    .unique()
+    .references(() => user.id, { onDelete: "cascade" }),
+  asaasCustomerId: text("asaas_customer_id"),
+  asaasId: text("asaas_id").unique(),
+  planCode: text("plan_code").notNull(),
+  status: text("status").default("INACTIVE").notNull(),
+  paymentMethod: text("payment_method"),
+  isActive: boolean("is_active").default(false).notNull(),
+  expiresAt: timestamp("expires_at"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
+export const billingInvoice = pgTable("billing_invoice", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  subscriptionId: uuid("subscription_id")
+    .notNull()
+    .references(() => billingSubscription.id, { onDelete: "cascade" }),
+  userId: uuid("user_id")
+    .notNull()
+    .references(() => user.id, { onDelete: "cascade" }),
+  asaasId: text("asaas_id").unique().notNull(),
+  status: text("status").default("PENDING").notNull(),
+  paymentMethod: text("payment_method").notNull(),
+  value: text("value").notNull(),
+  netValue: text("net_value"),
+  description: text("description"),
+  invoiceUrl: text("invoice_url"),
+  dueDate: timestamp("due_date").notNull(),
+  paidAt: timestamp("paid_at"),
+  pixQrCodePayload: text("pix_qr_code_payload"),
+  pixQrCodeImage: text("pix_qr_code_image"),
+  pixExpirationDate: timestamp("pix_expiration_date"),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+  updatedAt: timestamp("updated_at")
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+});
+
+export const billingSubscriptionRelations = relations(
+  billingSubscription,
+  ({ one, many }) => ({
+    user: one(user, {
+      fields: [billingSubscription.userId],
+      references: [user.id],
+    }),
+    invoices: many(billingInvoice),
+  }),
+);
+
+export const billingInvoiceRelations = relations(billingInvoice, ({ one }) => ({
+  subscription: one(billingSubscription, {
+    fields: [billingInvoice.subscriptionId],
+    references: [billingSubscription.id],
+  }),
+  user: one(user, {
+    fields: [billingInvoice.userId],
+    references: [user.id],
+  }),
+}));
+
 
 
