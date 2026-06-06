@@ -1,0 +1,341 @@
+{
+  "tranilcipromina": {
+    "type": "tool_use",
+    "input": {
+      "description": "A tranilcipromina é um inibidor irreversível da monoaminoxidase (IMAO), reservada para quadros depressivos graves, refratários ou com características atípicas — hipersonia, hiperfagia, sensibilidade intensa à rejeição, paralisia de chumbo. Por inibir irreversivelmente a MAO-A e MAO-B, seus efeitos se prolongam além da última dose: a janela de risco para interações alimentares e medicamentosas persiste por até duas semanas após a suspensão. Nas primeiras semanas de uso, o terapeuta pode observar oscilações de energia e humor mais pronunciadas antes de qualquer estabilização. Em sessão, o ponto central de observação é a distinção entre melhora genuína do quadro depressivo e possíveis efeitos ativadores — agitação, insônia, euforia — que podem preceder ou mascarar uma virada de humor. A adesão à dieta com restrição de tiramina é condição de segurança, e o peso emocional dessa exigência costuma aparecer no relato espontâneo do paciente.",
+      "clinicalDomains": "[\n  {\n    \"name\": \"Perfil depressivo e resposta\",\n    \"content\": \"Pacientes em uso de tranilcipromina frequentemente chegam com histórico de refratariedade a outros antidepressivos, o que tende a colorir a narrativa com descrença e ambivalência em relação à melhora. Quando a resposta começa a aparecer — habitualmente após duas a quatro semanas —, pode surgir uma retomada de energia antes da melhora do humor propriamente dita, o que cria uma janela de atenção: o paciente se sente com mais disposição, mas ainda carrega ideação negativa ou desesperança. Esse descompasso entre ativação e elaboração afetiva merece acompanhamento cuidadoso na sessão.\"\n  },\n  {\n    \"name\": \"Ativação e virada de humor\",\n    \"content\": \"A tranilcipromina tem perfil ativador mais pronunciado do que outros antidepressivos, e parte dos pacientes pode relatar euforia, grandiosidade, diminuição da necessidade de sono ou pensamento acelerado — sinais que podem ser confundidos com melhora clínica legítima. O terapeuta precisa discriminar se o que aparece é recuperação do funcionamento basal ou uma virada para estado hipomaníaco ou misto. Relatos de irritabilidade intensa, impulsividade nova ou sensação de que \"nunca esteve tão bem\" merecem registro e comunicação ao médico, especialmente nas primeiras semanas.\"\n  },\n  {\n    \"name\": \"Carga da restrição alimentar\",\n    \"content\": \"A necessidade de evitar alimentos ricos em tiramina — queijos curados, embutidos, fermentados, vinho tinto, entre outros — impõe uma reorganização cotidiana que pode aparecer na sessão como sobrecarga, ressentimento ou sensação de isolamento social. Refeições em grupo, celebrações e situações de prazer compartilhado tornam-se fontes de tensão. Esse impacto na qualidade de vida e na adesão ao tratamento é território legítimo do trabalho terapêutico, distinto de qualquer orientação dietética — o terapeuta acolhe o peso emocional, não instrui sobre a dieta.\"\n  },\n  {\n    \"name\": \"Sono e ritmo circadiano\",\n    \"content\": \"Alterações do sono são frequentes: insônia de início ou manutenção pode aparecer, especialmente nas primeiras semanas, e costuma ser relatada como agravante do estado geral. Por outro lado, pacientes com depressão atípica — que frequentemente apresentam hipersonia como sintoma de base — podem relatar normalização do padrão de sono como sinal de melhora. O terapeuta observa se as queixas de sono representam efeito do tratamento, melhora do quadro ou piora do estado afetivo, evitando interpretar isoladamente sem o contexto longitudinal do paciente.\"\n  },\n  {\n    \"name\": \"Sensibilidade à rejeição e vínculo\",\n    \"content\": \"A sensibilidade interpessoal intensa — traço central em muitos pacientes indicados para IMAOs — tende a aparecer de forma vívida no vínculo terapêutico: reações a cancelamentos, mudanças de horário, percepção de frieza ou distância do terapeuta. Com a melhora do quadro, essa sensibilidade pode diminuir gradualmente, mas também pode emergir com mais clareza à medida que o paciente ganha acesso afetivo. O terapeuta usa o próprio campo relacional como dado clínico, observando variações na intensidade dessas reações ao longo das semanas.\"\n  },\n  {\n    \"name\": \"Hipotensão e presença corporal\",\n    \"content\": \"Queda de pressão arterial, especialmente ao levantar, é um efeito que parte dos pacientes experimenta e que pode aparecer no relato como tontura, sensação de desmaio ou mal-estar ao mudar de posição. Embora seja um dado físico, seu impacto subjetivo — medo de desmaiar, evitação de situações sociais, restrição de atividades — pode ser elaborado na sessão. O terapeuta registra essas queixas e as comunica ao médico quando persistentes ou limitantes, sem investigar ou interpretar a causa.\"\n  },\n  {\n    \"name\": \"Descontinuação e transição\",\n    \"content\": \"Por inibir irreversivelmente a MAO, a tranilcipromina exige um período de washout de aproximadamente duas semanas antes de qualquer troca para outro antidepressivo — e o mesmo vale no sentido inverso. Esse intervalo pode aparecer na sessão como período de instabilidade, retorno de sintomas ou ansiedade antecipatória em relação à nova medicação. O terapeuta sustenta o trabalho de contenção e elaboração nesse período, reconhecendo que a instabilidade pode ser parte do processo de transição e não necessariamente recaída do quadro de base.\"\n  }\n]",
+      "sessionDiscriminationQuestions": [
+        "Você está se sentindo com mais energia do que o habitual — isso veio junto com uma sensação de bem-estar mais calmo, ou tem algo de agitado, acelerado nessa disposição?",
+        "Essa sensação que você descreve como melhora — você consegue descansar, dormir, parar? Ou a cabeça continua acelerada mesmo quando o corpo está parado?",
+        "O que você sente quando pensa em seguir a dieta que o médico orientou — é algo que você consegue manejar, ou tem pesado no seu dia a dia de um jeito que está difícil de sustentar?",
+        "Você notou alguma mudança no jeito como reage quando alguém te decepciona ou te rejeita — isso ficou mais intenso, mais suave, ou diferente de alguma forma que você consiga descrever?",
+        "Quando você levanta rápido ou muda de posição, tem sentido tontura ou sensação de que vai desmaiar? Isso tem te impedido de fazer alguma coisa?",
+        "Como você está se sentindo em relação ao tratamento agora — há algo que te preocupa, que você não chegou a contar ao médico, mas que tem aparecido aqui?"
+      ],
+      "communicationScenarios": [
+        "Relato de euforia, grandiosidade, pensamento acelerado ou diminuição marcada da necessidade de sono — mesmo que o paciente interprete como melhora — justifica contato com o psiquiatra, dado o perfil ativador da tranilcipromina e o risco de virada de humor.",
+        "Ideação suicida nova ou intensificada, especialmente nas primeiras semanas de uso ou em momentos de descompasso entre ativação e humor ainda deprimido, é situação que requer comunicação imediata ao médico.",
+        "Queixas físicas como cefaleia súbita e intensa, palpitações ou sensação de pressão na cabeça — ainda que relatadas de passagem — merecem registro e encaminhamento ao médico com brevidade, pelo risco de crise hipertensiva associada a interações.",
+        "Paciente em período de transição ou washout que apresenta instabilidade de humor acentuada, retorno de sintomas graves ou comportamento de risco pode necessitar de reavaliação médica antes do próximo agendamento regular.",
+        "Dificuldade persistente em manter a restrição alimentar, relatada com vergonha ou ocultada, é informação clinicamente relevante que o psiquiatra precisa conhecer para avaliar o contexto de segurança do tratamento.",
+        "Qualquer relato de adoecimento agudo — febre, infecção, vômitos ou diarreia persistentes — durante o uso de tranilcipromina merece comunicação ao médico, pois alterações fisiológicas podem impactar o metabolismo e o perfil de segurança do medicamento."
+      ],
+      "attentionSignals": [
+        {
+          "level": "vermelho",
+          "signal": "Paciente relata ou apresenta cefaleia súbita e intensa, palpitações, sudorese e agitação — quadro compatível com crise hipertensiva.",
+          "action": "Interromper a sessão e acionar atendimento de emergência imediatamente; contatar o psiquiatra em seguida."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Ideação suicida nova ou intensificada, especialmente com plano ou intenção, em qualquer fase do tratamento.",
+          "action": "Acionar protocolo de crise: contatar psiquiatra hoje, acionar rede de apoio e, se necessário, encaminhar para emergência."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Sinais de virada maníaca ou mista: euforia marcada, grandiosidade, insônia sem cansaço, fala acelerada, comportamento impulsivo novo.",
+          "action": "Contatar o psiquiatra no mesmo dia; não aguardar a próxima consulta agendada."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Tremor, confusão, agitação intensa e sudorese surgindo juntos — possível quadro neuropsiquiátrico agudo que pode indicar interação medicamentosa grave.",
+          "action": "Interromper a sessão e encaminhar para avaliação médica de emergência imediatamente."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Relato de tontura intensa ao levantar, episódios de quase-desmaio ou quedas — hipotensão ortostática limitando funcionamento.",
+          "action": "Registrar frequência e contexto; comunicar ao psiquiatra na próxima janela de contato disponível."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Paciente revela dificuldade em manter a restrição alimentar ou admite ter ingerido alimentos contraindicados sem relatar ao médico.",
+          "action": "Acolher sem julgamento e orientar que o psiquiatra precisa dessa informação; oferecer-se para facilitar essa comunicação se necessário."
+        }
+      ],
+      "clinicalPhrase": "IMAO de perfil ativador: discriminar melhora real de virada de humor e sustentar o peso da restrição alimentar são os eixos centrais da sessão."
+    }
+  },
+  "carbonato_de_litio": {
+    "type": "tool_use",
+    "input": {
+      "description": "O carbonato de lítio é um estabilizador de humor de primeira linha, amplamente utilizado no transtorno bipolar (fases maníaca, depressiva e manutenção), e também em potencialização de antidepressivos em depressão unipolar refratária. Sua janela terapêutica é estreita, o que torna a monitorização clínica contínua essencial: os primeiros sinais de intoxicação podem aparecer de forma sutil, especialmente em contextos de desidratação, febre, calor intenso ou uso concomitante de anti-inflamatórios. Nas primeiras semanas de uso, tremor fino de mãos e poliúria são comuns e tendem a se estabilizar. O terapeuta ocupa posição privilegiada para captar mudanças sutis de cognição, ritmo de fala, coordenação e humor que o paciente pode não perceber ou não valorizar — e que podem preceder tanto uma virada de fase quanto um quadro de toxicidade incipiente.",
+      "clinicalDomains": [
+        {
+          "name": "Cognição e ritmo mental",
+          "content": "Parte dos pacientes em uso de lítio relata lentidão de raciocínio, dificuldade de encontrar palavras ou sensação de 'névoa mental'. Isso pode aparecer na sessão como pausas mais longas, menor fluência verbal ou queixa de esquecimento cotidiano. O confundidor central aqui é a sobreposição com sintomas residuais depressivos ou com o próprio perfil cognitivo do paciente antes do medicamento — registrar a linha de base é fundamental para discriminar o que é novo."
+        },
+        {
+          "name": "Tremor e sinais físicos",
+          "content": "Tremor fino de extremidades é frequente, especialmente nas fases iniciais, e costuma ser percebido pelo paciente como embaraçoso ou limitante. Na sessão, pode aparecer como queixa direta ou ser observado pelo terapeuta ao notar movimentos das mãos durante a fala. Tremor que se torna grosseiro, irregular ou que surge de forma nova após período de estabilidade é sinal de alerta distinto do tremor benigno inicial — essa diferença de qualidade e temporalidade é clinicamente relevante."
+        },
+        {
+          "name": "Humor e estabilidade afetiva",
+          "content": "O lítio tende a achatar oscilações de humor em ambas as direções, e alguns pacientes vivenciam isso como perda de criatividade, espontaneidade ou da 'versão de si mesmos' que conheciam. Essa queixa pode gerar ambivalência em relação ao tratamento e merece espaço elaborativo na sessão. Ao mesmo tempo, o terapeuta precisa discriminar se o que o paciente descreve como 'embotamento' é efeito do medicamento, sintoma depressivo residual ou luto pela identidade pré-diagnóstico — hipóteses que coexistem com frequência."
+        },
+        {
+          "name": "Adesão e ambivalência",
+          "content": "A cronicidade do uso, a necessidade de coletas de sangue periódicas e restrições práticas (hidratação, calor, interações) podem alimentar ambivalência silenciosa em relação ao tratamento. O paciente pode não verbalizar diretamente a intenção de suspender, mas sinais indiretos — como relatos de 'esquecimentos' frequentes, questionamentos sobre a necessidade do medicamento ou idealização de períodos sem ele — merecem atenção clínica. Suspensão abrupta carrega risco de recaída maníaca, e o terapeuta não precisa abordar isso tecnicamente, mas pode acolher a ambivalência e comunicar ao médico quando perceber padrão de não adesão."
+        },
+        {
+          "name": "Sinais de toxicidade incipiente",
+          "content": "A intoxicação por lítio pode se instalar de forma gradual e ser confundida com piora do quadro psiquiátrico de base. Na sessão, sinais como fala levemente arrastada, ataxia discreta, confusão ou desorientação leve, vômitos ou diarreia relatados, e tremor de qualidade diferente do habitual devem acender alerta imediato. Contextos que aumentam o risco incluem episódios recentes de febre, diarreia, vômitos, calor intenso, exercício físico excessivo ou início de novo medicamento — informações que o paciente pode mencionar de passagem e que o terapeuta deve registrar e comunicar."
+        },
+        {
+          "name": "Sono e ritmo circadiano",
+          "content": "Alterações de sono são frequentes tanto como sintoma do transtorno quanto como efeito do medicamento ou sinal precoce de virada de fase. O paciente pode relatar sono mais pesado, sonhos vívidos ou, ao contrário, redução da necessidade de sono — este último sendo sinal de alerta para hipomaníaco ou maníaco incipiente. Monitorar o padrão de sono ao longo das sessões oferece ao terapeuta um marcador sensível de estabilidade ou instabilidade de fase."
+        },
+        {
+          "name": "Identidade e cronicidade",
+          "content": "Carregar um diagnóstico que exige medicação contínua e monitorização laboratorial regular impacta a forma como o paciente se vê e se projeta no futuro. Temas como medo de recaída, vergonha do diagnóstico, impacto nos relacionamentos e na vida profissional tendem a emergir ao longo do acompanhamento. O trabalho terapêutico com identidade e cronicidade é central nesse contexto e não se confunde com educação farmacológica — é elaboração de uma experiência de vida."
+        }
+      ],
+      "sessionDiscriminationQuestions": [
+        "Esse tremor nas mãos que você menciona — ele apareceu desde o início do uso ou mudou de intensidade ou qualidade recentemente?",
+        "Você consegue me descrever essa sensação de lentidão mental: ela é constante, ou piora em algum momento do dia ou da semana?",
+        "Quando você diz que se sente 'apagado', isso é diferente de como você se sentia antes de começar o medicamento, ou é parecido com períodos depressivos que você já conhece?",
+        "Essa energia que você está sentindo agora — ela vem acompanhada de menos necessidade de dormir, pensamentos mais acelerados ou vontade de iniciar muitos projetos ao mesmo tempo?",
+        "Você teve algum episódio de diarreia, vômito, febre ou ficou muito tempo sem beber água nos últimos dias?",
+        "Como você está se sentindo em relação a continuar tomando o medicamento — tem pensado nisso, ou teve algum período em que deixou de tomar?"
+      ],
+      "communicationScenarios": [
+        "O paciente relata tremor de qualidade diferente do habitual — mais grosseiro, envolvendo membros além das mãos, ou surgido após período de estabilidade — especialmente se associado a episódio recente de desidratação, febre ou diarreia: sinal que justifica contato com o psiquiatra no mesmo dia.",
+        "Fala levemente arrastada, desorientação leve ou confusão observada durante a sessão, mesmo que o paciente minimize ou não perceba, requerem acionamento imediato do médico responsável.",
+        "Padrão de sono claramente alterado — especialmente redução marcante da necessidade de dormir associada a aceleração de pensamento, expansividade ou irritabilidade — sugere virada de fase e merece comunicação ao psiquiatra em até 24 horas.",
+        "Relatos consistentes de esquecimentos de doses, questionamentos frequentes sobre a necessidade do medicamento ou menção de períodos de suspensão não comunicada ao médico são informações relevantes para o psiquiatra, independentemente de sintomas presentes.",
+        "Piora depressiva significativa — especialmente com ideação suicida nova ou intensificada — em paciente que usa lítio em monoterapia ou associação merece comunicação prioritária, pois pode indicar necessidade de reavaliação do esquema.",
+        "Início recente de outro medicamento relatado pelo paciente (incluindo anti-inflamatórios, diuréticos ou antibióticos) é informação que o psiquiatra precisa ter, dado o potencial de interação com o lítio."
+      ],
+      "attentionSignals": [
+        {
+          "level": "vermelho",
+          "signal": "Tremor grosseiro novo, fala arrastada, ataxia, confusão ou desorientação observados na sessão — especialmente após episódio de desidratação, febre ou diarreia recente.",
+          "action": "Acionar o psiquiatra imediatamente; se não houver resposta, orientar acompanhante ou acionar serviço de emergência — quadro compatível com intoxicação por lítio."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Paciente relata ou apresenta ideação suicida nova ou intensificada, especialmente em contexto de piora depressiva aguda.",
+          "action": "Avaliar risco imediato, acionar psiquiatra no mesmo dia e acionar rede de suporte ou emergência conforme protocolo de crise."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Sinais de virada maníaca ou mista em sessão: fala acelerada, grandiosidade, irritabilidade intensa, relato de noites sem dormir sem cansaço.",
+          "action": "Contatar o psiquiatra no mesmo dia; não encerrar a sessão sem garantir que o paciente tem suporte imediato."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Redução do sono relatada de forma consistente nas últimas sessões, associada a aumento de energia ou aceleração de pensamento, sem critério para urgência imediata.",
+          "action": "Registrar o padrão observado e comunicar ao psiquiatra em até 24–48 horas, descrevendo a evolução temporal."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Paciente menciona uso recente de anti-inflamatório, diurético ou outro medicamento novo sem que o psiquiatra tenha sido informado.",
+          "action": "Registrar e comunicar ao psiquiatra na próxima janela de contato habitual, ou antes se houver qualquer sintoma físico associado."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Relatos repetidos de esquecimento de doses ou ambivalência explícita em relação à continuidade do tratamento.",
+          "action": "Acolher a ambivalência na sessão e comunicar ao psiquiatra, sem assumir papel de reforço de adesão em lugar do médico."
+        }
+      ],
+      "clinicalPhrase": "Lítio exige do terapeuta atenção contínua a sinais físicos sutis, viradas de fase e ambivalência de adesão — a janela terapêutica estreita torna a observação clínica sessão a sessão clinicamente relevante."
+    }
+  },
+  "cloridrato_de_fingolimode": {
+    "type": "tool_use",
+    "input": {
+      "description": "O fingolimode é um imunomodulador oral aprovado para esclerose múltipla remitente-recorrente, uma condição neurológica crônica com impacto funcional, identitário e relacional significativo. O terapeuta que atende esse paciente está, antes de tudo, acompanhando alguém que vive com uma doença desmielinizante de curso imprevisível — com surtos, remissões e a incerteza permanente sobre progressão. O medicamento exige monitoramento médico contínuo e pode estar associado a efeitos que tocam o humor, o sono e a cognição, embora seja difícil separar o que é da doença, do tratamento ou do impacto psicossocial do adoecimento crônico. O ponto central de observação na sessão é a qualidade do engajamento do paciente com a própria vida — sua capacidade de planejar, de se vincular, de tolerar a incerteza — mais do que qualquer sintoma isolado.",
+      "clinicalDomains": [
+        {
+          "name": "Carga do adoecimento crônico",
+          "content": "Viver com esclerose múltipla implica uma relação contínua com a imprevisibilidade: o próximo surto pode ou não acontecer, e o corpo torna-se um território de vigilância constante. Na sessão, isso costuma aparecer como hiperatenção a sintomas físicos, dificuldade de fazer planos de médio e longo prazo, ou uma espécie de luto antecipado por funções que ainda não foram perdidas. O terapeuta pode observar oscilações entre períodos de adaptação ativa e momentos de desânimo intenso que não correspondem necessariamente a uma piora objetiva do quadro neurológico — e que podem ser confundidos com depressão clínica quando são, em parte, resposta adaptativa ao contexto."
+        },
+        {
+          "name": "Humor e acesso afetivo",
+          "content": "Alterações de humor — incluindo episódios depressivos, ansiedade e, menos frequentemente, euforia ou irritabilidade — são relatadas por parte dos pacientes em uso de fingolimode, mas também são prevalentes na própria esclerose múltipla como manifestação neurológica direta. Essa sobreposição torna a leitura clínica especialmente delicada: uma piora do humor pode refletir um surto, uma resposta ao tratamento, ou o peso psicossocial do diagnóstico. O terapeuta deve registrar a linha de base afetiva do paciente e notar mudanças em relação a ela, sem atribuir causalidade, mas documentando o padrão ao longo do tempo."
+        },
+        {
+          "name": "Fadiga e presença em sessão",
+          "content": "A fadiga é um dos sintomas mais prevalentes e incapacitantes na esclerose múltipla, e pode ser intensificada durante o tratamento. Em sessão, pode aparecer como dificuldade de concentração, respostas mais curtas, menor elaboração verbal, ou um estado de presença reduzida que o terapeuta pode inicialmente interpretar como resistência, desengajamento ou embotamento afetivo. Distinguir fadiga neurológica de retração emocional ou de piora depressiva é um dos desafios centrais do acompanhamento — e a pergunta sobre o padrão ao longo do dia e da semana costuma ajudar a discriminar."
+        },
+        {
+          "name": "Identidade e continuidade de si",
+          "content": "O diagnóstico de esclerose múltipla frequentemente reorganiza a narrativa de vida do paciente: planos de carreira, projetos de família, imagem corporal e senso de competência podem ser revistos de forma abrupta ou gradual. O uso contínuo de um medicamento de alta complexidade reforça, a cada tomada, a presença da doença no cotidiano. Na sessão, pode emergir um trabalho de luto pela versão de si anterior ao diagnóstico, tensão entre aceitar limitações e resistir à identidade de doente, ou dificuldade de integrar a doença à narrativa de vida sem que ela a domine inteiramente."
+        },
+        {
+          "name": "Vínculo com a equipe médica",
+          "content": "O tratamento da esclerose múltipla envolve acompanhamento neurológico regular, exames periódicos e, muitas vezes, uma equipe multidisciplinar. A relação do paciente com essa equipe — de confiança, ambivalência, dependência ou conflito — tende a aparecer na sessão e oferece material clínico relevante. Pacientes que relatam sentir-se mal informados, desconsiderados ou sobrecarregados pelo sistema de saúde podem apresentar menor adesão ao tratamento e maior sofrimento psíquico. O terapeuta não ocupa o lugar de intermediário técnico, mas pode acolher e trabalhar a experiência subjetiva dessa relação."
+        }
+      ],
+      "sessionDiscriminationQuestions": [
+        "Você notou alguma mudança no seu humor ou na sua disposição nas últimas semanas — algo diferente do que costuma ser para você?",
+        "Essa sensação de cansaço que você descreve aparece em momentos específicos do dia, ou está presente o tempo todo, independente do que você fez?",
+        "O que você sente quando pensa nos seus planos para os próximos meses — consegue se imaginar neles, ou algo trava esse movimento?",
+        "Você tem conseguido dormir? E quando acorda, sente que o sono descansou, ou já começa o dia com a sensação de esgotamento?",
+        "Como você está se sentindo em relação às consultas e aos exames — eles trazem algum alívio, ou costumam deixar você mais ansioso?",
+        "Isso que você está descrevendo — essa dificuldade de se concentrar — é algo novo, ou já estava presente antes de começar o tratamento?"
+      ],
+      "communicationScenarios": [
+        "Piora marcada do humor — tristeza persistente, anedonia ou choro frequente — que o paciente não consegue relacionar a nenhum evento de vida específico e que representa uma mudança clara em relação à linha de base: vale registrar e comunicar ao neurologista ou psiquiatra responsável.",
+        "Relato de sintomas físicos novos ou intensificados — formigamentos, alterações visuais, fraqueza em membros, dificuldade de equilíbrio — que o paciente menciona na sessão sem ter comunicado à equipe médica: o terapeuta pode encorajar o contato com o neurologista sem assumir papel diagnóstico.",
+        "Paciente que descreve ter interrompido o uso do medicamento por conta própria, seja por efeitos indesejados, dificuldade de acesso ou decisão autônoma: situação que merece comunicação à equipe médica, dado o risco de reativação da doença.",
+        "Surgimento de ideação suicida ou pensamentos de que seria melhor não estar vivo, especialmente em contexto de piora funcional ou de diagnóstico recente: acionar psiquiatra e avaliar rede de suporte com urgência.",
+        "Relato de episódio agudo com febre, confusão mental, cefaleia intensa ou qualquer alteração neurológica súbita durante a sessão ou descrita como recente: orientar busca de avaliação médica imediata."
+      ],
+      "attentionSignals": [
+        {
+          "level": "vermelho",
+          "signal": "Paciente relata ou apresenta em sessão confusão mental, fala desorganizada ou alteração súbita do nível de consciência.",
+          "action": "Interromper a sessão, acionar suporte médico imediato e contatar a equipe neurológica responsável."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Ideação suicida nova ou intensificada, especialmente associada a piora funcional, diagnóstico recente ou sentimento de ausência de perspectiva.",
+          "action": "Avaliar risco imediatamente, acionar psiquiatra e mobilizar rede de suporte — não encerrar o contato sem plano de segurança estabelecido."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Relato de sintoma neurológico agudo novo — perda visual, fraqueza súbita em membros, desequilíbrio intenso — descrito como tendo surgido nas últimas horas ou dias.",
+          "action": "Encorajar o paciente a buscar avaliação neurológica urgente e, se necessário, acionar a equipe médica diretamente."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Piora progressiva do humor ao longo de várias sessões, sem evento precipitante claro, com redução do funcionamento e do engajamento terapêutico.",
+          "action": "Registrar o padrão com datas e comunicar ao psiquiatra ou neurologista responsável pelo acompanhamento."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Paciente menciona ter suspendido o medicamento por conta própria, mesmo que de forma aparentemente breve.",
+          "action": "Acolher sem confronto e encorajar o contato com a equipe médica, documentando o relato no registro clínico."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Relato de fadiga extrema, sonolência excessiva ou dificuldade cognitiva que representa mudança significativa em relação ao padrão habitual do paciente.",
+          "action": "Registrar a mudança e comunicar à equipe médica, diferenciando na documentação o que é relato do paciente do que é observação do terapeuta em sessão."
+        }
+      ],
+      "clinicalPhrase": "Acompanhar o paciente com EM em uso de fingolimode é, sobretudo, sustentar o trabalho psíquico de viver com uma doença imprevisível — e manter atenção à linha de base afetiva e funcional."
+    }
+  },
+  "mesilato_de_safinamida": {
+    "type": "tool_use",
+    "input": {
+      "description": "A safinamida é um inibidor seletivo e reversível da MAO-B, usada como terapia adjuvante à levodopa em adultos com doença de Parkinson em fase intermediária a avançada. No consultório, o terapeuta tende a encontrar pacientes que já convivem há anos com a doença e que adicionaram este medicamento ao esquema existente — o que pode coincidir com uma fase de maior instabilidade motora e flutuações de \"on/off\". Esse contexto clínico importa: o que aparece na sessão pode refletir tanto a fase da doença quanto a adaptação ao novo componente do tratamento. Nas primeiras semanas após a introdução, costuma haver um período de ajuste que merece atenção redobrada ao humor, ao sono e ao comportamento. A safinamida também tem ação sobre canais de sódio e glutamato, o que pode contribuir para efeitos no sistema nervoso central observáveis na sessão.",
+      "clinicalDomains": [
+        {
+          "name": "Flutuações motoras e humor",
+          "content": "Pacientes em uso de safinamida frequentemente relatam períodos de maior funcionalidade intercalados com momentos de bloqueio motor — os chamados períodos 'off'. O que pode passar despercebido é que esses ciclos motores têm correlatos afetivos: nos períodos 'off', é comum o paciente descrever disforia, ansiedade aguda ou sensação de desamparo que não corresponde necessariamente a um quadro depressivo estruturado. O terapeuta que não conhece esse padrão pode interpretar a variabilidade do humor entre sessões como instabilidade emocional ou resistência ao processo, quando pode tratar-se de fenômeno ligado à flutuação dopaminérgica."
+        },
+        {
+          "name": "Sono e vivências noturnas",
+          "content": "Distúrbios do sono são frequentes na doença de Parkinson e podem ser modulados pelo tratamento. O paciente pode relatar sonhos vívidos, pesadelos ou comportamentos durante o sono — como falar, gesticular ou agir os sonhos — que causam sofrimento próprio ou ao parceiro. Esses relatos merecem registro cuidadoso, pois podem indicar transtorno comportamental do sono REM, condição associada à própria doença. A privação de sono resultante tende a amplificar irritabilidade, lentidão cognitiva e retraimento, o que pode colorir toda a sessão seguinte."
+        },
+        {
+          "name": "Controle de impulsos",
+          "content": "A terapia dopaminérgica no Parkinson — da qual a safinamida faz parte como adjuvante — está associada, em parte dos pacientes, ao surgimento ou intensificação de comportamentos de difícil controle: jogo compulsivo, hipersexualidade, compras impulsivas, alimentação excessiva. O paciente raramente nomeia esses comportamentos espontaneamente; costuma apresentá-los de forma fragmentada ou minimizada. O terapeuta está em posição privilegiada para perceber mudanças no padrão de relato sobre dinheiro, relacionamentos ou rotina que possam sinalizar esse fenômeno, especialmente quando há discrepância entre o que o paciente descreve e o que familiares relatam."
+        },
+        {
+          "name": "Alucinações e percepções incomuns",
+          "content": "Experiências perceptuais atípicas — ver vultos, sombras ou figuras breves na periferia do campo visual, ouvir sons sem fonte identificável — podem surgir no contexto do tratamento dopaminérgico do Parkinson. O paciente pode hesitar em relatar por medo de ser considerado 'louco' ou de ter o tratamento alterado. Quando surgem na sessão, costumam aparecer de forma lateral, quase como curiosidade. É importante que o terapeuta acolha sem alarmar e registre com precisão: frequência, conteúdo, crítica do paciente sobre a experiência e impacto funcional."
+        },
+        {
+          "name": "Identidade e carga do adoecimento",
+          "content": "A adição de um novo medicamento a um esquema já complexo pode reativar lutos relacionados à progressão da doença. O paciente pode interpretar a mudança no tratamento como sinal de piora, mesmo que o objetivo seja otimização. Temas como perda de autonomia, dependência crescente, antecipação de incapacidade e renegociação da identidade pessoal e profissional tendem a emergir ou se intensificar nesses momentos. O espaço terapêutico é frequentemente o único lugar onde esses conteúdos encontram acolhimento sem a pressão de 'ser forte' para a família."
+        },
+        {
+          "name": "Cognição e ritmo de sessão",
+          "content": "Lentidão no processamento, dificuldade de encontrar palavras e lapsos de memória são comuns na doença de Parkinson e podem ser percebidos na sessão como desengajamento ou resistência. O ritmo da fala pode estar reduzido, as respostas podem demorar mais, e o paciente pode perder o fio do raciocínio com mais frequência do que antes. Adaptar o ritmo da sessão a essa realidade — sem superinterpretar as pausas como conteúdo psíquico — é parte do manejo clínico. Mudanças abruptas nesse padrão, para melhor ou para pior, merecem atenção e registro."
+        }
+      ],
+      "sessionDiscriminationQuestions": [
+        "Você notou se essa sensação de angústia aparece mais em momentos específicos do dia, como quando o efeito do remédio parece diminuir?",
+        "Isso que você está descrevendo — essa vontade difícil de controlar — é algo que você reconhece como diferente do seu jeito habitual de ser?",
+        "Quando você acorda de madrugada ou tem esses sonhos intensos, você consegue se orientar rapidamente, ou leva um tempo para entender onde está?",
+        "O que você viu ou ouviu nessas situações — você tinha clareza de que não era real, ou ficou em dúvida por algum momento?",
+        "Como você está se sentindo em relação a precisar de mais um medicamento — isso trouxe algum pensamento sobre como a doença está evoluindo?",
+        "Você percebe alguma diferença no seu raciocínio ou na sua memória nas últimas semanas, comparado a como você estava antes?"
+      ],
+      "communicationScenarios": [
+        "O paciente descreve pela primeira vez — ou com frequência crescente — experiências visuais ou auditivas incomuns, mesmo que com crítica preservada: o neurologista/psiquiatra deve ser informado para avaliação do quadro perceptual no contexto do tratamento.",
+        "Há relato de comportamentos de difícil controle (gastos impulsivos, comportamento sexual fora do padrão habitual, jogo) que o paciente ou familiar associa ao período após a introdução ou ajuste do tratamento: comunicar ao médico responsável, pois esse padrão é clinicamente relevante nessa classe terapêutica.",
+        "Mudança marcada no padrão cognitivo observada pelo terapeuta ao longo de sessões consecutivas — maior lentidão, confusão ou dificuldade de orientação — justifica contato com a equipe médica, especialmente se houver piora aguda.",
+        "Relato de comportamentos durante o sono que causem risco ao paciente ou ao parceiro (levantar, cair, agredir sem intenção) merece encaminhamento para avaliação especializada do sono.",
+        "Surgimento de ideação suicida ou desesperança intensa associada à percepção de progressão da doença deve ser comunicado à equipe de saúde e manejado conforme protocolo de risco do terapeuta."
+      ],
+      "attentionSignals": [
+        {
+          "level": "vermelho",
+          "signal": "Paciente relata ou apresenta alucinações com perda de crítica — acredita que o que vê ou ouve é real — associadas a confusão ou agitação.",
+          "action": "Acionar o médico responsável no mesmo dia; avaliar suporte familiar imediato e segurança do paciente."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Ideação suicida presente, especialmente associada a sentimento de fardo ou desesperança sobre a progressão da doença.",
+          "action": "Seguir protocolo de risco: acionar rede de suporte, comunicar equipe médica e, se necessário, encaminhar para avaliação de emergência."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Paciente apresenta rigidez muscular marcante, febre, sudorese intensa e alteração do nível de consciência durante ou após a sessão.",
+          "action": "Acionar serviço de emergência imediatamente; não deixar o paciente desacompanhado."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Relato de comportamentos impulsivos novos ou intensificados (gastos, jogo, hipersexualidade) que o paciente ou familiar percebe como fora do padrão.",
+          "action": "Registrar com detalhamento e comunicar ao médico responsável em até poucos dias; não minimizar mesmo que o paciente relativize."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Piora abrupta do humor com características mistas — agitação, grandiosidade ou euforia incomum — em paciente que não apresentava esse padrão.",
+          "action": "Registrar e comunicar ao psiquiatra ou neurologista em breve, descrevendo o padrão observado e a linha de base do paciente."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Relato de comportamentos durante o sono com risco físico — quedas, agressões involuntárias ao parceiro, levantar e caminhar sem acordar.",
+          "action": "Orientar o paciente a comunicar ao médico e registrar o relato para incluir na comunicação com a equipe de saúde."
+        }
+      ],
+      "clinicalPhrase": "Parkinson em tratamento adjuvante: observe flutuações de humor ligadas ao ciclo motor, controle de impulsos e experiências perceptuais antes de interpretar como dinâmica psíquica pura."
+    }
+  },
+  "etossuximida": {
+    "type": "tool_use",
+    "input": {
+      "description": "A etossuximida é um anticonvulsivante utilizado predominantemente no tratamento da epilepsia de ausência (pequeno mal), especialmente em crianças e adolescentes, embora adultos também possam aparecer em consultório com esse histórico de uso. Seu mecanismo de ação é seletivo para esse tipo de crise, o que significa que o paciente em acompanhamento terapêutico carrega, em geral, um diagnóstico neurológico estabelecido desde a infância — com toda a carga identitária, familiar e escolar que isso implica. O terapeuta deve atentar para o fato de que crises de ausência frequentemente passaram despercebidas por anos antes do diagnóstico, e esse período pode ter gerado narrativas de \"distração\", \"preguiça\" ou dificuldade de aprendizado que persistem na autoimagem do paciente. Efeitos sobre o sistema nervoso central — como alterações de humor, irritabilidade ou, mais raramente, quadros psiquiátricos — podem surgir e merecem observação longitudinal na sessão.",
+      "clinicalDomains": "[\n  {\n    \"name\": \"Humor e irritabilidade\",\n    \"content\": \"Alterações de humor costumam aparecer no relato de pacientes em uso de etossuximida, especialmente irritabilidade, labilidade emocional e, em alguns casos, episódios de tristeza sem gatilho claro. O terapeuta pode observar oscilações que não seguem o padrão habitual do paciente nem se encaixam nos eventos de vida recentes. O confundidor mais frequente é atribuir essas variações exclusivamente a conflitos relacionais ou a dinâmicas familiares, sem considerar que o quadro neurológico de base e o próprio tratamento podem estar contribuindo para a instabilidade afetiva.\"\n  },\n  {\n    \"name\": \"Identidade e narrativa do diagnóstico\",\n    \"content\": \"Pacientes com epilepsia de ausência de longa data frequentemente carregam narrativas construídas antes do diagnóstico — rótulos de desatenção, lentidão ou comportamento estranho que moldaram a autoimagem e as relações escolares e familiares. Na sessão, pode emergir vergonha, sensação de ser \"diferente\" ou dificuldade em integrar o diagnóstico neurológico à identidade adulta. O trabalho de elaboração dessas narrativas é central e não deve ser apressado; o terapeuta pode observar resistência ao tema ou, ao contrário, uma hiperidentificação com a condição que limita a percepção de outras dimensões do self.\"\n  },\n  {\n    \"name\": \"Cognição e queixas subjetivas\",\n    \"content\": \"Queixas de dificuldade de concentração, lentidão de raciocínio ou lapsos de memória podem aparecer no relato e têm múltiplas origens possíveis: a própria epilepsia de ausência (crises subclínicas não percebidas), o uso do medicamento, ansiedade ou depressão comórbidas, ou privação de sono. O terapeuta não está em posição de discriminar a causa, mas pode registrar a frequência, o contexto e o impacto funcional dessas queixas, oferecendo material relevante para comunicação com o neurologista ou psiquiatra. Atribuir automaticamente as queixas cognitivas ao medicamento seria um erro de leitura clínica.\"\n  },\n  {\n    \"name\": \"Sono e fadiga\",\n    \"content\": \"Relatos de sonolência diurna, cansaço persistente ou sono não reparador podem surgir na sessão. A fadiga em pacientes com epilepsia tem origem multifatorial — qualidade do sono, carga emocional do diagnóstico, efeitos do tratamento e comorbidades — e tende a impactar o engajamento terapêutico e a motivação para atividades cotidianas. O terapeuta deve observar se a fadiga relatada é estável, progressiva ou associada a mudanças recentes no tratamento, sem assumir relação causal direta com o medicamento.\"\n  },\n  {\n    \"name\": \"Carga do tratamento crônico\",\n    \"content\": \"O uso contínuo de um anticonvulsivante, muitas vezes desde a infância, pode gerar ambivalência em relação ao tratamento: desejo de interromper o medicamento por conta própria, sensação de dependência ou estigma associado ao uso de \"remédio para epilepsia\". Esses temas costumam aparecer de forma indireta — comentários sobre esquecer doses, questionamentos sobre a necessidade do medicamento ou comparações com pessoas que \"se curaram\". O terapeuta deve acolher essa ambivalência sem reforçar nem desencorajar decisões sobre o tratamento, e comunicar ao médico quando o paciente sinalizar intenção de interromper o uso.\"\n  }\n]",
+      "sessionDiscriminationQuestions": "[\n  \"Você notou alguma mudança no seu humor ou na sua irritabilidade nas últimas semanas — algo que pareceu diferente do seu jeito habitual de ser?\",\n  \"Essa sensação de cansaço ou lentidão que você descreve, ela aparece em momentos específicos do dia ou está presente o tempo todo?\",\n  \"Quando você pensa em tomar o remédio todo dia, o que passa pela sua cabeça — tem algum incômodo, dúvida ou vontade de parar?\",\n  \"O que você lembra de como era antes do diagnóstico — como as pessoas ao redor te descreviam na escola ou em casa?\",\n  \"Você tem percebido algum momento em que \"apaga\" por alguns segundos ou fica olhando fixo sem saber o que aconteceu?\",\n  \"Como você se sente quando precisa explicar para alguém que usa esse medicamento ou que tem epilepsia?\"\n]",
+      "communicationScenarios": "[\n  \"O paciente relata irritabilidade intensa, labilidade emocional marcada ou episódios de tristeza profunda com início recente ou piora progressiva — vale registrar e comunicar ao médico responsável, descrevendo frequência, intensidade e contexto de aparecimento.\",\n  \"Surgem relatos de lapsos de consciência, episódios de \"apagamento\" ou comportamentos automáticos que o paciente não recorda — sinais que podem indicar crises subclínicas não controladas e que merecem comunicação ao neurologista com descrição detalhada.\",\n  \"O paciente manifesta intenção de interromper o medicamento por conta própria, relata ter esquecido doses repetidamente ou questiona abertamente a necessidade do tratamento — situação que requer comunicação ao médico antes de qualquer mudança.\",\n  \"Aparecimento de alterações de humor de caráter mais grave — agitação intensa, pensamentos de autolesão ou quadro que sugere virada para estado misto — deve ser comunicado ao psiquiatra ou neurologista com brevidade.\",\n  \"Reação cutânea nova, febre ou qualquer sinal físico incomum relatado pelo paciente em associação temporal com o uso do medicamento justifica comunicação médica sem demora.\",\n  \"Queixas cognitivas progressivas — piora de memória, dificuldade de concentração ou lentidão crescente — que impactam funcionamento e não se explicam por fatores emocionais identificáveis na sessão merecem ser compartilhadas com a equipe médica.\"\n]",
+      "attentionSignals": [
+        {
+          "level": "vermelho",
+          "signal": "Paciente relata ou apresenta em sessão agitação intensa, confusão mental, fala desorganizada ou comportamento claramente fora do padrão habitual de forma aguda.",
+          "action": "Acionar o médico responsável no mesmo dia; avaliar necessidade de suporte de emergência conforme gravidade do quadro."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Surgimento de ideação suicida nova ou intensificada, especialmente associada a mudança recente no tratamento ou a período de instabilidade emocional marcada.",
+          "action": "Acionar psiquiatra ou neurologista imediatamente; acionar rede de apoio e, se necessário, serviço de emergência."
+        },
+        {
+          "level": "vermelho",
+          "signal": "Paciente relata reação cutânea extensa, com vermelhidão disseminada, bolhas ou acometimento de mucosas (boca, olhos), associada ou não a febre.",
+          "action": "Orientar busca imediata a serviço de emergência e comunicar o médico prescritor no mesmo dia."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Irritabilidade persistente, labilidade emocional ou episódios depressivos com início ou piora após mudança no tratamento anticonvulsivante.",
+          "action": "Registrar padrão temporal e comunicar ao médico responsável em até alguns dias, descrevendo frequência e impacto funcional."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Paciente relata intenção de interromper o medicamento por conta própria ou admite ter deixado de tomar doses repetidamente.",
+          "action": "Acolher sem reforçar a decisão; comunicar ao médico responsável antes da próxima consulta programada."
+        },
+        {
+          "level": "amarelo",
+          "signal": "Relato de episódios sugestivos de crises de ausência não controladas — lapsos breves, olhar fixo, comportamentos automáticos sem recordação posterior.",
+          "action": "Registrar descrição detalhada dos episódios e comunicar ao neurologista, sinalizando frequência e contexto de ocorrência."
+        }
+      ],
+      "clinicalPhrase": "Atentar para narrativas pré-diagnóstico que moldaram a autoimagem, ambivalência com o tratamento crônico e alterações de humor sem gatilho relacional claro."
+    }
+  }
+}

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 
 export default function AuthLayout({ children }: { children: ReactNode }) {
@@ -20,10 +21,14 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 
         <div className="relative z-10 flex h-full flex-col justify-between p-12 text-white">
           <div>
-            <div className="flex items-center gap-2">
-              <div className="h-8 w-8 rounded-lg bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30">
-                <div className="h-4 w-4 rounded-full border-2 border-white" />
-              </div>
+            <div className="flex items-center gap-3">
+              <Image
+                src="/images/system/logo_square.png"
+                alt="Lente Clínica Logo"
+                width={32}
+                height={32}
+                className="rounded-lg"
+              />
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
                 Lente Clínica
               </p>
@@ -48,14 +53,14 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
       <main className="flex flex-1 items-center justify-center p-6 sm:p-10">
         <div className="w-full max-w-[430px]">
           <div className="mb-8 lg:hidden">
-            <div className="flex items-center gap-2">
-              <div className="h-6 w-6 rounded bg-[var(--lc-teal-600)] flex items-center justify-center">
-                <div className="h-3 w-3 rounded-full border border-white" />
-              </div>
-              <span className="font-semibold text-[var(--lc-teal-900)]">
-                Lente Clínica
-              </span>
-            </div>
+            <Image
+              src="/images/system/logo_horizontal.png"
+              alt="Lente Clínica"
+              width={160}
+              height={40}
+              className="h-8 w-auto"
+              priority
+            />
           </div>
           <div className="rounded-2xl border border-[var(--lc-border-default)] bg-white p-6 shadow-[var(--lc-shadow-md)] sm:p-8">
             {children}

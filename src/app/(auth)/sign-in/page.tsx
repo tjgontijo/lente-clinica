@@ -7,7 +7,7 @@ export default async function SignInPage() {
   const session = await getServerSession();
 
   if (session) {
-    redirect("/dashboard");
+    redirect("/medications");
   }
 
   return <SignInForm />;

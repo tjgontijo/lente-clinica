@@ -15,26 +15,34 @@ export function Footer() {
               />
             </Link>
             <p className="max-w-sm text-sm text-[var(--lc-neutral-500)] leading-relaxed mb-4">
-              Apoio ao acompanhamento de pacientes medicados com organização, segurança e responsabilidade clínica.
+              Apoio ao acompanhamento de pacientes medicados com organização,
+              segurança e responsabilidade clínica.
             </p>
             <p className="text-xs text-[var(--lc-neutral-600)] max-w-sm leading-relaxed">
-              A Lente Clínica não substitui avaliação, diagnóstico ou conduta profissional. Ela organiza informações para apoiar sua escuta, análise e acompanhamento.
+              A Lente Clínica não substitui avaliação, diagnóstico ou conduta
+              profissional. Ela organiza informações para apoiar sua escuta,
+              análise e acompanhamento.
             </p>
           </div>
 
           {/* Links */}
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-[var(--lc-neutral-600)] mb-4">Links</p>
+            <p className="text-xs font-bold uppercase tracking-widest text-[var(--lc-neutral-600)] mb-4">
+              Links
+            </p>
             <ul className="space-y-3 text-sm text-[var(--lc-neutral-500)]">
               {[
                 { label: "Termos de Uso", href: "#" },
                 { label: "Política de Privacidade", href: "#" },
                 { label: "Segurança de Dados", href: "#" },
                 { label: "Contato", href: "#" },
-                { label: "Aviso Clínico", href: "#" }
+                { label: "Aviso Clínico", href: "#" },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="hover:text-[var(--lc-teal-400)] transition-colors">
+                  <Link
+                    href={link.href}
+                    className="hover:text-[var(--lc-teal-400)] transition-colors"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -45,10 +53,12 @@ export function Footer() {
 
         <div className="border-t border-[var(--lc-neutral-800)] pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-[var(--lc-neutral-600)]">
-            &copy; {new Date().getFullYear()} Lente Clínica. Todos os direitos reservados.
+            &copy; {new Date().getFullYear()} Lente Clínica. Todos os direitos
+            reservados.
           </p>
           <p className="text-xs text-[var(--lc-neutral-700)] text-center md:text-right max-w-sm">
-            Ferramenta de apoio clínico. Não realiza diagnóstico nem define condutas médicas ou terapêuticas.
+            Ferramenta de apoio clínico. Não realiza diagnóstico nem define
+            condutas médicas ou terapêuticas.
           </p>
         </div>
       </div>

@@ -1,30 +1,34 @@
-import { Database, ClipboardCheck, FileText, Headphones } from "lucide-react";
+import { ClipboardCheck, Database, FileText, Headphones } from "lucide-react";
 
 const FEATURES = [
   {
     title: "Curadoria Especializada",
-    description: "Informações organizadas sobre os principais psicofármacos para apoiar a leitura clínica dos relatos do paciente.",
+    description:
+      "Informações organizadas sobre os principais psicofármacos para apoiar a leitura clínica dos relatos do paciente.",
     icon: Database,
-    color: "teal"
+    color: "teal",
   },
   {
     title: "Fichas de Apoio Clínico",
-    description: "Resumo estruturado para acompanhar evolução, sintomas percebidos, efeitos colaterais e pontos de atenção.",
+    description:
+      "Resumo estruturado para acompanhar evolução, sintomas percebidos, efeitos colaterais e pontos de atenção.",
     icon: ClipboardCheck,
-    color: "amber"
+    color: "amber",
   },
   {
     title: "Relatórios de Alinhamento",
-    description: "Materiais objetivos para facilitar conversas entre profissionais e equipes.",
+    description:
+      "Materiais objetivos para facilitar conversas entre profissionais e equipes.",
     icon: FileText,
-    color: "teal"
+    color: "teal",
   },
   {
     title: "Apoio à Escuta",
-    description: "Mais contexto para acolher o relato do paciente sem perder informações importantes entre os atendimentos.",
+    description:
+      "Mais contexto para acolher o relato do paciente sem perder informações importantes entre os atendimentos.",
     icon: Headphones,
-    color: "amber"
-  }
+    color: "amber",
+  },
 ];
 
 export function Features() {
@@ -34,10 +38,14 @@ export function Features() {
         <div className="mb-16 flex flex-col items-center text-center">
           <h2 className="font-heading max-w-3xl text-3xl font-light tracking-tight text-[var(--lc-neutral-950)] md:text-5xl lg:text-6xl mb-6">
             Tudo o que você precisa para uma{" "}
-            <span className="text-[var(--lc-teal-600)] italic">prática clínica mais segura.</span>
+            <span className="text-[var(--lc-teal-600)] italic">
+              prática clínica mais segura.
+            </span>
           </h2>
           <p className="max-w-2xl text-lg text-[var(--lc-neutral-600)]">
-            Funcionalidades desenhadas para profissionais que acompanham pacientes medicados e precisam de mais organização, contexto e clareza.
+            Funcionalidades desenhadas para profissionais que acompanham
+            pacientes medicados e precisam de mais organização, contexto e
+            clareza.
           </p>
         </div>
 
@@ -57,8 +65,12 @@ export function Features() {
                 <feature.icon size={22} />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-[var(--lc-neutral-900)] mb-2">{feature.title}</h3>
-                <p className="text-[var(--lc-neutral-600)] leading-relaxed text-sm">{feature.description}</p>
+                <h3 className="text-lg font-bold text-[var(--lc-neutral-900)] mb-2">
+                  {feature.title}
+                </h3>
+                <p className="text-[var(--lc-neutral-600)] leading-relaxed text-sm">
+                  {feature.description}
+                </p>
               </div>
             </div>
           ))}
@@ -67,9 +79,11 @@ export function Features() {
         {/* Disclaimer */}
         <div className="rounded-2xl border border-[var(--lc-neutral-200)] bg-white p-6 text-center">
           <p className="text-sm text-[var(--lc-neutral-500)]">
-            A Lente Clínica não substitui avaliação, diagnóstico ou conduta profissional.{" "}
+            A Lente Clínica não substitui avaliação, diagnóstico ou conduta
+            profissional.{" "}
             <span className="text-[var(--lc-neutral-700)] font-medium">
-              Ela organiza informações para apoiar sua escuta, análise e acompanhamento.
+              Ela organiza informações para apoiar sua escuta, análise e
+              acompanhamento.
             </span>
           </p>
         </div>

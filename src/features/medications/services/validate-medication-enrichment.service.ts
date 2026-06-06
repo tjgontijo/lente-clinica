@@ -24,11 +24,10 @@ export function validateMedicationEnrichmentSafety(
 
   const allText = [
     content.description,
-    ...content.clinicalContexts,
-    ...content.patientReports,
-    ...content.careObservations,
-    ...content.clinicalConfounders,
-    ...content.usefulQuestions,
+    ...content.clinicalDomains.map(d => d.name + " " + d.content),
+    ...content.sessionDiscriminationQuestions,
+    ...content.communicationScenarios,
+    ...content.attentionSignals.map(s => s.signal + " " + s.action),
     content.clinicalPhrase,
   ].join(" ");
 

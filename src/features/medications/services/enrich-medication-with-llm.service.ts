@@ -1,7 +1,7 @@
 import OpenAI from "openai";
 import {
-  getMedicationEnrichmentPrompt,
   getMedicationEnrichmentData,
+  getMedicationEnrichmentPrompt,
   MEDICATION_ENRICHMENT_PROMPT_VERSION,
   MEDICATION_ENRICHMENT_STATIC_PROMPT,
 } from "@/features/medications/prompts/medication-enrichment.prompt";
@@ -65,12 +65,12 @@ export async function enrichMedicationWithLlm(data: {
       promptVersion: MEDICATION_ENRICHMENT_PROMPT_VERSION,
       usage: response.usage
         ? {
-          promptTokens: response.usage.prompt_tokens,
-          completionTokens: response.usage.completion_tokens,
-          totalTokens: response.usage.total_tokens,
-          cachedTokens: (response.usage as any).prompt_tokens_details
-            ?.cached_tokens,
-        }
+            promptTokens: response.usage.prompt_tokens,
+            completionTokens: response.usage.completion_tokens,
+            totalTokens: response.usage.total_tokens,
+            cachedTokens: (response.usage as any).prompt_tokens_details
+              ?.cached_tokens,
+          }
         : undefined,
     };
   } catch (error: unknown) {

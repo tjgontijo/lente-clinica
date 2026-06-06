@@ -12,3 +12,20 @@ export type MedicationWithClass = Medication & {
   class: MedicationClass;
   products: MedicationProduct[];
 };
+
+export type ProductWithMedication = MedicationProduct & {
+  medication: Medication & {
+    class: MedicationClass;
+  };
+};
+
+export type ListMedicationsInput = {
+  search?: string;
+  offset?: number;
+  limit?: number;
+};
+
+export type ListMedicationsResult = {
+  items: ProductWithMedication[];
+  nextOffset: number | null;
+};

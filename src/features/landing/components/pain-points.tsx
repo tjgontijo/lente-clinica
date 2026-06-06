@@ -1,13 +1,13 @@
 import {
+  AlertCircle,
+  AlertTriangle,
+  ExternalLink,
   Eye,
   HelpCircle,
-  AlertTriangle,
-  AlertCircle,
   MessageCircle,
-  ExternalLink,
-  Users,
   Pill,
   Quote,
+  Users,
 } from "lucide-react";
 
 const SERTRALINA = {
@@ -71,7 +71,8 @@ const ROWS = [
     icon: ExternalLink,
     data: SERTRALINA.clinicalContexts,
     dotColor: "bg-[var(--lc-teal-400)]",
-    pillClass: "bg-[var(--lc-neutral-50)] border-[var(--lc-neutral-150)] text-[var(--lc-neutral-700)]",
+    pillClass:
+      "bg-[var(--lc-neutral-50)] border-[var(--lc-neutral-150)] text-[var(--lc-neutral-700)]",
     iconClass: "text-[var(--lc-teal-500)]",
     labelClass: "text-[var(--lc-neutral-400)]",
   },
@@ -80,7 +81,8 @@ const ROWS = [
     icon: MessageCircle,
     data: SERTRALINA.patientReports,
     dotColor: "bg-[var(--lc-teal-400)]",
-    pillClass: "bg-[var(--lc-neutral-50)] border-[var(--lc-neutral-150)] text-[var(--lc-neutral-700)] italic",
+    pillClass:
+      "bg-[var(--lc-neutral-50)] border-[var(--lc-neutral-150)] text-[var(--lc-neutral-700)] italic",
     iconClass: "text-[var(--lc-teal-500)]",
     labelClass: "text-[var(--lc-neutral-400)]",
   },
@@ -89,7 +91,8 @@ const ROWS = [
     icon: Eye,
     data: SERTRALINA.careObservations,
     dotColor: "bg-[var(--lc-teal-400)]",
-    pillClass: "bg-[var(--lc-neutral-50)] border-[var(--lc-neutral-150)] text-[var(--lc-neutral-700)]",
+    pillClass:
+      "bg-[var(--lc-neutral-50)] border-[var(--lc-neutral-150)] text-[var(--lc-neutral-700)]",
     iconClass: "text-[var(--lc-teal-500)]",
     labelClass: "text-[var(--lc-neutral-400)]",
   },
@@ -98,7 +101,8 @@ const ROWS = [
     icon: HelpCircle,
     data: SERTRALINA.usefulQuestions,
     dotColor: "bg-blue-300",
-    pillClass: "bg-blue-50 border-blue-100 text-[var(--lc-neutral-700)] font-medium",
+    pillClass:
+      "bg-blue-50 border-blue-100 text-[var(--lc-neutral-700)] font-medium",
     iconClass: "text-blue-400",
     labelClass: "text-[var(--lc-neutral-400)]",
   },
@@ -116,7 +120,8 @@ const ROWS = [
     icon: AlertCircle,
     data: SERTRALINA.clinicalConfounders,
     dotColor: "bg-[var(--lc-amber-400)]",
-    pillClass: "bg-[var(--lc-amber-50)] border-[var(--lc-amber-100)] text-[var(--lc-neutral-700)]",
+    pillClass:
+      "bg-[var(--lc-amber-50)] border-[var(--lc-amber-100)] text-[var(--lc-neutral-700)]",
     iconClass: "text-[var(--lc-amber-500)]",
     labelClass: "text-[var(--lc-amber-600)]",
   },
@@ -133,16 +138,22 @@ const ROWS = [
 
 export function PainPoints() {
   return (
-    <section id="pain-points" className="bg-[var(--lc-neutral-100)] py-24 md:py-32">
+    <section
+      id="pain-points"
+      className="bg-[var(--lc-neutral-100)] py-24 md:py-32"
+    >
       <div className="container mx-auto px-6">
         <div className="mb-16 flex flex-col items-center text-center">
           <h2 className="font-heading max-w-3xl text-3xl font-light tracking-tight text-[var(--lc-neutral-950)] md:text-5xl lg:text-6xl mb-6">
             Cada medicamento tem uma{" "}
-            <span className="text-[var(--lc-teal-600)] italic">ficha de apoio clínico</span>{" "}
+            <span className="text-[var(--lc-teal-600)] italic">
+              ficha de apoio clínico
+            </span>{" "}
             pronta para o seu atendimento.
           </h2>
           <p className="max-w-2xl text-lg text-[var(--lc-neutral-600)]">
-            Veja como a Lente Clínica organiza as informações de um medicamento para apoiar o que você escuta, observa e precisa perguntar.
+            Veja como a Lente Clínica organiza as informações de um medicamento
+            para apoiar o que você escuta, observa e precisa perguntar.
           </p>
         </div>
 
@@ -156,7 +167,9 @@ export function PainPoints() {
                 <div className="h-3 w-3 rounded-full bg-[var(--lc-neutral-200)]" />
               </div>
               <div className="flex-1 mx-4 h-6 rounded-lg bg-[var(--lc-neutral-150)] flex items-center px-3">
-                <span className="text-[11px] text-[var(--lc-neutral-400)] font-mono">lenteclinica.com.br/medicamentos</span>
+                <span className="text-[11px] text-[var(--lc-neutral-400)] font-mono">
+                  lenteclinica.com.br/medicamentos
+                </span>
               </div>
             </div>
 
@@ -167,8 +180,12 @@ export function PainPoints() {
                   <Pill size={22} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[var(--lc-neutral-900)] leading-tight">{SERTRALINA.name}</h3>
-                  <p className="text-sm text-[var(--lc-neutral-500)] mt-0.5">{SERTRALINA.classe}</p>
+                  <h3 className="text-xl font-bold text-[var(--lc-neutral-900)] leading-tight">
+                    {SERTRALINA.name}
+                  </h3>
+                  <p className="text-sm text-[var(--lc-neutral-500)] mt-0.5">
+                    {SERTRALINA.classe}
+                  </p>
                 </div>
               </div>
 
@@ -190,7 +207,9 @@ export function PainPoints() {
                       <div className="h-6 w-6 rounded-lg bg-[var(--lc-neutral-100)] flex items-center justify-center">
                         <row.icon size={13} className={row.iconClass} />
                       </div>
-                      <span className={`text-[10px] font-bold uppercase tracking-widest ${row.labelClass}`}>
+                      <span
+                        className={`text-[10px] font-bold uppercase tracking-widest ${row.labelClass}`}
+                      >
                         {row.label}
                       </span>
                     </div>
@@ -200,7 +219,9 @@ export function PainPoints() {
                           key={i}
                           className={`flex items-center gap-1.5 text-sm border rounded-full px-3 py-1 ${row.pillClass}`}
                         >
-                          <span className={`h-1.5 w-1.5 rounded-full shrink-0 ${row.dotColor}`} />
+                          <span
+                            className={`h-1.5 w-1.5 rounded-full shrink-0 ${row.dotColor}`}
+                          />
                           {item}
                         </li>
                       ))}
@@ -212,7 +233,8 @@ export function PainPoints() {
           </div>
 
           <p className="mt-6 text-center text-sm text-[var(--lc-neutral-500)]">
-            Cada medicamento da plataforma tem uma ficha como essa, curada para apoiar a sua escuta, sem substituir seu julgamento clínico.
+            Cada medicamento da plataforma tem uma ficha como essa, curada para
+            apoiar a sua escuta, sem substituir seu julgamento clínico.
           </p>
         </div>
       </div>

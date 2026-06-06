@@ -1,34 +1,69 @@
 import "server-only";
-import { and, eq, exists, ilike, or } from "drizzle-orm";
+import { and, eq } from "drizzle-orm";
 import { db } from "@/server/db/db";
-import { medication, medicationProduct } from "@/server/db/schema";
+import { medication } from "@/server/db/schema";
+import type { ListMedicationsInput, ListMedicationsResult } from "../types";
 
-export async function listMedicationsRepository(search?: string) {
+const DEFAULT_LIMIT = 50;
+
+export async function listMedicationsRepository(
+  input: ListMedicationsInput = {},
+): Promise<ListMedicationsResult> {
+  const { search, offset = 0, limit = DEFAULT_LIMIT } = input;
   const searchPattern = `%${search}%`;
 
-  return db.query.medication.findMany({
-    where: and(
-      eq(medication.isVisible, true),
-      search
+  const items = await db.query.medicationProduct.findMany({
+    where: (table, { or, ilike, exists, and }) => {
+      const searchFilters = search
         ? or(
-            ilike(medication.name, searchPattern),
+            ilike(table.productName, searchPattern),
             exists(
               db
                 .select()
-                .from(medicationProduct)
+                .from(medication)
                 .where(
                   and(
-                    eq(medicationProduct.medicationId, medication.id),
-                    ilike(medicationProduct.productName, searchPattern),
+                    eq(medication.id, table.medicationId),
+                    ilike(medication.name, searchPattern),
                   ),
                 ),
             ),
           )
-        : undefined,
-    ),
-    with: {
-      class: true,
-      products: true,
+        : undefined;
+
+      const visibleMedicationFilter = exists(
+        db
+          .select()
+          .from(medication)
+          .where(
+            and(
+              eq(medication.id, table.medicationId),
+              eq(medication.isVisible, true),
+            ),
+          ),
+      );
+
+      return searchFilters
+        ? and(visibleMedicationFilter, searchFilters)
+        : visibleMedicationFilter;
     },
+    with: {
+      medication: {
+        with: {
+          class: true,
+        },
+      },
+    },
+    orderBy: (table, { asc }) => [asc(table.productName), asc(table.id)],
+    limit: limit + 1,
+    offset,
   });
+
+  const hasMore = items.length > limit;
+  const paginatedItems = hasMore ? items.slice(0, limit) : items;
+
+  return {
+    items: paginatedItems,
+    nextOffset: hasMore ? offset + limit : null,
+  };
 }

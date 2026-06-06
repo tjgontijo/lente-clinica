@@ -1,13 +1,6 @@
 "use client";
 
-import {
-  Briefcase,
-  ChevronsUpDown,
-  LogOut,
-  Menu,
-  Pill,
-  Settings,
-} from "lucide-react";
+import { ChevronsUpDown, LogOut, Menu, Pill, Settings, MessageSquareText, ClipboardList } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { MobileNavLink } from "@/components/layout/nav-links";
@@ -146,19 +139,21 @@ export function MobileMenu() {
                 <SheetClose asChild>
                   <div>
                     <MobileNavLink
-                      href="/cases"
-                      label="Casos Clínicos"
-                      icon={<Briefcase className="size-4" />}
-                      onClick={() => setOpen(false)}
-                    />
-                  </div>
-                </SheetClose>
-                <SheetClose asChild>
-                  <div>
-                    <MobileNavLink
                       href="/medications"
                       label="Medicações"
                       icon={<Pill className="size-4" />}
+                      onClick={() => setOpen(false)}
+                    />
+                    <MobileNavLink
+                      href="/communications"
+                      label="Comunicação"
+                      icon={<MessageSquareText className="size-4" />}
+                      onClick={() => setOpen(false)}
+                    />
+                    <MobileNavLink
+                      href="/checklists"
+                      label="Sinais de Atenção"
+                      icon={<ClipboardList className="size-4" />}
                       onClick={() => setOpen(false)}
                     />
                   </div>

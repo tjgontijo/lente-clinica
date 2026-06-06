@@ -1,11 +1,11 @@
-import { Navbar } from "@/features/landing/components/navbar";
-import { Hero } from "@/features/landing/components/hero";
-import { PainPoints } from "@/features/landing/components/pain-points";
-import { TargetAudience } from "@/features/landing/components/target-audience";
-import { Features } from "@/features/landing/components/features";
-import { Pricing } from "@/features/landing/components/pricing";
 import { FAQ } from "@/features/landing/components/faq";
+import { Features } from "@/features/landing/components/features";
 import { Footer } from "@/features/landing/components/footer";
+import { Hero } from "@/features/landing/components/hero";
+import { Navbar } from "@/features/landing/components/navbar";
+import { PainPoints } from "@/features/landing/components/pain-points";
+import { Pricing } from "@/features/landing/components/pricing";
+import { TargetAudience } from "@/features/landing/components/target-audience";
 
 export default function Home() {
   return (

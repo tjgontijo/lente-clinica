@@ -1,7 +1,8 @@
 "use server";
 
 import { listMedicationsService } from "./services/list-medications.service";
+import type { ListMedicationsInput } from "./types";
 
-export async function listMedicationsAction(search?: string) {
-  return listMedicationsService(search);
+export async function listMedicationsAction(input: ListMedicationsInput = {}) {
+  return listMedicationsService(input);
 }

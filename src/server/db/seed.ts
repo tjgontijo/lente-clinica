@@ -1,11 +1,10 @@
 import "dotenv/config";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { inArray } from "drizzle-orm";
+import { eq, inArray } from "drizzle-orm";
+import { auth } from "../../lib/auth";
 import { db } from "./db";
 import * as schema from "./schema";
-import { auth } from "../../lib/auth";
-import { eq } from "drizzle-orm";
 
 type TsvRow = {
   SUBSTANCIA: string;
@@ -15,7 +14,6 @@ type TsvRow = {
   TARJA: string;
 };
 
-const CLINICAL_RELEVANCE_WHITELIST = new Set(["N", "C", "A", "H", "G", "M", "R"]);
 const LLM_ENRICHMENT_CLASS_CODES = new Set([
   "N3A",
   "N5A1",
@@ -214,18 +212,10 @@ async function main() {
   for (const row of rows) {
     if (!row.SUBSTANCIA || !row.CLASSE_TERAPEUTICA) continue;
 
-    // 1. Filtro de Relevância Clínica (Classes Principais)
     const classInfo = splitClass(row.CLASSE_TERAPEUTICA);
-    if (!classInfo.name || !CLINICAL_RELEVANCE_WHITELIST.has(classInfo.name[0]!)) {
-      continue;
-    }
+    if (!classInfo.name) continue;
 
-    // 2. Filtro de Complexidade (Evitar fórmulas gigantescas/vacinas)
-    const substanceCount = row.SUBSTANCIA.split(";").length;
-    if (substanceCount > 3) continue;
-
-    // 3. Filtro de Produtos Biológicos (Geralmente hospitalares/complexos)
-    if (row.TIPO_PRODUTO.toLowerCase().includes("biológico")) continue;
+    // Sem filtro clínico no seed: a triagem de relevância é feita no batch.
 
     if (!classCatalog.has(classInfo.name)) {
       classCatalog.set(classInfo.name, { description: classInfo.description });
@@ -355,18 +345,8 @@ async function main() {
       .onConflictDoNothing();
   }
 
-  await db
-    .insert(schema.communicationTemplate)
-    .values({
-      scenarioId: "alerta_urgencia_geral",
-      urgencyLevel: "RED",
-      contentShort:
-        "Olá, Dr(a). Sou a psicóloga do(a) [iniciais]. Notei piora importante em [sintomas] nas últimas 2 semanas. [iniciais] está em uso de [medicação]. Gostaria de alinhar a conduta.",
-      contentMedium:
-        "Prezado(a) Dr(a). Sou a psicóloga clínica do(a) paciente [iniciais], [idade] anos. Durante a última sessão, observei um agravamento significativo em [sintomas]. Como o paciente está em uso de [medicação], achei prudente comunicá-lo(a) para avaliarmos se há necessidade de ajuste ou revisão. Atenciosamente.",
-    })
-    .onConflictDoNothing();
-  
+
+
   console.log("🌱 Seeding admin user...");
   try {
     const adminEmail = "tjgontijo@gmail.com";
@@ -383,8 +363,9 @@ async function main() {
         },
       });
       console.log("✅ Admin user created.");
-      
-      await db.update(schema.user)
+
+      await db
+        .update(schema.user)
         .set({ role: "admin" })
         .where(eq(schema.user.email, adminEmail));
       console.log("✅ Admin role assigned.");
@@ -392,7 +373,10 @@ async function main() {
       console.log("Admin user already exists.");
     }
   } catch (error) {
-    console.error("⚠️ Failed to seed admin user (it might already exist):", error);
+    console.error(
+      "⚠️ Failed to seed admin user (it might already exist):",
+      error,
+    );
   }
 
   console.log("✅ Seeding completed.");

@@ -1,30 +1,38 @@
-import { Users, Stethoscope, Landmark, HeartHandshake } from "lucide-react";
+import { HeartHandshake, Landmark, Stethoscope, Users } from "lucide-react";
 
 const AUDIENCES = [
   {
     category: "Psicólogos e Terapeutas",
-    benefit: "Organize relatos entre sessões e acompanhe sinais que podem impactar o processo terapêutico.",
+    benefit:
+      "Organize relatos entre sessões e acompanhe sinais que podem impactar o processo terapêutico.",
     icon: Users,
-    items: ["Psicólogos Clínicos", "Psicoterapeutas", "Analistas"]
+    items: ["Psicólogos Clínicos", "Psicoterapeutas", "Analistas"],
   },
   {
     category: "Médicos e Clínicas",
-    benefit: "Tenha informações mais claras sobre adesão, efeitos colaterais e evolução percebida pelo paciente.",
+    benefit:
+      "Tenha informações mais claras sobre adesão, efeitos colaterais e evolução percebida pelo paciente.",
     icon: Stethoscope,
-    items: ["Psiquiatras", "Médicos de Família", "Clínicos Gerais"]
+    items: ["Psiquiatras", "Médicos de Família", "Clínicos Gerais"],
   },
   {
     category: "Saúde Pública e CAPS",
-    benefit: "Apoie equipes no acompanhamento longitudinal de pacientes em uso contínuo de medicação.",
+    benefit:
+      "Apoie equipes no acompanhamento longitudinal de pacientes em uso contínuo de medicação.",
     icon: Landmark,
-    items: ["Equipes de CAPS", "Profissionais de UBS", "Saúde da Família"]
+    items: ["Equipes de CAPS", "Profissionais de UBS", "Saúde da Família"],
   },
   {
     category: "Equipes Multiprofissionais",
-    benefit: "Facilite o alinhamento entre profissionais com informações organizadas e contextualizadas.",
+    benefit:
+      "Facilite o alinhamento entre profissionais com informações organizadas e contextualizadas.",
     icon: HeartHandshake,
-    items: ["Equipes Multidisciplinares", "Clínicas de Saúde Mental", "Coordenadores de Cuidado"]
-  }
+    items: [
+      "Equipes Multidisciplinares",
+      "Clínicas de Saúde Mental",
+      "Coordenadores de Cuidado",
+    ],
+  },
 ];
 
 export function TargetAudience() {
@@ -34,10 +42,14 @@ export function TargetAudience() {
         <div className="mb-16 flex flex-col items-center text-center">
           <h2 className="font-heading max-w-3xl text-3xl font-light tracking-tight text-[var(--lc-neutral-950)] md:text-5xl lg:text-6xl mb-6">
             Para quem faz{" "}
-            <span className="text-[var(--lc-teal-600)] italic">saúde mental na prática.</span>
+            <span className="text-[var(--lc-teal-600)] italic">
+              saúde mental na prática.
+            </span>
           </h2>
           <p className="max-w-2xl text-lg text-[var(--lc-neutral-600)]">
-            A Lente Clínica é pensada para profissionais que acompanham pacientes em uso de medicação e precisam melhorar a escuta, o registro e a comunicação clínica.
+            A Lente Clínica é pensada para profissionais que acompanham
+            pacientes em uso de medicação e precisam melhorar a escuta, o
+            registro e a comunicação clínica.
           </p>
         </div>
 
@@ -52,8 +64,12 @@ export function TargetAudience() {
                   <group.icon size={24} />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-[var(--lc-neutral-900)] mb-1">{group.category}</h3>
-                  <p className="text-sm text-[var(--lc-neutral-500)] leading-relaxed">{group.benefit}</p>
+                  <h3 className="text-lg font-bold text-[var(--lc-neutral-900)] mb-1">
+                    {group.category}
+                  </h3>
+                  <p className="text-sm text-[var(--lc-neutral-500)] leading-relaxed">
+                    {group.benefit}
+                  </p>
                 </div>
               </div>
 
@@ -76,8 +92,12 @@ export function TargetAudience() {
             <HeartHandshake size={20} />
           </div>
           <p className="text-sm text-[var(--lc-neutral-600)] leading-relaxed">
-            <span className="font-semibold text-[var(--lc-neutral-800)]">Ideal para coordenação de cuidado:</span>{" "}
-            A plataforma unifica a linguagem entre psicólogos, médicos e equipes, garantindo que informações relevantes sobre o uso de medicação não se percam entre os atendimentos.
+            <span className="font-semibold text-[var(--lc-neutral-800)]">
+              Ideal para coordenação de cuidado:
+            </span>{" "}
+            A plataforma unifica a linguagem entre psicólogos, médicos e
+            equipes, garantindo que informações relevantes sobre o uso de
+            medicação não se percam entre os atendimentos.
           </p>
         </div>
       </div>

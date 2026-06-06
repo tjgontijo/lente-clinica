@@ -28,4 +28,9 @@ export const auth = betterAuth({
       expiresIn: 900, // 15 minutes
     }),
   ],
+  advanced: {
+    database: {
+      generateId: "uuid",
+    },
+  },
 });

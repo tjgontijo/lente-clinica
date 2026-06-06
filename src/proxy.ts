@@ -1,6 +1,6 @@
-import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
-import { NextResponse, type NextRequest } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
 
 export default async function proxy(request: NextRequest) {
   const session = await auth.api.getSession({
@@ -16,12 +16,18 @@ export default async function proxy(request: NextRequest) {
   }
 
   if (session && (isAuthPage || isPublicPage)) {
-    return NextResponse.redirect(new URL("/cases", request.url));
+    return NextResponse.redirect(new URL("/medications", request.url));
   }
 
   return;
 }
 
 export const config = {
-  matcher: ["/", "/cases", "/cases/:path*", "/medications", "/medications/:path*", "/sign-in"],
+  matcher: [
+    "/",
+
+    "/medications",
+    "/medications/:path*",
+    "/sign-in",
+  ],
 };

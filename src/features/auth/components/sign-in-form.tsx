@@ -101,7 +101,7 @@ export function SignInForm() {
     try {
       const result = await authClient.signIn.magicLink({
         email: email.toLowerCase(),
-        callbackURL: "/dashboard",
+        callbackURL: "/medications",
       });
 
       if ((result as { error?: unknown })?.error) {
@@ -132,16 +132,18 @@ export function SignInForm() {
       const result = await authClient.signIn.email({
         email: email.toLowerCase(),
         password,
-        callbackURL: "/dashboard",
+        callbackURL: "/medications",
       });
 
       if ((result as { error?: unknown })?.error) {
-        toast.error(getAuthErrorMessage(result, "Falha ao entrar com senha."));
+        toast.error(
+          getAuthErrorMessage(result, "Falha ao acessar com senha."),
+        );
         return;
       }
     } catch (error) {
       console.error("[SignIn] Password sign-in error:", error);
-      toast.error("Falha ao entrar com senha.");
+      toast.error("Falha ao acessar com senha.");
     }
   };
 
@@ -215,7 +217,7 @@ export function SignInForm() {
           onClick={switchToPassword}
         >
           <KeyRound className="mr-2 h-4 w-4" />
-          Entrar com senha
+          Acessar com senha
         </Button>
 
         <Button
@@ -238,7 +240,7 @@ export function SignInForm() {
       <div className="space-y-7">
         <div>
           <h1 className="text-2xl font-bold tracking-tight text-[var(--lc-teal-900)]">
-            Entrar com senha
+            Acessar com senha
           </h1>
           <p className="mt-2 text-sm text-muted-foreground">
             Use seu email e senha para acessar o painel clínico.
@@ -298,10 +300,10 @@ export function SignInForm() {
             {isPasswordSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Entrando...
+                Acessando...
               </>
             ) : (
-              "Entrar"
+              "Acessar plataforma"
             )}
           </Button>
         </form>
@@ -311,7 +313,7 @@ export function SignInForm() {
           className="w-full rounded-[var(--lc-radius-full)] bg-[var(--lc-neutral-100)] text-muted-foreground hover:bg-[var(--lc-neutral-150)] hover:text-foreground"
           onClick={switchToMagicLink}
         >
-          Entrar com link mágico
+          Acessar com link mágico
         </Button>
       </div>
     );
@@ -367,7 +369,7 @@ export function SignInForm() {
         className="w-full rounded-[var(--lc-radius-full)] bg-[var(--lc-neutral-100)] text-muted-foreground hover:bg-[var(--lc-neutral-150)] hover:text-foreground"
         onClick={switchToPassword}
       >
-        Entrar com senha
+        Acessar com senha
       </Button>
 
       <p className="text-center text-xs text-muted-foreground">

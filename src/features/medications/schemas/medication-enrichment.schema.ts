@@ -4,44 +4,34 @@ const boundedString = (min: number, max: number) =>
   z.string().min(min).max(max);
 
 export const medicationEnrichmentSchema = z.object({
-  description: boundedString(80, 700),
+  description: boundedString(300, 3000),
 
-  clinicalContexts: z
-    .array(boundedString(1, 180))
-    .min(3)
-    .max(6),
+  clinicalDomains: z
+    .array(
+      z.object({
+        name: boundedString(1, 200),
+        content: z.string(),
+      }),
+    )
+    .min(1)
+    .max(10),
 
-  patientReports: z
-    .array(boundedString(1, 180))
-    .min(4)
-    .max(7),
+  sessionDiscriminationQuestions: z.array(z.string()).min(2).max(10),
 
-  careObservations: z
-    .array(boundedString(1, 240))
-    .min(4)
-    .max(7),
-
-  clinicalConfounders: z
-    .array(boundedString(1, 280))
-    .min(4)
-    .max(7),
-
-  usefulQuestions: z
-    .array(boundedString(1, 220))
-    .min(5)
-    .max(8),
-
-  coordinationNotes: z
-    .array(boundedString(1, 260))
-    .min(3)
-    .max(6),
+  communicationScenarios: z.array(z.string()).min(2).max(10),
 
   attentionSignals: z
-    .array(boundedString(1, 260))
-    .min(3)
-    .max(6),
+    .array(
+      z.object({
+        level: z.enum(["amarelo", "vermelho"]),
+        signal: z.string(),
+        action: z.string(),
+      }),
+    )
+    .min(2)
+    .max(10),
 
-  clinicalPhrase: boundedString(1, 180),
+  clinicalPhrase: boundedString(1, 400),
 });
 
 export type MedicationEnrichment = z.infer<typeof medicationEnrichmentSchema>;

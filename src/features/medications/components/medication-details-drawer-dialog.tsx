@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useIsMobile } from "@/hooks/use-mobile";
 import {
   Dialog,
   DialogContent,
@@ -15,23 +14,24 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useIsMobile } from "@/hooks/use-mobile";
+import type { ProductWithMedication } from "../types";
 import { MedicationDetails } from "./medication-details";
-import type { MedicationWithClass } from "../types";
 
 interface MedicationDetailsDrawerDialogProps {
-  medication: MedicationWithClass | null;
+  product: ProductWithMedication | null;
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
 
 export function MedicationDetailsDrawerDialog({
-  medication,
+  product,
   open,
   onOpenChange,
 }: MedicationDetailsDrawerDialogProps) {
   const isMobile = useIsMobile();
 
-  if (!medication) return null;
+  if (!product) return null;
 
   if (isMobile) {
     return (
@@ -43,7 +43,7 @@ export function MedicationDetailsDrawerDialog({
             </DrawerTitle>
           </DrawerHeader>
           <ScrollArea className="px-6 pb-12 pt-4 h-full max-h-[calc(90vh-80px)]">
-            <MedicationDetails medication={medication} />
+            <MedicationDetails product={product} />
           </ScrollArea>
         </DrawerContent>
       </Drawer>
@@ -60,7 +60,7 @@ export function MedicationDetailsDrawerDialog({
           </DialogTitle>
         </DialogHeader>
         <ScrollArea className="h-full max-h-[calc(90vh-100px)] px-10 pb-10 pt-2">
-          <MedicationDetails medication={medication} />
+          <MedicationDetails product={product} />
         </ScrollArea>
       </DialogContent>
     </Dialog>

@@ -1,57 +1,97 @@
 import {
+  AlertCircle,
+  AlertTriangle,
+  Check,
+  Copy,
+  ExternalLink,
+  Eye,
+  HelpCircle,
   Info,
   MessageCircle,
-  Eye,
-  AlertCircle,
-  HelpCircle,
-  Quote,
   Pill,
-  ExternalLink,
+  Quote,
+  Stethoscope,
+  Target,
   Users,
-  AlertTriangle,
-  Copy,
-  Check,
+  Zap,
 } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { toast } from "sonner";
-import { useState } from "react";
-import type { MedicationWithClass } from "../types";
+import type { ProductWithMedication } from "../types";
 
 interface MedicationDetailsProps {
-  medication: MedicationWithClass;
+  product: ProductWithMedication;
 }
 
-export function MedicationDetails({ medication }: MedicationDetailsProps) {
+export function MedicationDetails({ product }: MedicationDetailsProps) {
   const [isCopied, setIsCopied] = useState(false);
+  const medication = product.medication;
+
+  // Tipagem para os novos campos JSON
+  const clinicalDomains = (medication.clinicalDomains as any[]) || [];
+  const attentionSignalsV5 = (medication.attentionSignals as any[]) || [];
+  const sessionQuestions =
+    (medication.sessionDiscriminationQuestions as string[]) || [];
+  const communicationScenarios =
+    (medication.communicationScenarios as string[]) || [];
 
   const copyToMarkdown = () => {
     const md = [
-      `# ${medication.name}`,
+      `# ${product.productName} (${medication.name})`,
       medication.clinicalPhrase ? `> ${medication.clinicalPhrase}\n` : "",
       `**Classe:** ${medication.class.name} - ${medication.class.description}\n`,
       "## Descrição",
       medication.description || "Descrição não disponível.",
-      "\n## Contextos Clínicos",
-      medication.clinicalContexts?.map((ctx) => `- ${ctx}`).join("\n") || "N/A",
-      "\n## Relatos Comuns",
-      medication.patientReports?.map((r) => `- ${r}`).join("\n") || "N/A",
-      "\n## O que observar no atendimento",
-      medication.careObservations?.map((o) => `- ${o}`).join("\n") || "N/A",
-      "\n## Perguntas úteis",
-      medication.usefulQuestions?.map((q) => `- ${q}`).join("\n") || "N/A",
-      "\n## Notas de Coordenação",
-      medication.coordinationNotes?.map((n) => `- ${n}`).join("\n") || "N/A",
-      "\n## Sinais de Atenção",
-      medication.attentionSignals?.map((s) => `- ${s}`).join("\n") || "N/A",
-      "\n## Possíveis confundidores clínicos",
-      medication.clinicalConfounders?.map((e) => `- ${e}`).join("\n") || "N/A",
-    ].join("\n");
+
+      // V5 Domains
+      ...clinicalDomains.map((d) => `\n## ${d.name}\n${d.content}`),
+
+      // Fallback V4
+      medication.clinicalContexts?.length
+        ? `\n## Contextos Clínicos\n${medication.clinicalContexts.map((c) => `- ${c}`).join("\n")}`
+        : "",
+      medication.patientReports?.length
+        ? `\n## Relatos Comuns\n${medication.patientReports.map((r) => `- ${r}`).join("\n")}`
+        : "",
+      medication.careObservations?.length
+        ? `\n## O que observar\n${medication.careObservations.map((o) => `- ${o}`).join("\n")}`
+        : "",
+
+      // V5 Questions
+      sessionQuestions.length
+        ? `\n## Perguntas de Discriminação na Sessão\n${sessionQuestions.map((q) => `- ${q}`).join("\n")}`
+        : "",
+
+      // Fallback V4 Questions
+      !sessionQuestions.length && medication.usefulQuestions?.length
+        ? `\n## Perguntas Úteis\n${medication.usefulQuestions.map((q) => `- ${q}`).join("\n")}`
+        : "",
+
+      // V5 Scenarios
+      communicationScenarios.length
+        ? `\n## Cenários de Comunicação com Médico\n${communicationScenarios.map((s) => `- ${s}`).join("\n")}`
+        : "",
+
+      // V5 Attention Signals
+      attentionSignalsV5.length
+        ? `\n## Sinais de Atenção\n${attentionSignalsV5.map((s) => `- [${s.level.toUpperCase()}] ${s.signal}: ${s.action}`).join("\n")}`
+        : "",
+
+      // Fallback V4 Signals
+      !attentionSignalsV5.length && (medication.attentionSignals as any[])?.length
+        ? `\n## Sinais de Atenção\n${(medication.attentionSignals as any[]).map((s: string) => `- ${s}`).join("\n")}`
+        : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
 
     navigator.clipboard.writeText(md).then(() => {
       setIsCopied(true);
       toast.success("Copiado para o clipboard!", {
-        description: "O conteúdo do medicamento está pronto para ser colado em formato Markdown.",
+        description:
+          "O conteúdo do medicamento está pronto para ser colado em formato Markdown.",
       });
       setTimeout(() => setIsCopied(false), 2000);
     });
@@ -69,11 +109,27 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
                   <Pill size={24} />
                 </div>
                 <div className="flex-1">
-                  <h2 className="text-[28px] font-bold text-[var(--lc-neutral-900)] tracking-tight leading-none mb-2">
-                    {medication.name}
+                  <h2 className="text-[28px] font-bold text-[var(--lc-neutral-900)] tracking-tight leading-none mb-1">
+                    {product.productName}
                   </h2>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-[16px] font-semibold text-[var(--lc-teal-600)]">
+                      {medication.name}
+                    </span>
+                    {product.regulatoryLabel && (
+                      <Badge
+                        variant="outline"
+                        className="bg-red-50 text-red-700 border-red-100 text-[10px] font-bold uppercase"
+                      >
+                        {product.regulatoryLabel}
+                      </Badge>
+                    )}
+                  </div>
                   <div className="flex items-center gap-2">
-                    <Badge variant="outline" className="font-mono text-[12px] bg-[var(--lc-neutral-50)] text-[var(--lc-neutral-600)] border-[var(--lc-neutral-200)] px-2 py-0.5">
+                    <Badge
+                      variant="outline"
+                      className="font-mono text-[12px] bg-[var(--lc-neutral-50)] text-[var(--lc-neutral-600)] border-[var(--lc-neutral-200)] px-2 py-0.5"
+                    >
                       {medication.class.name}
                     </Badge>
                     <span className="text-[14px] text-[var(--lc-neutral-500)] font-medium">
@@ -110,39 +166,16 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
             </div>
           </div>
         )}
-
-        {/* Products Section */}
-        {medication.products && medication.products.length > 0 && (
-          <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-            <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-              <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-                <Pill size={14} className="text-[var(--lc-teal-500)]" />
-              </div>
-              Produtos Comerciais
-            </div>
-            <div className="flex flex-wrap gap-2">
-              {medication.products.map((product) => (
-                <Badge
-                  key={product.id}
-                  variant="outline"
-                  className="bg-white text-[var(--lc-neutral-600)] border-[var(--lc-neutral-200)] hover:bg-[var(--lc-neutral-50)] px-3 py-1.5 text-[12px] font-semibold rounded-xl transition-colors"
-                >
-                  {product.productName}
-                </Badge>
-              ))}
-            </div>
-          </section>
-        )}
       </div>
 
       <div className="grid grid-cols-1 gap-6">
-        {/* Description / Mechanism */}
+        {/* Description */}
         <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
           <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
             <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
               <Info size={14} className="text-[var(--lc-teal-500)]" />
             </div>
-            Mecanismo e Indicações
+            Visão Geral e Janelas Temporais
           </div>
           <p className="text-[16px] text-[var(--lc-neutral-700)] leading-relaxed font-medium">
             {medication.description ||
@@ -150,180 +183,220 @@ export function MedicationDetails({ medication }: MedicationDetailsProps) {
           </p>
         </section>
 
-        {/* Clinical Contexts */}
-        <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <ExternalLink size={14} className="text-[var(--lc-teal-500)]" />
-            </div>
-            Contextos Clínicos
-          </div>
-          <ul className="space-y-3">
-            {medication.clinicalContexts?.map((ctx, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)] mt-2 flex-shrink-0" />
-                {ctx}
-              </li>
-            )) || (
-                <span className="text-[14px] text-[var(--lc-neutral-400)] italic">
-                  Dados em análise...
-                </span>
-              )}
-          </ul>
-        </section>
+        {/* V5: Clinical Domains */}
+        {clinicalDomains.length > 0 &&
+          clinicalDomains.map((domain, i) => (
+            <section
+              key={i}
+              className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm"
+            >
+              <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
+                <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                  <Target size={14} className="text-[var(--lc-teal-500)]" />
+                </div>
+                {domain.name}
+              </div>
+              <p className="text-[15px] text-[var(--lc-neutral-700)] leading-relaxed">
+                {domain.content}
+              </p>
+            </section>
+          ))}
 
-        {/* Patient Reports */}
-        <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <MessageCircle size={14} className="text-[var(--lc-teal-500)]" />
-            </div>
-            Relatos Comuns
-          </div>
-          <ul className="space-y-3">
-            {medication.patientReports?.map((report, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)] mt-2 flex-shrink-0" />
-                {report}
-              </li>
-            )) || (
-                <span className="text-[14px] text-[var(--lc-neutral-400)] italic">
-                  Dados em análise...
-                </span>
-              )}
-          </ul>
-        </section>
+        {/* V4 Fallbacks (Contexts, Reports, Observations) */}
+        {clinicalDomains.length === 0 && (
+          <>
+            {medication.clinicalContexts?.length ? (
+              <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
+                <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
+                  <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                    <ExternalLink
+                      size={14}
+                      className="text-[var(--lc-teal-500)]"
+                    />
+                  </div>
+                  Contextos Clínicos
+                </div>
+                <ul className="space-y-3">
+                  {medication.clinicalContexts.map((ctx, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)] mt-2 flex-shrink-0" />
+                      {ctx}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
 
-        {/* Session Observations */}
-        <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <Eye size={14} className="text-[var(--lc-teal-500)]" />
-            </div>
-            O que observar no atendimento
-          </div>
-          <ul className="space-y-3">
-            {medication.careObservations?.map((obs, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)] mt-2 flex-shrink-0" />
-                {obs}
-              </li>
-            )) || (
-                <span className="text-[14px] text-[var(--lc-neutral-400)] italic">
-                  Dados em análise...
-                </span>
-              )}
-          </ul>
-        </section>
+            {medication.patientReports?.length ? (
+              <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
+                <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
+                  <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                    <MessageCircle
+                      size={14}
+                      className="text-[var(--lc-teal-500)]"
+                    />
+                  </div>
+                  Relatos Comuns
+                </div>
+                <ul className="space-y-3">
+                  {medication.patientReports.map((report, i) => (
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
+                    >
+                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)] mt-2 flex-shrink-0" />
+                      {report}
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ) : null}
+          </>
+        )}
 
-        {/* Useful Questions */}
-        <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <HelpCircle size={14} className="text-blue-500" />
+        {/* V5: Discrimination Questions */}
+        {sessionQuestions.length > 0 && (
+          <section className="bg-blue-50/50 p-6 rounded-[24px] border border-blue-100 flex flex-col gap-4 shadow-sm">
+            <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-blue-600/70">
+              <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <HelpCircle size={14} className="text-blue-500" />
+              </div>
+              Discriminação na Sessão
             </div>
-            Perguntas úteis
-          </div>
-          <ul className="space-y-3">
-            {medication.usefulQuestions?.map((question, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] font-semibold leading-snug"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0" />
-                {question}
-              </li>
-            )) || (
-              <span className="text-[14px] text-[var(--lc-neutral-400)] italic">
-                Dados em análise...
-              </span>
-            )}
-          </ul>
-        </section>
+            <ul className="space-y-4">
+              {sessionQuestions.map((question, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-4 p-4 bg-white rounded-xl border border-blue-50 shadow-sm"
+                >
+                  <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600 flex-shrink-0 font-bold text-xs">
+                    {i + 1}
+                  </div>
+                  <p className="text-[15px] text-blue-900 font-semibold leading-relaxed">
+                    {question}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-        {/* Coordination Notes */}
-        <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <Users size={14} className="text-indigo-500" />
+        {/* V4: Useful Questions Fallback */}
+        {sessionQuestions.length === 0 && medication.usefulQuestions?.length ? (
+          <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
+            <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
+              <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <HelpCircle size={14} className="text-blue-500" />
+              </div>
+              Perguntas úteis
             </div>
-            Notas de Coordenação
-          </div>
-          <ul className="space-y-3">
-            {medication.coordinationNotes?.map((note, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0" />
-                {note}
-              </li>
-            )) || (
-              <span className="text-[14px] text-[var(--lc-neutral-400)] italic">
-                Dados em análise...
-              </span>
-            )}
-          </ul>
-        </section>
+            <ul className="space-y-3">
+              {medication.usefulQuestions.map((question, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] font-semibold leading-snug"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2 flex-shrink-0" />
+                  {question}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
 
-        {/* Attention Signals */}
-        <section className="bg-red-50/30 p-6 rounded-[24px] border border-red-100 flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-red-500/70">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <AlertTriangle size={14} className="text-red-500" />
+        {/* V5: Communication Scenarios */}
+        {communicationScenarios.length > 0 && (
+          <section className="bg-indigo-50/50 p-6 rounded-[24px] border border-indigo-100 flex flex-col gap-4 shadow-sm">
+            <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-indigo-600/70">
+              <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <Stethoscope size={14} className="text-indigo-500" />
+              </div>
+              Comunicação com Médico Assistente
             </div>
-            Sinais de Atenção
-          </div>
-          <ul className="space-y-3">
-            {medication.attentionSignals?.map((signal, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-red-900 leading-snug font-medium"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0" />
-                {signal}
-              </li>
-            )) || (
-              <span className="text-[14px] text-red-400/60 italic">
-                Dados em análise...
-              </span>
-            )}
-          </ul>
-        </section>
+            <ul className="space-y-3">
+              {communicationScenarios.map((scenario, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-[14px] text-indigo-900 leading-snug"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 mt-2 flex-shrink-0" />
+                  {scenario}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-        {/* Confounding Effects */}
-        <section className="bg-[var(--lc-neutral-50)] p-6 rounded-[24px] border border-[var(--lc-neutral-150)] flex flex-col gap-4 shadow-sm">
-          <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-[var(--lc-neutral-400)]">
-            <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
-              <AlertCircle size={14} className="text-amber-500" />
+        {/* V5: Attention Signals (JSON Objects) */}
+        {attentionSignalsV5.length > 0 && (
+          <section className="bg-red-50/30 p-6 rounded-[24px] border border-red-100 flex flex-col gap-4 shadow-sm">
+            <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-red-500/70">
+              <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <AlertTriangle size={14} className="text-red-500" />
+              </div>
+              Sinais de Atenção e Conduta
             </div>
-            Possíveis confundidores clínicos
-          </div>
-          <ul className="space-y-3">
-            {medication.clinicalConfounders?.map((effect, i) => (
-              <li
-                key={i}
-                className="flex items-start gap-3 text-[14px] text-[var(--lc-neutral-700)] leading-snug"
-              >
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-400 mt-2 flex-shrink-0" />
-                {effect}
-              </li>
-            )) || (
-              <span className="text-[14px] text-[var(--lc-neutral-400)] italic">
-                Dados em análise...
-              </span>
-            )}
-          </ul>
-        </section>
+            <div className="grid grid-cols-1 gap-4">
+              {attentionSignalsV5.map((s, i) => (
+                <div
+                  key={i}
+                  className={`p-4 rounded-xl border flex flex-col gap-2 ${s.level === "vermelho" ? "bg-red-50 border-red-200" : "bg-amber-50 border-amber-200"}`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span
+                      className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${s.level === "vermelho" ? "bg-red-600 text-white" : "bg-amber-500 text-white"}`}
+                    >
+                      Nível {s.level}
+                    </span>
+                  </div>
+                  <p className="text-[14px] font-bold text-red-900 leading-tight">
+                    {s.signal}
+                  </p>
+                  <div className="flex items-center gap-2 mt-1 pt-2 border-t border-red-100/50">
+                    <Zap
+                      size={14}
+                      className={
+                        s.level === "vermelho"
+                          ? "text-red-600"
+                          : "text-amber-600"
+                      }
+                    />
+                    <p className="text-[13px] text-red-800 italic">
+                      {s.action}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* V4: Attention Signals Fallback (Strings) */}
+        {attentionSignalsV5.length === 0 &&
+        (medication.attentionSignals as any[])?.length ? (
+          <section className="bg-red-50/30 p-6 rounded-[24px] border border-red-100 flex flex-col gap-4 shadow-sm">
+            <div className="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-red-500/70">
+              <div className="w-6 h-6 rounded-lg bg-white flex items-center justify-center shadow-sm">
+                <AlertTriangle size={14} className="text-red-500" />
+              </div>
+              Sinais de Atenção
+            </div>
+            <ul className="space-y-3">
+              {(medication.attentionSignals as any[]).map((signal, i) => (
+                <li
+                  key={i}
+                  className="flex items-start gap-3 text-[14px] text-red-900 leading-snug font-medium"
+                >
+                  <div className="w-1.5 h-1.5 rounded-full bg-red-400 mt-2 flex-shrink-0" />
+                  {signal}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
       </div>
     </div>
   );

@@ -1,194 +1,130 @@
-export const MEDICATION_ENRICHMENT_PROMPT_VERSION = "medication-enrichment-v4.0";
+export const MEDICATION_ENRICHMENT_PROMPT_VERSION =
+  "medication-enrichment-v5.0";
 
 export const MEDICATION_ENRICHMENT_STATIC_PROMPT = `
-Você está gerando uma ficha clínica de apoio para profissionais que acompanham pacientes medicados em saúde mental.
+Você está gerando uma ficha clínica para um manual destinado a TERAPEUTAS (psicólogos e psicoterapeutas) que atendem pacientes medicados em consultório.
 
-Objetivo:
-Gerar conteúdo observacional, prudente e clinicamente útil para profissionais de saúde. A ficha deve ajudar o profissional a:
-1. reconhecer possíveis mudanças percebidas pelo paciente durante o acompanhamento;
-2. formular perguntas melhores em atendimento, consulta, sessão, triagem ou retorno;
-3. diferenciar sintomas do quadro clínico, efeitos percebidos, adesão irregular, eventos de vida, contexto social e mudanças recentes no tratamento;
-4. identificar sinais que podem merecer conversa do paciente com o médico prescritor ou com a equipe responsável;
-5. alinhar observações clínicas com prescritor, equipe ou serviço de referência quando houver consentimento do paciente ou responsável;
-6. registrar informações relevantes sem interpretar exames, diagnosticar reações adversas ou orientar conduta medicamentosa.
+O destinatário é o terapeuta em sessão semanal ou quinzenal, não é manual multiprofissional, não é manual para prescritor.
 
-Público-alvo:
-Profissionais que acompanham pacientes medicados em saúde mental, incluindo psicólogos, terapeutas, médicos, enfermeiros, profissionais de atenção básica, CAPS, clínicas multiprofissionais e outros profissionais de saúde.
+Propósito do manual:
+O terapeuta abre a ficha quando soube que o paciente começou ou está em uso de uma determinada medicação. Ele quer saber:
+1. O que pode aparecer na sessão (não na consulta médica, não no laboratório).
+2. Como diferenciar efeito do medicamento, evolução do quadro, eventos de vida e adesão irregular.
+3. Quais perguntas-chave ajudam a discriminar hipóteses clínicas na própria sessão.
+4. Em que situações vale comunicar o médico assistente.
+5. Quais sinais merecem ação imediata.
 
-A ficha deve ser útil para diferentes contextos de cuidado, sem presumir que o usuário é médico, psicólogo ou prescritor.
+Princípios não-negociáveis:
 
-Regras obrigatórias:
-1. Não prescrever.
-2. Não recomendar dose.
-3. Não sugerir iniciar, reduzir, aumentar, trocar, interromper ou suspender medicamento.
-4. Não afirmar causalidade como certeza.
-5. Não substituir avaliação médica.
-6. Não dar orientação farmacológica operacional.
-7. Não usar linguagem alarmista.
-8. Não escrever como bula técnica.
-9. Não escrever para o paciente diretamente, exceto nas perguntas úteis, que devem ser formuladas como perguntas prontas para uso no atendimento.
-10. Não inventar informações específicas quando houver incerteza.
-11. Não prometer melhora, resposta clínica ou benefício terapêutico.
-12. Não usar frases como "indicado para" de forma prescritiva. Prefira "paciente em tratamento médico para" ou "contextos em que pode aparecer".
-13. Usar linguagem de possibilidade e observação, como "pode aparecer", "pode estar associado", "vale observar", "pode ser útil investigar", "pode merecer alinhamento com o prescritor".
-14. Quando houver possível risco relevante, formular como sinal de atenção clínica e não como diagnóstico.
-15. Quando houver dúvida sobre uma informação específica, manter linguagem conservadora e observacional.
-16. Não incluir detalhes de dose, posologia, ajuste, titulação ou conduta de interrupção.
-17. Não listar interações medicamentosas de forma técnica, a menos que sejam traduzidas em perguntas ou situações úteis para o acompanhamento.
-18. Não transformar contraindicações, exames ou riscos médicos em instruções para o profissional manejar o tratamento.
-19. Não repetir a mesma ideia com palavras diferentes apenas para preencher itens.
-20. Não presumir que o profissional que lê a ficha é prescritor.
+1. Não prescrever, recomendar dose, sugerir início, troca, redução, aumento ou suspensão de medicamento.
+2. Não afirmar causalidade como certeza.
+3. Não usar linguagem de bula, não listar efeitos adversos por sistema, não detalhar mecanismo farmacológico.
+4. Não escrever para o paciente. Escrever para o terapeuta.
+5. Não posicionar o terapeuta como intermediário entre paciente e médico nem como educador farmacológico.
+6. Toda pergunta gerada deve ser fechável pelo terapeuta dentro da própria competência: ouvir, observar, registrar, comunicar ao médico. Se a pergunta exigir que o terapeuta dê, em resposta, informação técnica sobre o medicamento (tempo de efeito, mecanismo, dose, ajustes, interações), ela não pertence a este manual.
+7. Não inventar quando houver incerteza. Manter linguagem conservadora e observacional.
+8. Linguagem observacional, prudente, não-alarmista.
+9. Não substituir avaliação médica.
+10. Não incluir detalhes de dose, posologia, ajuste, titulação, equivalência ou retirada.
 
-Critérios de qualidade:
-1. Seja específico para a substância informada.
-2. Evite frases genéricas aplicáveis a qualquer medicamento da mesma classe.
-3. Antes de escrever, identifique mentalmente de 2 a 5 pontos distintivos do medicamento. Distribua esses pontos entre description, patientReports, careObservations, clinicalConfounders, usefulQuestions, coordinationNotes ou attentionSignals.
-4. Quando houver riscos físicos, cautelas ou interações relevantes, traduza para sinais observáveis, relatos do paciente ou situações que merecem conversa com o prescritor ou equipe, sem linguagem de bula.
-5. Quando houver sinais físicos específicos clinicamente relevantes para o medicamento, inclua exemplos concretos em linguagem leiga e observacional, sem orientar manejo médico, exames ou conduta medicamentosa.
-6. Evite substituir sinais específicos por frases genéricas como "mal-estar físico" quando houver sinais observáveis mais úteis para o profissional reconhecer no relato.
-7. Evite saídas excessivamente positivas. Inclua melhora percebida, ausência de resposta percebida, piora subjetiva, desconfortos e ambivalências quando fizer sentido.
-8. Priorize conteúdo observável no atendimento ou relatável pelo paciente, cuidador ou familiar.
-9. Inclua fatores que podem confundir a leitura clínica, como sono, ansiedade, adesão, álcool, outras medicações, sintomas do transtorno de base, eventos de vida, contexto social e mudanças recentes.
-10. Inclua perguntas abertas, não indutivas e clinicamente seguras.
-11. Nas perguntas úteis, prefira perguntas que o profissional possa fazer diretamente ao paciente, cuidador ou familiar.
-12. Evite perguntas em terceira pessoa, como "Como o paciente descreve...". Prefira "Como você descreveria..." ou "O que vocês perceberam...", quando houver cuidador.
-13. Use português brasileiro claro, profissional e conciso.
-14. Não use markdown.
-15. Não inclua comentários.
-16. Não inclua texto fora do JSON.
-17. A saída deve ser JSON válido, parseável por JSON.parse.
+Voz e registro:
 
-Foco clínico multiprofissional:
-1. Privilegie o que ajuda a escuta, o acompanhamento, a formulação clínica e a comunicação entre profissionais.
-2. Evite excesso de mecanismo farmacológico.
-3. Evite termos técnicos quando uma formulação clínica simples for suficiente.
-4. Não transforme a ficha em resumo de bula.
-5. O objetivo não é ensinar a manejar o medicamento, mas apoiar a observação clínica e a comunicação responsável.
-6. Quando o medicamento tiver um risco específico importante, mencione apenas o que o profissional pode observar, perguntar ou registrar.
-7. Para psicofármacos, considere quando aplicável: humor, sono, energia, ansiedade, cognição, libido, apetite, peso, ativação, sedação, impulsividade, adesão, risco suicida e funcionamento cotidiano.
-8. Para medicamentos não psiquiátricos que podem aparecer no cuidado em saúde mental, foque em impactos subjetivos e funcionais como dor, fadiga, sono, imagem corporal, humor, ansiedade, adesão e qualidade de vida.
-9. Para medicamentos de uso altamente especializado, biológicos, neurológicos raros, oncológicos, imunológicos ou hospitalares, considere impacto da rotina de cuidado, procedimentos, equipe multiprofissional, cuidadores, escola, trabalho, autonomia e carga familiar.
-10. Quando o paciente for frequentemente pediátrico, dependente, tiver limitação cognitiva, neurológica ou de comunicação, inclua perguntas que possam ser feitas ao cuidador ou responsável, sem presumir que o paciente consegue relatar tudo diretamente.
-11. Quando o medicamento estiver associado a condições crônicas, raras ou incapacitantes, considere a diferença entre evolução da doença, efeito percebido, carga do tratamento, sofrimento familiar e eventos recentes.
-12. Quando houver uso de cuidador ou familiar como informante, preserve linguagem ética e respeitosa, sem infantilizar o paciente.
-13. O conteúdo deve funcionar para atendimento clínico, consulta médica, sessão psicológica, retorno, triagem, acompanhamento em equipe ou discussão multiprofissional.
+1. Sóbrio, profissional, clínico-experiente. Como um colega mais sênior compartilhando observação clínica, não como bula nem como blog.
+2. Português brasileiro claro e conciso.
+3. Pode usar vocabulário psicoterápico próprio do terapeuta: linha de base, padrão da sessão, vínculo terapêutico, acesso afetivo, elaboração, reatividade emocional, baseline, ego-distônico, ego-sintônico, contratransferência, quando forem o termo adequado.
+4. Evitar vocabulário-tique de abertura formulaica. Não começar frases repetidamente com "Relato de", "Queixa de", "Percepção de", "Dúvida sobre". Variar sujeito gramatical e estrutura sintática. A prudência epistêmica deve aparecer no conteúdo, não em fórmulas de abertura.
+5. Manter prudência com expressões como "pode aparecer", "costuma", "em parte dos pacientes", "tende a", "vale observar", sem transformá-las em tique repetitivo.
+6. Quando houver janela temporal clínica conhecida (efeito terapêutico esperado em N semanas, atenção redobrada nas primeiras N semanas, descontinuação após N dias, estabilização após N meses), incluí-la explicitamente na description. Janelas temporais são parte central do que este manual entrega ao terapeuta.
+
+Calibração por relevância clínica no consultório de terapia:
+
+Antes de escrever, classifique mentalmente o medicamento em uma destas três categorias:
+
+Categoria A — Alta frequência no consultório de terapia:
+Psicofármacos de uso comum: ISRSs, ISRSNs, antidepressivos atípicos, estabilizadores de humor, antipsicóticos, benzodiazepínicos, hipnóticos, estimulantes para TDAH, lítio, alguns anticonvulsivantes em uso psiquiátrico. O terapeuta encontra esses pacientes frequentemente.
+Ficha rica: 5 a 7 domínios clínicos, descrição com janelas temporais detalhadas, perguntas e cenários abundantes.
+
+Categoria B — Média frequência:
+Medicamentos não-psiquiátricos que podem impactar saúde mental e aparecer no relato em sessão: corticoides sistêmicos, isotretinoína, betabloqueadores, hormônios tireoidianos, anticoncepcionais hormonais, terapia hormonal, anti-histamínicos sedativos, opioides em uso crônico, anticonvulsivantes fora de uso psiquiátrico, antirretrovirais, imunossupressores comuns, quimioterápicos comuns.
+Ficha intermediária: 3 a 5 domínios, foco em impactos subjetivos perceptíveis na sessão (humor, sono, ansiedade, cognição, imagem corporal, sexualidade, adesão).
+
+Categoria C — Baixa frequência:
+Medicamentos altamente especializados que o terapeuta dificilmente encontrará: terapias enzimáticas, biológicos para doenças raras, oncológicos específicos, imunossupressores de uso restrito, medicamentos hospitalares.
+A ficha muda de foco: não é mais sobre o medicamento, é sobre como o paciente em tratamento contínuo para a condição de base aparece na sessão (carga do tratamento, impacto na rotina e identidade, sofrimento associado à condição, relação com a equipe médica, sustentação do vínculo terapêutico em meio à doença crônica).
+Ficha enxuta: 2 a 3 domínios, descrição curta centrada no contexto clínico do paciente.
 
 Orientações por campo:
-1. description:
-   - Explique o medicamento em linguagem objetiva.
-   - Inclua o que mais importa para o profissional observar no acompanhamento.
-   - Não soe como propaganda, bula ou recomendação médica.
-   - Não inclua dose.
-   - Evite mecanismo farmacológico detalhado, salvo se ele tiver relevância direta para a observação clínica.
 
-2. clinicalContexts:
-   - Liste contextos clínicos em que o medicamento pode aparecer.
-   - Evite "indicado para".
-   - Prefira formulações como "paciente em tratamento médico para..." ou "acompanhamento de quadros em que...".
-   - Não transforme contexto em recomendação de uso.
-   - Para medicamentos especializados, inclua contexto de cuidado contínuo, equipe multiprofissional, reabilitação, cuidador ou impacto familiar quando relevante.
+1. description (string, parágrafo único em prosa):
+Entre 400 e 900 caracteres. Estrutura típica: o que é o medicamento em uma frase, em que quadros costuma aparecer, janelas temporais relevantes para o terapeuta acompanhar (quando esperar efeito, quando há atenção redobrada, padrão de descontinuação se relevante), e o ponto central de observação na sessão. Para medicamentos da categoria C, o foco da descrição muda para o paciente em acompanhamento contínuo da condição e o que isso traz para o consultório, não para o medicamento em si.
 
-3. patientReports:
-   - Liste relatos que o paciente pode trazer espontaneamente ou após pergunta clínica.
-   - Inclua possíveis melhoras percebidas, desconfortos, dúvidas, ambivalências ou ausência de mudança percebida.
-   - Não atribua automaticamente o relato ao medicamento.
-   - Use linguagem como "relato de", "percepção de", "queixa de" ou "dúvida sobre".
-   - Quando o paciente puder ter limitação de comunicação, inclua também percepções trazidas por cuidadores ou familiares.
+2. clinicalDomains (array de objetos {name, content}):
+Quantidade conforme calibração: categoria A com 5 a 7 domínios, categoria B com 3 a 5, categoria C com 2 a 3.
+Cada domínio é um parágrafo coeso em prosa, entre 2 e 5 frases, que integra organicamente: o que pode aparecer no relato do paciente, o que o terapeuta pode observar na sessão, e o que pode confundir a leitura (evolução do quadro de base, eventos de vida, outras medicações, adesão irregular). A integração desses três planos no mesmo parágrafo é o que distingue este campo de uma lista.
+Nome do domínio: curto, entre 1 e 4 palavras, específico e evocativo do que o terapeuta vai querer encontrar via bookmark no PDF.
+Os domínios devem ser ESCOLHIDOS conforme o que é central para este medicamento específico, não preenchidos a partir de um conjunto fixo. Sertralina enfatiza sexualidade e descontinuação; bupropiona enfatiza ativação, ansiedade inicial e sono; clozapina enfatiza sedação, sialorreia e adesão; metilfenidato enfatiza apetite, sono e oscilação ao longo do dia; isotretinoína enfatiza humor e ideação suicida; corticoides enfatizam oscilação de humor e ativação. Cada medicamento tem domínios próprios.
+Domínios candidatos típicos para psicofármacos (use apenas os relevantes): Sono; Apetite e peso; Humor; Ansiedade; Ativação e energia; Embotamento afetivo; Sexualidade; Cognição; Sedação; Tolerabilidade inicial; Adesão e descontinuação; Sinais físicos específicos.
+Domínios candidatos para medicamentos não-psiquiátricos: Humor; Ansiedade; Sono; Imagem corporal e autoestima; Cognição; Sexualidade; Adesão; Carga do tratamento.
+Domínios candidatos para categoria C: Carga do tratamento; Vínculo com a equipe médica; Sofrimento associado à condição; Funcionalidade e identidade; Sustentação do trabalho terapêutico.
+Cada domínio deve trazer informação distinta dos outros. Não criar dois domínios que dizem essencialmente a mesma coisa sob ângulos diferentes.
 
-4. careObservations:
-   - Liste aspectos que o profissional pode observar em atendimento, consulta, sessão, retorno, triagem ou acompanhamento.
-   - Foque em sono, humor, energia, cognição, ativação, lentificação, ansiedade, adesão, funcionamento, segurança clínica e impacto cotidiano quando relevante.
-   - Não transforme observação em diagnóstico.
-   - Não conclua causalidade medicamentosa.
-   - Em quadros neurológicos, raras ou incapacitantes, inclua participação no atendimento, comunicação, fadiga, tolerância à frustração, autonomia e impacto da rotina de cuidado quando relevante.
+3. sessionDiscriminationQuestions (array de strings):
+Entre 3 e 6 perguntas. Cada pergunta serve para DISCRIMINAR hipóteses clínicas concorrentes na sessão. Não são perguntas de escuta ampla.
+O gesto cognitivo de cada pergunta é discriminar entre, por exemplo: acatisia versus ansiedade habitual; embotamento afetivo versus melhora real do humor; virada maniforme versus bem-estar legítimo; síndrome de descontinuação versus recaída; sedação medicamentosa versus piora depressiva; efeito sexual versus desinteresse afetivo pelo parceiro; oscilação intra-dia versus instabilidade de humor.
+Cada pergunta é UMA pergunta que o terapeuta pode fazer diretamente ao paciente na sessão. Formulada em segunda pessoa, aberta mas com foco discriminativo claro.
+Cada pergunta deve passar no teste de fechamento: após o paciente responder, o terapeuta deve conseguir fazer algo com a resposta (observar, registrar, comunicar ao médico) sem precisar dar informação técnica em troca. Nenhuma pergunta pode posicionar o terapeuta como intermediário entre paciente e médico, nem exigir que o terapeuta responda informação farmacológica.
 
-5. clinicalConfounders:
-   - Liste fatores que podem confundir a leitura clínica.
-   - Inclua sintomas do transtorno de base, privação de sono, álcool, outras medicações, uso irregular, comorbidades, contexto social e mudanças recentes.
-   - Inclua confundidores específicos do medicamento quando existirem.
-   - Não use este campo para listar efeitos adversos de bula sem relação com o acompanhamento clínico.
-   - Em doenças crônicas, raras ou progressivas, considere evolução do quadro de base, procedimentos, reabilitação, dor, fadiga, estresse familiar e mudanças na rotina.
+4. communicationScenarios (array de strings):
+Entre 3 e 6 cenários. Cada cenário é uma situação clínica que, se identificada na sessão, pode justificar comunicação com o médico assistente.
+Formulação em 1 ou 2 frases: condição observável + razão clínica clara. Linguagem prudente, sem imperativo. Forma típica: "Quando o paciente [observação concreta na sessão], pode valer alinhar com o psiquiatra para [razão clínica]".
+Selecionar os cenários com maior valor clínico para este medicamento, não listar todos os efeitos possíveis. Adesão irregular, efeitos que motivam abandono silencioso, possível virada de humor, sinais físicos relevantes, descontinuação por conta própria, e ausência de resposta após o período esperado costumam ser candidatos comuns.
 
-6. usefulQuestions:
-   - Use perguntas abertas e não indutivas.
-   - Escreva perguntas prontas para serem usadas em atendimento, consulta, sessão ou retorno.
-   - Prefira perguntas diretas ao paciente, como "Como você percebeu..." ou "O que mudou...".
-   - Quando houver cuidador ou responsável, use formulações como "O que vocês perceberam..." ou "Como a família tem observado...".
-   - Não use perguntas em terceira pessoa do tipo "Como o paciente descreve...".
-   - Não oriente dose, horário, interrupção ou troca.
-   - Inclua perguntas sobre adesão, mudanças recentes, sono, sintomas físicos, álcool, outras medicações, segurança clínica, rotina de cuidado ou impacto familiar quando relevante.
-   - As perguntas devem ser adequadas para um profissional de saúde fazer no acompanhamento, sem depender de ser prescritor.
+5. attentionSignals (array de objetos {level, signal, action}):
+Entre 3 e 6 sinais. Cada sinal tem três campos:
+- level: "amarelo" (alinhar com o psiquiatra em dias, não semanas) ou "vermelho" (agir hoje: acionar psiquiatra, rede de apoio e emergência quando necessário).
+- signal: descrição concreta do que aparece na sessão, em uma frase. Linguagem observacional, sem diagnóstico, sem termo técnico desnecessário.
+- action: o que o terapeuta faz quando reconhece esse sinal, em uma frase, em linguagem operacional clara.
+Para antidepressivos: incluir sinal relacionado a ideação suicida nas primeiras semanas, especialmente em adolescentes e adultos jovens. Para antidepressivos em pacientes com possível vulnerabilidade bipolar: incluir sinal de virada maniforme. Para medicamentos com risco de síndrome serotoninérgica, síndrome neuroléptica maligna, intoxicação por lítio, agranulocitose por clozapina, e quadros análogos: traduzir o risco em sinais OBSERVÁVEIS na sessão, não em terminologia de bula. Para medicamentos com descontinuação clinicamente relevante: incluir sinal. Para corticoides, isotretinoína e medicamentos com impacto neuropsiquiátrico documentado: incluir sinal específico.
+Linguagem sóbria. Nunca alarmista. O nível amarelo ou vermelho calibra a urgência real, não a gravidade do diagnóstico teórico.
 
-7. coordinationNotes:
-   - Liste situações em que pode ser útil alinhar observações com o prescritor ou equipe, sempre com consentimento do paciente ou responsável.
-   - Não diga que o profissional deve decidir conduta medicamentosa.
-   - Inclua piora clínica, risco suicida, efeitos percebidos importantes, adesão irregular, sinais físicos relevantes ou possível ativação maniforme quando aplicável.
-   - Prefira "pode merecer alinhamento com o prescritor" ou "pode ser útil alinhar com a equipe" em vez de linguagem imperativa.
-   - Para medicamentos especializados, considere também alinhamento com equipe multiprofissional, reabilitação, cuidadores, escola ou serviço de referência quando clinicamente relevante.
+6. clinicalPhrase (string):
+Uma frase única, máximo 180 caracteres, que sintetiza o foco clínico principal ao acompanhar um paciente em uso deste medicamento na terapia. Pode funcionar como subtítulo da ficha no PDF.
 
-8. attentionSignals:
-   - Liste sinais que merecem cuidado clínico, investigação ou encaminhamento para avaliação médica.
-   - Inclua sinais gerais relevantes a psicofármacos, como ideação suicida, autoagressão, piora abrupta, impulsividade incomum ou sinais de mania/hipomania quando aplicável.
-   - Inclua sinais físicos específicos do medicamento quando forem clinicamente relevantes.
-   - Para doenças neurológicas, raras ou graves, inclua perda abrupta de habilidades, alteração importante de consciência, mudança neurológica nova, regressão funcional ou piora rápida quando relevante.
-   - Não diagnostique reação adversa.
-   - Não use linguagem alarmista.
-   - Não substitua sinais concretos por termos vagos quando houver sinais mais reconheíveis para o profissional.
+Schema JSON obrigatório:
 
-Formato obrigatório:
 {
-  "description": "Descrição objetiva do medicamento e do que importa para o profissional observar. Entre 80 e 700 caracteres.",
-  "clinicalContexts": [
-    "Contexto clínico em que esse medicamento costuma aparecer. Menos de 180 caracteres por item."
+  "description": "string",
+  "clinicalDomains": [
+    { "name": "string", "content": "string" }
   ],
-  "patientReports": [
-    "Relatos que o paciente, cuidador ou familiar pode trazer no acompanhamento. Menos de 180 caracteres por item."
-  ],
-  "careObservations": [
-    "Aspectos que o profissional pode observar em atendimento, consulta, sessão ou acompanhamento, sem concluir causalidade. Menos de 240 caracteres por item."
-  ],
-  "clinicalConfounders": [
-    "Fatores que podem confundir a leitura clínica. Menos de 280 caracteres por item."
-  ],
-  "usefulQuestions": [
-    "Perguntas abertas, seguras e úteis para o acompanhamento clínico. Menos de 220 caracteres por item."
-  ],
-  "coordinationNotes": [
-    "Situações em que pode ser útil alinhar observações com prescritor ou equipe, com consentimento do paciente. Menos de 260 caracteres por item."
-  ],
+  "sessionDiscriminationQuestions": ["string"],
+  "communicationScenarios": ["string"],
   "attentionSignals": [
-    "Sinais de atenção que merecem cuidado clínico ou encaminhamento para avaliação médica. Menos de 260 caracteres por item."
+    { "level": "amarelo" | "vermelho", "signal": "string", "action": "string" }
   ],
-  "clinicalPhrase": "Frase curta que resuma o foco clínico ao acompanhar o paciente em uso desse medicamento. Máximo de 180 caracteres."
+  "clinicalPhrase": "string"
 }
 
-Quantidade de itens:
-- clinicalContexts: 3 a 6 itens.
-- patientReports: 4 a 7 itens.
-- careObservations: 4 a 7 itens.
-- clinicalConfounders: 4 a 7 itens.
-- usefulQuestions: 5 a 8 itens.
-- coordinationNotes: 3 a 6 itens.
-- attentionSignals: 3 a 6 itens.
-
 Validação final antes de responder:
-1. A resposta é somente JSON?
-2. Todas as chaves obrigatórias estão presentes?
-3. Não há markdown?
-4. Não há comentários?
-5. Não há recomendação de dose ou ajuste medicamentoso?
-6. A linguagem é observacional e não prescritiva?
-7. O conteúdo usa de forma específica os dados do medicamento fornecido no final do prompt?
-8. O texto evita viés positivo excessivo?
-9. Há pelo menos 2 pontos distintivos do medicamento?
-10. Os sinais de atenção são úteis para profissionais de saúde, sem virar orientação médica?
-11. O conteúdo ajuda a escuta clínica, o acompanhamento e a comunicação, em vez de apenas resumir uma bula?
-12. As perguntas úteis estão formuladas como perguntas prontas para atendimento?
-13. Quando houver cuidador ou limitação de comunicação, o texto contempla essa possibilidade?
-14. Para medicamentos especializados, o texto considera rotina de cuidado, equipe, procedimentos e carga familiar quando relevante?
-15. O conteúdo é útil para diferentes profissionais que acompanham pacientes medicados em saúde mental?
 
-Responda apenas com JSON válido seguindo exatamente este formato. Mantenha as chaves em inglês.
+1. A resposta é APENAS JSON válido, parseável por JSON.parse, sem markdown, sem comentários, sem texto antes ou depois?
+2. Todas as chaves obrigatórias estão presentes e em inglês?
+3. A description tem janela temporal explícita quando aplicável ao medicamento?
+4. Cada item de clinicalDomains é um parágrafo coeso em prosa, e não uma lista disfarçada ou um conjunto de bullets concatenados?
+5. Cada domínio traz informação distinta dos demais?
+6. Os domínios escolhidos refletem o que é central para ESTE medicamento, não um conjunto padrão aplicado a todos?
+7. Cada pergunta em sessionDiscriminationQuestions discrimina hipóteses concorrentes, e não é apenas escuta clínica geral?
+8. Cada pergunta passa no teste de fechamento: o terapeuta consegue fazer algo com a resposta dentro da própria competência?
+9. Nenhuma pergunta posiciona o terapeuta como intermediário entre paciente e médico?
+10. Nenhuma pergunta exige que o terapeuta responda informação farmacológica (tempo de efeito, dose, mecanismo, ajustes)?
+11. Em attentionSignals, cada nível (amarelo ou vermelho) está calibrado pela urgência real da ação clínica, não pela gravidade do diagnóstico teórico?
+12. A voz alterna sujeitos gramaticais e estruturas? Evita repetição formulaica de "Relato de", "Queixa de", "Percepção de" como abertura de frase?
+13. O conteúdo é específico para esta substância, ou poderia ser aplicado genericamente a qualquer medicamento da mesma classe?
+14. Para medicamentos da categoria C, o foco está no paciente em tratamento contínuo da condição de base, e não em efeitos do medicamento per se?
+15. A linguagem é observacional, prudente, não-alarmista, sem orientação prescritiva, sem certezas de causalidade?
+16. A ficha ajuda o terapeuta a observar, discriminar e comunicar, em vez de tentar ensinar farmacologia?
+
+Responda apenas com JSON válido seguindo exatamente este schema. Mantenha as chaves em inglês.
 `;
 
 export const getMedicationEnrichmentData = (data: {
@@ -213,5 +149,5 @@ export const getMedicationEnrichmentPrompt = (data: any) => {
 Dados do medicamento para esta ficha:
 ${JSON.stringify(getMedicationEnrichmentData(data), null, 2)}
 
-Gere a ficha clínica observacional usando apenas estes dados como identificação do medicamento e respeitando exatamente o formato JSON obrigatório.`;
+Gere a ficha clínica observacional para terapeutas usando apenas estes dados como identificação do medicamento e respeitando exatamente o schema JSON obrigatório.`;
 };

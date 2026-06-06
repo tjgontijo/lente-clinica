@@ -1,6 +1,6 @@
 "use client";
 
-import { Briefcase, Pill } from "lucide-react";
+import { Pill, MessageSquareText, ClipboardList } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -41,14 +41,19 @@ export function DesktopNavLinks() {
   return (
     <>
       <DesktopNavLink
-        href="/cases"
-        label="Casos Clínicos"
-        icon={<Briefcase size={16} />}
-      />
-      <DesktopNavLink
         href="/medications"
         label="Medicações"
         icon={<Pill size={16} />}
+      />
+      <DesktopNavLink
+        href="/communications"
+        label="Comunicação"
+        icon={<MessageSquareText size={16} />}
+      />
+      <DesktopNavLink
+        href="/checklists"
+        label="Sinais de Atenção"
+        icon={<ClipboardList size={16} />}
       />
     </>
   );

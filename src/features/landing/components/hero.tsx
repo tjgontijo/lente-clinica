@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { ArrowRight, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export function Hero() {
   return (
@@ -16,7 +16,13 @@ export function Hero() {
           className="absolute bottom-[-10%] right-[-5%] w-[50vw] h-[50vw] rounded-full bg-[var(--lc-amber-200)] blur-[120px] opacity-25 lc-animate-float mix-blend-multiply"
           style={{ animationDelay: "-5s", animationDirection: "reverse" }}
         />
-        <div className="absolute inset-0" style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, white 75%)' }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 60% at 50% 50%, transparent 0%, white 75%)",
+          }}
+        />
       </div>
 
       <div className="container relative z-10 mx-auto px-6 text-center">
@@ -30,12 +36,15 @@ export function Hero() {
           {/* Headline */}
           <h1 className="font-heading mx-auto max-w-4xl text-4xl font-light tracking-tight text-[var(--lc-neutral-950)] md:text-6xl lg:text-7xl leading-[1.1] mb-8">
             Acompanhe pacientes medicados com mais{" "}
-            <span className="text-[var(--lc-teal-600)] italic">clareza clínica.</span>
+            <span className="text-[var(--lc-teal-600)] italic">
+              clareza clínica.
+            </span>
           </h1>
 
           {/* Subtitle */}
           <p className="mx-auto max-w-2xl text-lg text-[var(--lc-neutral-600)] md:text-xl leading-relaxed mb-4 font-light">
-            A Lente Clínica organiza relatos, destaca sinais relevantes e gera fichas de apoio para a sua prática.
+            A Lente Clínica organiza relatos, destaca sinais relevantes e gera
+            fichas de apoio para a sua prática.
           </p>
           <p className="mx-auto max-w-xl text-sm text-[var(--lc-neutral-400)] mb-12">
             Sem substituir sua escuta, diagnóstico ou julgamento profissional.
@@ -47,7 +56,11 @@ export function Hero() {
               href="/sign-in"
               className="group inline-flex items-center gap-2 rounded-full bg-[var(--lc-teal-900)] hover:bg-[var(--lc-teal-950)] text-white px-10 py-4 text-base font-bold shadow-xl transition-all hover:scale-105 active:scale-95"
             >
-              Criar minha conta <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              Criar minha conta{" "}
+              <ArrowRight
+                size={18}
+                className="transition-transform group-hover:translate-x-1"
+              />
             </Link>
             <Link
               href="#pain-points"
@@ -56,7 +69,9 @@ export function Hero() {
               Ver como funciona
             </Link>
           </div>
-          <p className="text-xs text-[var(--lc-neutral-400)] mb-20">Cancele quando quiser. Sem compromisso de permanência.</p>
+          <p className="text-xs text-[var(--lc-neutral-400)] mb-20">
+            Cancele quando quiser. Sem compromisso de permanência.
+          </p>
 
           {/* Browser Mockup */}
           <div className="relative w-full max-w-5xl mx-auto">
@@ -66,8 +81,12 @@ export function Hero() {
                   <Sparkles size={36} className="text-[var(--lc-teal-200)]" />
                 </div>
                 <div className="text-center">
-                  <p className="text-sm font-semibold tracking-widest uppercase mb-1">Plataforma Lente Clínica</p>
-                  <p className="text-xs text-[var(--lc-neutral-400)]">Veja como funciona em menos de 2 minutos.</p>
+                  <p className="text-sm font-semibold tracking-widest uppercase mb-1">
+                    Plataforma Lente Clínica
+                  </p>
+                  <p className="text-xs text-[var(--lc-neutral-400)]">
+                    Veja como funciona em menos de 2 minutos.
+                  </p>
                 </div>
               </div>
             </div>
@@ -75,11 +94,19 @@ export function Hero() {
             {/* Floating badges */}
             <div className="absolute -bottom-8 -left-8 hidden lg:flex items-center gap-4 rounded-3xl bg-white p-5 shadow-2xl border border-[var(--lc-neutral-100)] transition-transform hover:-translate-y-2">
               <div className="h-12 w-12 rounded-2xl overflow-hidden shadow-sm">
-                <img src="/images/system/logo_square.png" alt="Lente Clínica" className="h-full w-full object-cover" />
+                <img
+                  src="/images/system/logo_square.png"
+                  alt="Lente Clínica"
+                  className="h-full w-full object-cover"
+                />
               </div>
               <div className="text-left">
-                <p className="text-sm font-bold text-[var(--lc-neutral-900)]">Curadoria Especializada</p>
-                <p className="text-xs text-[var(--lc-neutral-500)]">Principais psicofármacos</p>
+                <p className="text-sm font-bold text-[var(--lc-neutral-900)]">
+                  Curadoria Especializada
+                </p>
+                <p className="text-xs text-[var(--lc-neutral-500)]">
+                  Principais psicofármacos
+                </p>
               </div>
             </div>
 
@@ -88,8 +115,12 @@ export function Hero() {
                 <Sparkles size={24} />
               </div>
               <div className="text-left">
-                <p className="text-sm font-bold text-[var(--lc-neutral-900)]">Fichas de Apoio</p>
-                <p className="text-xs text-[var(--lc-neutral-500)]">Rastreio e observação clínica</p>
+                <p className="text-sm font-bold text-[var(--lc-neutral-900)]">
+                  Fichas de Apoio
+                </p>
+                <p className="text-xs text-[var(--lc-neutral-500)]">
+                  Rastreio e observação clínica
+                </p>
               </div>
             </div>
           </div>

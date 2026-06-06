@@ -1,5 +1,7 @@
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { listMedicationsAction } from "../actions";
+
+const PAGE_SIZE = 50;
 
 export const medicationsKeys = {
   all: ["medications"] as const,
@@ -7,8 +9,15 @@ export const medicationsKeys = {
 };
 
 export function useMedicationsQuery(search?: string) {
-  return useQuery({
+  return useInfiniteQuery({
+    initialPageParam: 0,
     queryKey: medicationsKeys.search(search),
-    queryFn: () => listMedicationsAction(search),
+    queryFn: ({ pageParam }) =>
+      listMedicationsAction({
+        search,
+        offset: pageParam,
+        limit: PAGE_SIZE,
+      }),
+    getNextPageParam: (lastPage) => lastPage.nextOffset,
   });
 }
