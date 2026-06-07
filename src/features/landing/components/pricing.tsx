@@ -39,7 +39,7 @@ export function Pricing() {
           >
             <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--lc-teal-900)] border border-[var(--lc-teal-700)] px-3 py-1 text-[11px] font-bold text-[var(--lc-teal-300)] uppercase tracking-wider">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--lc-teal-400)]" />
-              Melhor valor: 2 meses grátis
+              Melhor valor: economize R$101 por ano
             </span>
           </div>
 
@@ -98,7 +98,7 @@ export function Pricing() {
               </div>
               {isAnnual ? (
                 <p className="text-sm text-[var(--lc-teal-400)] mb-8">
-                  equivale a R$ 20,58/mês, 2 meses grátis
+                  R$ 20,58/mês · você economiza R$ 101 em relação ao mensal
                 </p>
               ) : (
                 <div className="mb-8" />
