@@ -72,7 +72,7 @@ export function WebinarCountdown({ onSessionStart }: WebinarCountdownProps) {
             <Clock className="w-4 h-4 text-[var(--lc-teal-400)]" /> A sessão
             começa em
           </p>
-          <div className="text-white text-6xl md:text-7xl font-mono font-bold tracking-tight tabular-nums animate-pulse drop-shadow-[0_0_12px_rgba(255,255,255,0.05)]">
+          <div className="text-white text-5xl sm:text-6xl md:text-7xl font-mono font-bold tracking-tight tabular-nums drop-shadow-[0_0_12px_rgba(255,255,255,0.05)]">
             {formatCountdown(secondsLeft)}
           </div>
           <div className="text-gray-400 text-sm flex items-center justify-center gap-1.5 border-t border-gray-800/50 pt-4 capitalize">

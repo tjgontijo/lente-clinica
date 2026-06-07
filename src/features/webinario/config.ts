@@ -24,7 +24,7 @@ export const OFFER_WINDOW_MINUTES = 30;
 export const WEBINAR_OFFER_STORAGE_KEY =
   "webinario-lente-clinica:offer-unlocked";
 
-// Sessões: toda terça e quinta às 19h30 (BRT)
-export const SESSION_DAYS = [2, 4]; // 2=terça, 4=quinta
+// Sessão: toda terça às 19h30 (BRT)
+export const SESSION_DAYS = [2]; // 2=terça
 export const SESSION_HOUR = 19;
 export const SESSION_MINUTE = 30;

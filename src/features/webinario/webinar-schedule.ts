@@ -1,6 +1,5 @@
 // Sessões toda terça-feira às 19h30 (BRT = UTC-3)
-// Também toda quinta às 19h30 como segunda opção
-export const SESSION_DAYS = [2, 4]; // 2=terça, 4=quinta (0=domingo)
+export const SESSION_DAYS = [2]; // 2=terça (0=domingo)
 export const SESSION_HOUR = 19;
 export const SESSION_MINUTE = 30;
 export const SESSION_DURATION_SECONDS = 55 * 60; // 55 min
@@ -16,37 +15,30 @@ export interface SessionInfo {
 }
 
 export function getNextSession(now: Date = new Date()): SessionInfo {
-  // Converte para BRT (UTC-3)
-  const brtOffset = -3 * 60; // minutos
-  const brtNow = new Date(
-    now.getTime() + (brtOffset - now.getTimezoneOffset()) * 60000,
-  );
+  // Convert now's timestamp to a Date that represents BRT when read in UTC.
+  // Since BRT is UTC-3, we subtract 3 hours from now.getTime().
+  const brtTime = now.getTime() - 3 * 3600 * 1000;
+  const brtDate = new Date(brtTime);
 
-  let candidate = new Date(brtNow);
-  candidate.setHours(SESSION_HOUR, SESSION_MINUTE, 0, 0);
+  let candidateTime = brtTime;
 
-  // Encontra a próxima sessão (hoje ou futura)
   for (let daysAhead = 0; daysAhead <= 7; daysAhead++) {
-    const check = new Date(brtNow);
-    check.setDate(brtNow.getDate() + daysAhead);
-    check.setHours(SESSION_HOUR, SESSION_MINUTE, 0, 0);
+    const check = new Date(brtTime);
+    check.setUTCDate(brtDate.getUTCDate() + daysAhead);
+    check.setUTCHours(SESSION_HOUR, SESSION_MINUTE, 0, 0);
 
+    const checkTime = check.getTime();
     if (
-      SESSION_DAYS.includes(check.getDay()) &&
-      check.getTime() >
-        brtNow.getTime() -
-          SESSION_DURATION_SECONDS * 1000 -
-          OFFER_WINDOW_SECONDS * 1000
+      SESSION_DAYS.includes(check.getUTCDay()) &&
+      checkTime > brtTime - SESSION_DURATION_SECONDS * 1000 - OFFER_WINDOW_SECONDS * 1000
     ) {
-      candidate = check;
+      candidateTime = checkTime;
       break;
     }
   }
 
-  // Converte de volta para UTC
-  const startsAt = new Date(
-    candidate.getTime() - (brtOffset - now.getTimezoneOffset()) * 60000,
-  );
+  // Convert the candidate time in BRT back to UTC startsAt date by adding 3 hours
+  const startsAt = new Date(candidateTime + 3 * 3600 * 1000);
   const endsAt = new Date(startsAt.getTime() + SESSION_DURATION_SECONDS * 1000);
   const offerEndsAt = new Date(endsAt.getTime() + OFFER_WINDOW_SECONDS * 1000);
 
@@ -78,9 +70,17 @@ export function getNextSession(now: Date = new Date()): SessionInfo {
 }
 
 export function formatCountdown(seconds: number): string {
-  const h = Math.floor(seconds / 3600);
+  const d = Math.floor(seconds / (3600 * 24));
+  const h = Math.floor((seconds % (3600 * 24)) / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
-  if (h > 0) return `${h}h ${m.toString().padStart(2, "0")}m`;
-  return `${m.toString().padStart(2, "0")}:${s.toString().padStart(2, "0")}`;
+
+  const hh = h.toString().padStart(2, "0");
+  const mm = m.toString().padStart(2, "0");
+  const ss = s.toString().padStart(2, "0");
+
+  if (d > 0) {
+    return `${d}d ${hh}:${mm}:${ss}`;
+  }
+  return `${hh}:${mm}:${ss}`;
 }
