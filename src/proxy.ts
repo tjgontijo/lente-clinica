@@ -13,7 +13,7 @@ export default async function proxy(request: NextRequest) {
     request.nextUrl.pathname === "/" ||
     request.nextUrl.pathname.startsWith("/checkout") ||
     request.nextUrl.pathname.startsWith("/billing/success") ||
-    request.nextUrl.pathname.startsWith("/ao-vivo");
+    request.nextUrl.pathname.startsWith("/sessao-ao-vivo");
 
   if (!session && !isAuthPage && !isApiAuth && !isPublicPage) {
     return NextResponse.redirect(new URL("/sign-in", request.url));

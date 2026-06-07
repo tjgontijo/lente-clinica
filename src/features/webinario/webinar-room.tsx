@@ -4,13 +4,19 @@ import { useEffect, useRef, useState } from "react";
 import { WebinarChat } from "./components/WebinarChat";
 import { WebinarOffer } from "./components/WebinarOffer";
 import { WebinarPlayer } from "./components/WebinarPlayer";
-import { OFFER_RELEASE_SECONDS, OFFER_WINDOW_MINUTES } from "./config";
+import {
+  OFFER_RELEASE_SECONDS,
+  OFFER_WINDOW_MINUTES,
+  WEBINAR_OFFER_STORAGE_KEY,
+} from "./config";
 import { useWebinarChat } from "./hooks/use-webinar-chat";
+import { getNextSession } from "./webinar-schedule";
 
 type SmartPlayerInstance = {
   video?: { currentTime?: number };
   on?: (event: "timeupdate", callback: () => void) => void;
   off?: (event: "timeupdate", callback: () => void) => void;
+  seek?: (seconds: number) => void;
 };
 
 declare global {
@@ -71,55 +77,85 @@ export function WebinarRoom() {
 
   // VTurb player listener
   useEffect(() => {
-    if (typeof window === "undefined") return;
+    if (typeof window === 'undefined') return
 
-    let cleanup: (() => void) | null = null;
+    // Se oferta já foi revelada antes (reload)
+    const persistedState = window.localStorage.getItem(WEBINAR_OFFER_STORAGE_KEY)
+    if (persistedState === 'true') {
+      setIsOfferVisible(true)
+    }
+
+    let cleanupListener: (() => void) | null = null
+    let hasSeeked = false
 
     const unlockOffer = () => {
-      setIsOfferVisible(true);
-      offerRevealedAt.current = Date.now();
-    };
+      setIsOfferVisible(true)
+      offerRevealedAt.current = Date.now()
+      window.localStorage.setItem(WEBINAR_OFFER_STORAGE_KEY, 'true')
+      if (cleanupListener) {
+        cleanupListener()
+        cleanupListener = null
+      }
+    }
 
     const tryAttach = () => {
-      const player = window.smartplayer?.instances?.[0];
-      if (!player?.on) return false;
+      const player = window.smartplayer?.instances?.[0]
+      if (!player?.on) return false
+
+      if (!hasSeeked) {
+        const isPreview = new URLSearchParams(window.location.search).get('preview') === 'true'
+        if (!isPreview) {
+          const session = getNextSession()
+          if (session.status === 'live' && session.elapsedSeconds > 0) {
+            if (typeof player.seek === 'function') {
+              player.seek(session.elapsedSeconds)
+            } else if (player.video) {
+              player.video.currentTime = session.elapsedSeconds
+            }
+          }
+        }
+        hasSeeked = true
+      }
 
       const handleTimeUpdate = () => {
-        const t = player.video?.currentTime ?? 0;
-        setVideoSeconds(t);
-
-        // Em preview=true, desbloqueia oferta em 10 segundos para testes rápidos.
-        // Em produção segue o OFFER_RELEASE_SECONDS (15 min).
-        const isPreview =
-          new URLSearchParams(window.location.search).get("preview") === "true";
-        const releaseTime = isPreview ? 10 : OFFER_RELEASE_SECONDS;
-
-        if (t >= releaseTime) {
-          unlockOffer();
-        } else {
-          // Garante que se o usuário reiniciar o vídeo do início, a oferta seja ocultada
-          setIsOfferVisible(false);
+        const t = player.video?.currentTime ?? 0
+        setVideoSeconds(t)
+        
+        if (t >= OFFER_RELEASE_SECONDS) {
+          unlockOffer()
         }
-      };
+      }
 
-      player.on("timeupdate", handleTimeUpdate);
-      handleTimeUpdate();
+      player.on('timeupdate', handleTimeUpdate)
+      handleTimeUpdate()
 
-      cleanup = () => player.off?.("timeupdate", handleTimeUpdate);
-      return true;
-    };
+      cleanupListener = () => {
+        if (player.off) {
+          player.off('timeupdate', handleTimeUpdate)
+        }
+      }
+      return true
+    }
 
-    if (tryAttach()) return () => cleanup?.();
+    if (tryAttach()) {
+      return () => {
+        if (cleanupListener) {
+          cleanupListener()
+        }
+      }
+    }
 
     const poll = setInterval(() => {
-      if (tryAttach()) clearInterval(poll);
-    }, 500);
+      if (tryAttach()) clearInterval(poll)
+    }, 500)
 
     return () => {
-      clearInterval(poll);
-      cleanup?.();
-    };
-  }, []);
+      clearInterval(poll)
+      if (cleanupListener) {
+        cleanupListener()
+      }
+    }
+  }, [])
 
   return (
     <div className="h-[100dvh] overflow-hidden bg-gray-950 text-white flex flex-col">
