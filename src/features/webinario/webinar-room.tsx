@@ -161,12 +161,14 @@ export function WebinarRoom() {
     <div className="h-[100dvh] overflow-hidden bg-gray-950 text-white flex flex-col">
       <div className="flex-1 flex flex-col lg:flex-row overflow-hidden min-h-0">
         {/* Lado Esquerdo / Topo: Player do Vídeo */}
-        <WebinarPlayer viewerCount={viewerCount} videoAreaRef={videoAreaRef} />
-
-        {/* Oferta no Mobile — Exibida logo abaixo do vídeo e acima do chat */}
-        {isOfferVisible && isMobile && (
-          <WebinarOffer minutesLeft={offerMinutesLeft} variant="mobile" />
-        )}
+        <WebinarPlayer viewerCount={viewerCount} videoAreaRef={videoAreaRef}>
+          {/* Oferta no Mobile — Exibida sobreposta de forma interna no rodapé do player de vídeo */}
+          {isOfferVisible && isMobile && (
+            <div className="absolute bottom-0 left-0 right-0 z-30">
+              <WebinarOffer minutesLeft={offerMinutesLeft} variant="mobile" />
+            </div>
+          )}
+        </WebinarPlayer>
 
         {/* Lado Direito: Chat e Oferta no Desktop */}
         <div className="flex-1 lg:flex-none w-full lg:w-80 xl:w-96 flex flex-col border-t lg:border-t-0 lg:border-l border-gray-900 min-h-0">

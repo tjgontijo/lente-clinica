@@ -11,7 +11,7 @@ interface WebinarOfferProps {
 export function WebinarOffer({ minutesLeft, variant }: WebinarOfferProps) {
   if (variant === "mobile") {
     return (
-      <div className="lg:hidden px-4 py-3 bg-gradient-to-r from-purple-950 to-indigo-950 border-y border-purple-900/60 flex items-center justify-between gap-3 shrink-0 shadow-lg">
+      <div className="lg:hidden px-4 py-3 bg-gradient-to-r from-purple-950/90 to-indigo-950/90 backdrop-blur-md border-t border-purple-900/50 flex items-center justify-between gap-3 shrink-0 shadow-lg">
         <div className="min-w-0 flex flex-col justify-center">
           <span className="text-purple-200 text-xs font-semibold uppercase tracking-wider flex items-center gap-1.5">
             <Sparkles className="w-3.5 h-3.5 text-purple-400 animate-pulse" />

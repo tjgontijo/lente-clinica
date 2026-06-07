@@ -12,11 +12,13 @@ import {
 interface WebinarPlayerProps {
   viewerCount: number;
   videoAreaRef?: React.RefObject<HTMLDivElement | null>;
+  children?: React.ReactNode;
 }
 
 export function WebinarPlayer({
   viewerCount,
   videoAreaRef,
+  children,
 }: WebinarPlayerProps) {
   const [videoAreaHeight, setVideoAreaHeight] = useState(0);
 
@@ -100,6 +102,7 @@ export function WebinarPlayer({
           id: WEBINAR_PLAYER_EMBED_ID,
           style: { display: "block", width: "100%", height: "100%" },
         })}
+        {children}
       </div>
     </div>
   );
