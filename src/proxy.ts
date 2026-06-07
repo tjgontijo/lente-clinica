@@ -12,7 +12,8 @@ export default async function proxy(request: NextRequest) {
   const isPublicPage =
     request.nextUrl.pathname === "/" ||
     request.nextUrl.pathname.startsWith("/checkout") ||
-    request.nextUrl.pathname.startsWith("/billing/success");
+    request.nextUrl.pathname.startsWith("/billing/success") ||
+    request.nextUrl.pathname.startsWith("/webinario");
 
   if (!session && !isAuthPage && !isApiAuth && !isPublicPage) {
     return NextResponse.redirect(new URL("/sign-in", request.url));
@@ -31,6 +32,8 @@ export const config = {
     "/checkout",
     "/checkout/:path*",
     "/billing/success",
+    "/webinario",
+    "/webinario/:path*",
     "/medications",
     "/medications/:path*",
     "/sign-in",

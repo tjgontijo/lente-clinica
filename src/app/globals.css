@@ -385,3 +385,16 @@
     var(--lc-neutral-0) 100%
   );
 }
+
+/* Webinário: força VTurb a usar todo o espaço interno do container */
+.webinar-player-wrapper vturb-smartplayer,
+.webinar-player-wrapper iframe,
+.webinar-player-wrapper video {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-height: 100% !important;
+  max-width: 100% !important;
+}
